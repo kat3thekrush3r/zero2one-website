@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Zero2One</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            background: #1a1f2e;
+            color: #ffffff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(26, 31, 46, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.3rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-decoration: none;
+            color: white;
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+        }
+
+        .logo-icon svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #ffffff;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #7FFF7F 0%, #00CED1 100%);
+            color: #0a0e1a;
+            padding: 0.7rem 1.6rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(127, 255, 127, 0.3);
+        }
+
+        /* Hero */
+        .hero {
+            padding: 10rem 6% 6rem;
+            text-align: center;
+            background: linear-gradient(135deg, #1a1f2e 0%, #2a3142 100%);
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Story Section */
+        .story {
+            padding: 8rem 6%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .story h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 2rem;
+        }
+
+        .story p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, #7FFF7F 0%, #00CED1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 600;
+        }
+
+        /* Founders Section */
+        .founders {
+            padding: 8rem 6%;
+            background: #23283a;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.2rem;
+        }
+
+        .founders-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+        }
+
+        .founder-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 3rem;
+            transition: all 0.3s;
+        }
+
+        .founder-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(127, 255, 127, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .founder-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .founder-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #7FFF7F 0%, #00CED1 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 2rem;
+            color: #0a0e1a;
+            flex-shrink: 0;
+        }
+
+        .founder-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .founder-info p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1rem;
+        }
+
+        .founder-bio {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+
+        .founder-highlights {
+            list-style: none;
+        }
+
+        .founder-highlights li {
+            padding-left: 1.5rem;
+            margin-bottom: 0.75rem;
+            position: relative;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .founder-highlights li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #7FFF7F;
+        }
+
+        /* Values Section */
+        .values {
+            padding: 8rem 6%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .value-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2.5rem;
+        }
+
+        .value-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .value-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .value-card p {
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.7;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 8rem 6%;
+            text-align: center;
+            background: linear-gradient(135deg, #1a1f2e 0%, #2a3142 100%);
+        }
+
+        .cta-section h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 2.5rem;
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem 6%;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            background: #1a1f2e;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .footer-brand p {
+            color: rgba(255, 255, 255, 0.5);
+            line-height: 1.7;
+            margin-top: 1rem;
+        }
+
+        .footer-links h4 {
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #ffffff;
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 3rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        @media (max-width: 968px) {
+            .nav-links {
+                display: none;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .founders-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="index.html" class="logo">
+            <div class="logo-icon">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="logoGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" style="stop-color:#7FFF7F;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#00CED1;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <circle cx="50" cy="50" r="45" fill="none" stroke="url(#logoGradient)" stroke-width="8"/>
+                    <rect x="46" y="25" width="8" height="50" fill="url(#logoGradient)" rx="4"/>
+                </svg>
+            </div>
+            <span>ZERO2ONE</span>
+        </a>
+        <div class="nav-links">
+            <a href="index.html#features">Features</a>
+            <a href="index.html#how-it-works">How it Works</a>
+            <a href="index.html#testimonials">Testimonials</a>
+            <a href="index.html#audit" class="cta-button" style="color: #0a0e1a;">Free Audit</a>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <h1>Built by operators who get it</h1>
+        <p>We've scaled companies from 2 to 100+ employees. We've managed complex accounting systems. We've built the tech. Now we're bringing it all to ecommerce brands.</p>
+    </section>
+
+    <!-- Story -->
+    <section class="story">
+        <h2>Why Zero2One exists</h2>
+        <p>Traditional accounting firms weren't built for the speed and complexity of modern ecommerce. Month-end closes that take weeks. Reports that arrive too late to be useful. Accountants who don't understand marketplace fees, COGS allocation, or multi-channel inventory.</p>
+        <p>We built Zero2One because <span class="highlight">ecommerce brands deserve better.</span></p>
+        <p>Our system is engineered to go beyond standard reporting. We focus on continuous, data-driven insights—giving you the operational clarity and cash flow control needed to scale confidently with real-time profit analysis.</p>
+        <p>This isn't just bookkeeping. It's <span class="highlight">financial leadership for fast-moving ecommerce brands.</span></p>
+    </section>
+
+    <!-- Founders -->
+    <section class="founders">
+        <div class="section-header">
+            <h2>Meet the founders</h2>
+            <p>Operators, builders, and problem-solvers</p>
+        </div>
+        <div class="founders-grid">
+            <div class="founder-card">
+                <div class="founder-header">
+                    <div class="founder-avatar">KM</div>
+                    <div class="founder-info">
+                        <h3>Kate MacPherson</h3>
+                        <p>Founder & CEO</p>
+                    </div>
+                </div>
+                <div class="founder-bio">
+                    Kate brings deep operational and financial expertise from scaling multiple companies. As Co-Founder of HomeRoom, she spearheaded all core operational functions—including HR, finance, and asset management—scaling the internal team from 2 to 50 employees in 18 months. She managed complex dual accounting systems and drove key technology initiatives that significantly improved operational efficiency.
+                </div>
+                <ul class="founder-highlights">
+                    <li>Scaled multiple companies from 10 to 100+ employees</li>
+                    <li>Built and sold OneFirm, managing critical client relations and operational standards</li>
+                    <li>Director of Operations and Product Management at APM Help, scaling the company from 10 to over 100 employees</li>
+                    <li>Spearheaded financial oversight and created revenue strategies to stabilize and guide departments</li>
+                    <li>Bachelor's Degree in Accounting & Management from Crandall University</li>
+                </ul>
+            </div>
+
+            <div class="founder-card">
+                <div class="founder-header">
+                    <div class="founder-avatar">JM</div>
+                    <div class="founder-info">
+                        <h3>Joel MacPherson</h3>
+                        <p>Co-Founder & Strategic Advisor</p>
+                    </div>
+                </div>
+                <div class="founder-bio">
+                    Joel is all about increasing cashflow for ecommerce businesses. Starting as a CPA auditor in public accounting, he transitioned to CFO roles for 8-figure ecommerce brands. He founded OneFirm, building the team and processes from scratch, and is currently CFO/COO of TrueOps, helping Amazon sellers recover over $10M in reimbursements.
+                </div>
+                <ul class="founder-highlights">
+                    <li>CPA with deep ecommerce finance expertise</li>
+                    <li>Built finance operations for Dalstrong, modernizing systems with NetSuite and recruiting world-class teams</li>
+                    <li>Founder of OneFirm, sold portfolio for 6 figures to focus on ecommerce accounting</li>
+                    <li>CFO/COO of TrueOps, helping Amazon sellers recover millions in reimbursements</li>
+                    <li>Raised millions in financing and led acquisitions for growing companies</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values -->
+    <section class="values">
+        <div class="section-header">
+            <h2>How we work</h2>
+            <p>Our principles guide everything we do</p>
+        </div>
+        <div class="values-grid">
+            <div class="value-card">
+                <div class="value-icon">🎯</div>
+                <h3>Ecommerce-Only Focus</h3>
+                <p>We don't serve everyone. We only work with ecommerce brands, which means we understand your business model, challenges, and opportunities deeply.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">⚡</div>
+                <h3>Speed Matters</h3>
+                <p>In ecommerce, decisions can't wait for month-end reports. We deliver real-time insights so you can move as fast as your market demands.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">🔧</div>
+                <h3>Tech-Enabled</h3>
+                <p>We combine smart technology with expert people. Our systems automate the mundane so our team can focus on strategic guidance.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">🤝</div>
+                <h3>Partnership Mindset</h3>
+                <p>We're not just your accountants—we're your finance partners. Your success is our success, and we're invested in your growth.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">📈</div>
+                <h3>Operational Clarity</h3>
+                <p>Great finance isn't just about accurate books. It's about giving you clarity to make better decisions, faster.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">💪</div>
+                <h3>Built by Operators</h3>
+                <p>We've been in your shoes. We've scaled businesses, managed rapid growth, and solved the problems you're facing right now.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <h2>Ready to work together?</h2>
+        <p>Let's talk about how Zero2One can help your ecommerce brand scale confidently.</p>
+        <a href="index.html#audit" class="cta-button" style="font-size: 1.1rem; padding: 1rem 2.5rem;">Free Audit</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon">
+                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="logoGradient2" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#7FFF7F;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#00CED1;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                            <circle cx="50" cy="50" r="45" fill="none" stroke="url(#logoGradient2)" stroke-width="8"/>
+                            <rect x="46" y="25" width="8" height="50" fill="url(#logoGradient2)" rx="4"/>
+                        </svg>
+                    </div>
+                    <span>ZERO2ONE</span>
+                </a>
+                <p>Finance at the speed of ecommerce. Built exclusively for ecommerce brands ready to scale.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Product</h4>
+                <ul>
+                    <li><a href="index.html#features">Features</a></li>
+                    <li><a href="#">Pricing</a></li>
+                    <li><a href="index.html#how-it-works">How It Works</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Case Studies</a></li>
+                    <li><a href="#">Support</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Zero2One. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
