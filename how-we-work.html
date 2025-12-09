@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How We Work - Zero2One</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            background: #1a1f2e;
+            color: #ffffff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(26, 31, 46, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.3rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-decoration: none;
+            color: white;
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+        }
+
+        .logo-icon svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #ffffff;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #7FFF7F 0%, #00CED1 100%);
+            color: #0a0e1a;
+            padding: 0.7rem 1.6rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(127, 255, 127, 0.3);
+        }
+
+        /* Hero */
+        .hero {
+            padding: 10rem 6% 6rem;
+            text-align: center;
+            background: linear-gradient(135deg, #1a1f2e 0%, #2a3142 100%);
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Principles Section */
+        .principles {
+            padding: 8rem 6%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .principle {
+            margin-bottom: 6rem;
+        }
+
+        .principle:last-child {
+            margin-bottom: 0;
+        }
+
+        .principle h2 {
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #7FFF7F 0%, #00CED1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .principle p {
+            font-size: 1.25rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Promise Section */
+        .promise {
+            padding: 8rem 6%;
+            background: linear-gradient(135deg, rgba(127, 255, 127, 0.08) 0%, rgba(0, 206, 209, 0.08) 100%);
+        }
+
+        .promise-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .promise h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 2rem;
+        }
+
+        .promise-box {
+            background: rgba(255, 255, 255, 0.03);
+            border: 2px solid rgba(127, 255, 127, 0.3);
+            border-radius: 16px;
+            padding: 3rem;
+            margin-top: 2rem;
+        }
+
+        .promise-box p {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .promise-highlight {
+            font-weight: 700;
+            color: #7FFF7F;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 8rem 6%;
+            text-align: center;
+            background: #23283a;
+        }
+
+        .cta-section h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 2.5rem;
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem 6%;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            background: #1a1f2e;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .footer-brand p {
+            color: rgba(255, 255, 255, 0.5);
+            line-height: 1.7;
+            margin-top: 1rem;
+        }
+
+        .footer-links h4 {
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #ffffff;
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 3rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        @media (max-width: 968px) {
+            .nav-links {
+                display: none;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .promise-box {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="index.html" class="logo">
+            <div class="logo-icon">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="logoGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" style="stop-color:#7FFF7F;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#00CED1;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <circle cx="50" cy="50" r="45" fill="none" stroke="url(#logoGradient)" stroke-width="8"/>
+                    <rect x="46" y="25" width="8" height="50" fill="url(#logoGradient)" rx="4"/>
+                </svg>
+            </div>
+            <span>ZERO2ONE</span>
+        </a>
+        <div class="nav-links">
+            <a href="index.html#features">Features</a>
+            <a href="index.html#how-it-works">How it Works</a>
+            <a href="about.html">About</a>
+            <a href="free-audit.html" class="cta-button" style="color: #0a0e1a;">Free Audit</a>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <h1>How we work</h1>
+        <p>We're not your typical accounting firm. Here's what makes us different.</p>
+    </section>
+
+    <!-- Principles -->
+    <section class="principles">
+        <div class="principle">
+            <h2>We ruthlessly eliminate busywork</h2>
+            <p>If a machine can do it, a human shouldn't. We use AI, automation, and smart integrations to eliminate every manual, repetitive task from your finance operations. No more data entry. No more reconciliation hell. Just clean, automated workflows that run in the background while you focus on growing your business.</p>
+        </div>
+
+        <div class="principle">
+            <h2>We take full ownership</h2>
+            <p>If it has a dollar sign attached to it, we're responsible. We don't do the "that's not my department" thing. We work with a limited number of clients so we can be fully embedded in your business—responding in real-time, thinking proactively, and operating like we're part of your team. Because we are.</p>
+        </div>
+
+        <div class="principle">
+            <h2>Cash drives every decision</h2>
+            <p>Fancy dashboards are nice. Smooth automation feels good. But neither matters if they're not making you money. We prioritize work based on one question: Will this increase profitability? The answer guides everything we build, every system we improve, and every recommendation we make.</p>
+        </div>
+    </section>
+
+    <!-- Promise -->
+    <section class="promise">
+        <div class="promise-content">
+            <h2>Our guarantee</h2>
+            <div class="promise-box">
+                <p><span class="promise-highlight">If you don't see positive ROI in your first month, you don't pay.</span></p>
+                <p style="margin-top: 1.5rem;">We believe great finance operations should directly impact your bottom line. If we're not driving measurable results, we haven't done our job.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <h2>See what better finance looks like</h2>
+        <p>Book a free audit and we'll show you exactly where you're leaving money on the table.</p>
+        <a href="free-audit.html" class="cta-button" style="font-size: 1.1rem; padding: 1rem 2.5rem; color: #0a0e1a;">Free Audit</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon">
+                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="logoGradient2" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#7FFF7F;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#00CED1;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                            <circle cx="50" cy="50" r="45" fill="none" stroke="url(#logoGradient2)" stroke-width="8"/>
+                            <rect x="46" y="25" width="8" height="50" fill="url(#logoGradient2)" rx="4"/>
+                        </svg>
+                    </div>
+                    <span>ZERO2ONE</span>
+                </a>
+                <p>Finance at the speed of ecommerce. Built exclusively for ecommerce brands ready to scale.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Product</h4>
+                <ul>
+                    <li><a href="index.html#features">Features</a></li>
+                    <li><a href="#">Pricing</a></li>
+                    <li><a href="index.html#how-it-works">How It Works</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Case Studies</a></li>
+                    <li><a href="#">Support</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Zero2One. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
