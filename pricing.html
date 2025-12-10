@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing - Zero2One</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            background: #1a1f2e;
+            color: #ffffff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(26, 31, 46, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.3rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-decoration: none;
+            color: white;
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+        }
+
+        .logo-icon svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #ffffff;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #7FFF7F 0%, #00CED1 100%);
+            color: #0a0e1a;
+            padding: 0.7rem 1.6rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(127, 255, 127, 0.3);
+        }
+
+        /* Hero */
+        .hero {
+            padding: 10rem 6% 6rem;
+            text-align: center;
+            background: linear-gradient(135deg, #1a1f2e 0%, #2a3142 100%);
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Quality Banner */
+        .quality-banner {
+            padding: 6rem 6%;
+            background: #23283a;
+        }
+
+        .quality-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .quality-content h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 1.5rem;
+        }
+
+        .quality-content p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+            margin-bottom: 3rem;
+        }
+
+        .quality-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+
+        .stat:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(127, 255, 127, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #7FFF7F 0%, #00CED1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1rem;
+        }
+
+        /* Pricing Section */
+        .pricing-section {
+            padding: 8rem 6%;
+            background: linear-gradient(135deg, #1a1f2e 0%, #2a3142 100%);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.2rem;
+        }
+
+        .pricing-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .pricing-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 3rem;
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .pricing-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateY(-5px);
+        }
+
+        .pricing-card.popular {
+            border: 2px solid rgba(127, 255, 127, 0.5);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -15px;
+            right: 30px;
+            background: linear-gradient(135deg, #7FFF7F 0%, #00CED1 100%);
+            color: #0a0e1a;
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .plan-header {
+            margin-bottom: 2rem;
+        }
+
+        .plan-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .plan-description {
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.6;
+        }
+
+        .price {
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .price-amount {
+            font-size: 4rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #7FFF7F 0%, #00CED1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .price-period {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 1.2rem;
+        }
+
+        .plan-cta {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            font-size: 1rem;
+        }
+
+        .features-list {
+            list-style: none;
+        }
+
+        .feature-item {
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .feature-item:last-child {
+            border-bottom: none;
+        }
+
+        .check-icon {
+            color: #7FFF7F;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+            margin-top: 0.2rem;
+        }
+
+        .feature-text {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+        }
+
+        .feature-highlight {
+            color: #7FFF7F;
+            font-weight: 600;
+        }
+
+        /* Addons Section */
+        .addons-section {
+            padding: 6rem 6%;
+            background: #23283a;
+        }
+
+        .addons-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .addons-grid {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .addon-tag {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .addon-tag:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(127, 255, 127, 0.3);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 8rem 6%;
+            text-align: center;
+            background: linear-gradient(135deg, #1a1f2e 0%, #2a3142 100%);
+        }
+
+        .cta-section h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 2.5rem;
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem 6%;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            background: #1a1f2e;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .footer-brand p {
+            color: rgba(255, 255, 255, 0.5);
+            line-height: 1.7;
+            margin-top: 1rem;
+        }
+
+        .footer-links h4 {
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #ffffff;
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 3rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        @media (max-width: 968px) {
+            .nav-links {
+                display: none;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .quality-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .price-amount {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="index.html" class="logo">
+            <div class="logo-icon">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="logoGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" style="stop-color:#7FFF7F;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#00CED1;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <circle cx="50" cy="50" r="45" fill="none" stroke="url(#logoGradient)" stroke-width="8"/>
+                    <rect x="46" y="25" width="8" height="50" fill="url(#logoGradient)" rx="4"/>
+                </svg>
+            </div>
+            <span>ZERO2ONE</span>
+        </a>
+        <div class="nav-links">
+            <a href="index.html#features">Features</a>
+            <a href="index.html#how-it-works">How it Works</a>
+            <a href="about.html">About</a>
+            <a href="free-audit.html" class="cta-button" style="color: #0a0e1a;">Free Audit</a>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <h1>Built by Top Talent.<br>Priced for Growth.</h1>
+        <p>Choose the finance solution that scales with your ecommerce business. All plans include our cutting-edge technology platform at no extra cost.</p>
+    </section>
+
+    <!-- Quality Banner -->
+    <section class="quality-banner">
+        <div class="quality-content">
+            <h2>Dedicated Team, Real Results</h2>
+            <p>All accounting staff are US-based ecommerce specialists. You get dedicated attention from a team that knows your business inside and out.</p>
+            <div class="quality-stats">
+                <div class="stat">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">US-Based Team</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">24hr</div>
+                    <div class="stat-label">Onboarding Time</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">Real-Time</div>
+                    <div class="stat-label">Financial Insights</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing-section">
+        <div class="section-header">
+            <h2>Choose Your Plan</h2>
+            <p>Both plans include our cutting-edge technology—free and included</p>
+        </div>
+        <div class="pricing-grid">
+            <!-- Done With You -->
+            <div class="pricing-card">
+                <div class="plan-header">
+                    <div class="plan-name">Done With You</div>
+                    <div class="plan-description">Supercharge your existing bookkeeper with our systems and expert controller oversight. Perfect for teams that want guidance and cutting-edge tools.</div>
+                </div>
+                
+                <div class="price">
+                    <span class="price-amount">$975</span>
+                    <span class="price-period">/month</span>
+                </div>
+
+                <a href="free-audit.html" class="cta-button plan-cta">Get Started</a>
+
+                <ul class="features-list">
+                    <li class="feature-item">
+                        <span class="check-icon">✓</span>
+                        <span class="feature-text"><span class="feature-highlight">Our cutting-edge technology:</span> Modern data infrastructure with hourly Big Query updates and daily QBO syncs. Replaces A2X.</span>
+                    </li>
+                    <li class="feature-item">
+                        <span class="check-icon">✓</span>
+                        <span class="feature-text"><span class="feature-highlight">US-based ecommerce specialized controller oversight</span> with proactive bi-weekly accounting quality reviews and coaching for your team</span>
+                    </li>
+                    <li class="feature-item">
+                        <span class="check-icon">✓</span>
+                        <span class="feature-text">Hourly ROAS reporting across all sales channels by product category</span>
+                    </li>
+                    <li class="feature-item">
+                        <span class="check-icon">✓</span>
+                        <span class="feature-text">Accrual accounting in real time—know your profitability up to the hour</span>
+                    </li>
+                    <li class="feature-item">
+                        <span class="check-icon">✓</span>
+                        <span class="feature-text">Modern analytics platform with deep dives into LTV, CAC, AOV, and COGS drivers</span>
+                    </li>
+                    <li class="feature-item">
+                        <span class="check-icon">✓</span>
+                        <span class="feature-text">Free 24-hour onboarding and setup of your new cutting-edge finance systems</span>
+                    </li>
+                    <li class="feature-item">
+                        <span class="check-icon">✓</span>
+                        <span class="feature-text">Interactive dashboard—never login to QBO again</span>
+                    </li>
+                    <li class="feature-item">
+                        <span class="check-icon">✓</span>
+                        <span class="feature-text">Same year historical cleanup included with 3-month commitment</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Done For You -->
+            <div class="pricing-card popular">
+                <div class="popular-badge">Most Popular</div>
+                <div class="plan-header">
+                    <div class="plan-name">Done For You</div>
+                    <div class="plan-description">Bring your finance team from zero to one overnight. Full-service accounting with dedicated CPA, controller, and accountant—everything handled for you.</div>
+                </div>
+                
+                <div class="price">
+                    <span class="price-amount">$9.5k</span>
+                    <span class="price-period">/month</span>
+                </div>
+
+                <a href="free-audit.html" class="cta-button plan-cta">Get Started</a>
+
+                <ul class="features-list">
+                    <li class="feature-item">
+                        <span class="check-icon">✓</span>
+                        <span class="feature-text"><span class="feature-highlight">Everything in Done With You, plus:</span></span>
+                    </li>
+                    <li class="feature-item">
+                        <span class="check-icon">✓</span>
+                        <span class="feature-text"><span class="feature-highlight">Dedicated CPA-designated finance manager + accountant</span> fully managing your books</span>
+                    </li>
+                    <li class="feature-item">
+                        <span class="check-icon">✓</span>
+                        <span class="feature-text">Unlimited support with your dedicated finance manager</span>
+                    </li>
+                    <li class="feature-item">
+                        <span class="check-icon">✓</span>
+                        <span class="feature-text">Daily profitability and contribution margin by SKU & channel-level profitability</span>
+                    </li>
+                    <li class="feature-item">
+                        <span class="check-icon">✓</span>
+                        <span class="feature-text">In-depth monthly review of financials with presentation of monthly reporting package</span>
+                    </li>
+                    <li class="feature-item">
+                        <span class="check-icon">✓</span>
+                        <span class="feature-text"><span class="feature-highlight">Unlimited Slack support with your controller</span></span>
+                    </li>
+                    <li class="feature-item">
+                        <span class="check-icon">✓</span>
+                        <span class="feature-text">Investment-grade financial statements & management reporting package delivered monthly by the 5th business day</span>
+                    </li>
+                    <li class="feature-item">
+                        <span class="check-icon">✓</span>
+                        <span class="feature-text">Same year historical cleanup included with 3-month commitment</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <h2>Ready to transform your ecommerce finance?</h2>
+        <p>Get a free audit of your current financials and see exactly where you stand.</p>
+        <a href="free-audit.html" class="cta-button" style="font-size: 1.1rem; padding: 1rem 2.5rem; color: #0a0e1a;">Free Audit</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon">
+                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="logoGradient2" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#7FFF7F;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#00CED1;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                            <circle cx="50" cy="50" r="45" fill="none" stroke="url(#logoGradient2)" stroke-width="8"/>
+                            <rect x="46" y="25" width="8" height="50" fill="url(#logoGradient2)" rx="4"/>
+                        </svg>
+                    </div>
+                    <span>ZERO2ONE</span>
+                </a>
+                <p>Finance at the speed of ecommerce. Built exclusively for ecommerce brands ready to scale.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Product</h4>
+                <ul>
+                    <li><a href="index.html#features">Features</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
+                    <li><a href="index.html#how-it-works">How It Works</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Case Studies</a></li>
+                    <li><a href="#">Support</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Zero2One. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
