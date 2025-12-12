@@ -45,14 +45,9 @@
             color: white;
         }
 
-        .logo-icon {
-            width: 36px;
-            height: 36px;
-        }
-
-        .logo-icon svg {
-            width: 100%;
-            height: 100%;
+        .logo img {
+            height: 40px;
+            width: auto;
         }
 
         .nav-links {
@@ -233,47 +228,82 @@
             color: #7FFF7F;
         }
 
-        /* Values Section */
-        .values {
+        /* How We Work Section */
+        .how-we-work {
             padding: 8rem 6%;
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
-        .values-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 4rem;
+        .how-we-work .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
         }
 
-        .value-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            padding: 2.5rem;
+        .principle {
+            margin-bottom: 5rem;
         }
 
-        .value-icon {
-            font-size: 2.5rem;
+        .principle:last-child {
+            margin-bottom: 0;
+        }
+
+        .principle h3 {
+            font-size: clamp(1.8rem, 3.5vw, 2.5rem);
             margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #7FFF7F 0%, #00CED1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        .value-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
+        .principle p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.8);
         }
 
-        .value-card p {
-            color: rgba(255, 255, 255, 0.6);
-            line-height: 1.7;
+        /* Guarantee Section */
+        .guarantee {
+            padding: 8rem 6%;
+            background: linear-gradient(135deg, rgba(127, 255, 127, 0.08) 0%, rgba(0, 206, 209, 0.08) 100%);
+        }
+
+        .guarantee-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .guarantee h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 2rem;
+        }
+
+        .guarantee-box {
+            background: rgba(255, 255, 255, 0.03);
+            border: 2px solid rgba(127, 255, 127, 0.3);
+            border-radius: 16px;
+            padding: 3rem;
+            margin-top: 2rem;
+        }
+
+        .guarantee-box p {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .guarantee-highlight {
+            font-weight: 700;
+            color: #7FFF7F;
         }
 
         /* CTA Section */
         .cta-section {
             padding: 8rem 6%;
             text-align: center;
-            background: linear-gradient(135deg, #1a1f2e 0%, #2a3142 100%);
+            background: #23283a;
         }
 
         .cta-section h2 {
@@ -353,6 +383,10 @@
             .founders-grid {
                 grid-template-columns: 1fr;
             }
+
+            .guarantee-box {
+                padding: 2rem;
+            }
         }
     </style>
 </head>
@@ -360,19 +394,7 @@
     <!-- Navigation -->
     <nav>
         <a href="index.html" class="logo">
-            <div class="logo-icon">
-                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <linearGradient id="logoGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                            <stop offset="0%" style="stop-color:#7FFF7F;stop-opacity:1" />
-                            <stop offset="100%" style="stop-color:#00CED1;stop-opacity:1" />
-                        </linearGradient>
-                    </defs>
-                    <circle cx="50" cy="50" r="45" fill="none" stroke="url(#logoGradient)" stroke-width="8"/>
-                    <rect x="46" y="25" width="8" height="50" fill="url(#logoGradient)" rx="4"/>
-                </svg>
-            </div>
-            <span>ZERO2ONE</span>
+            <img src="logo.png" alt="Zero2One">
         </a>
         <div class="nav-links">
             <a href="index.html#features">Features</a>
@@ -446,42 +468,36 @@
         </div>
     </section>
 
-    <!-- Values -->
-    <section class="values">
+    <!-- How We Work -->
+    <section class="how-we-work">
         <div class="section-header">
             <h2>How we work</h2>
             <p>Our principles guide everything we do</p>
         </div>
-        <div class="values-grid">
-            <div class="value-card">
-                <div class="value-icon">🎯</div>
-                <h3>Ecommerce-Only Focus</h3>
-                <p>We don't serve everyone. We only work with ecommerce brands, which means we understand your business model, challenges, and opportunities deeply.</p>
-            </div>
-            <div class="value-card">
-                <div class="value-icon">⚡</div>
-                <h3>Speed Matters</h3>
-                <p>In ecommerce, decisions can't wait for month-end reports. We deliver real-time insights so you can move as fast as your market demands.</p>
-            </div>
-            <div class="value-card">
-                <div class="value-icon">🔧</div>
-                <h3>Tech-Enabled</h3>
-                <p>We combine smart technology with expert people. Our systems automate the mundane so our team can focus on strategic guidance.</p>
-            </div>
-            <div class="value-card">
-                <div class="value-icon">🤝</div>
-                <h3>Partnership Mindset</h3>
-                <p>We're not just your accountants—we're your finance partners. Your success is our success, and we're invested in your growth.</p>
-            </div>
-            <div class="value-card">
-                <div class="value-icon">📈</div>
-                <h3>Operational Clarity</h3>
-                <p>Great finance isn't just about accurate books. It's about giving you clarity to make better decisions, faster.</p>
-            </div>
-            <div class="value-card">
-                <div class="value-icon">💪</div>
-                <h3>Built by Operators</h3>
-                <p>We've been in your shoes. We've scaled businesses, managed rapid growth, and solved the problems you're facing right now.</p>
+
+        <div class="principle">
+            <h3>We ruthlessly eliminate busywork</h3>
+            <p>If a machine can do it, a human shouldn't. We use AI, automation, and smart integrations to eliminate every manual, repetitive task from your finance operations. No more data entry. No more reconciliation hell. Just clean, automated workflows that run in the background while you focus on growing your business.</p>
+        </div>
+
+        <div class="principle">
+            <h3>We take full ownership</h3>
+            <p>If it has a dollar sign attached to it, we're responsible. We don't do the "that's not my department" thing. We work with a limited number of clients so we can be fully embedded in your business—responding in real-time, thinking proactively, and operating like we're part of your team. Because we are.</p>
+        </div>
+
+        <div class="principle">
+            <h3>Cash drives every decision</h3>
+            <p>Fancy dashboards are nice. Smooth automation feels good. But neither matters if they're not making you money. We prioritize work based on one question: Will this increase profitability? The answer guides everything we build, every system we improve, and every recommendation we make.</p>
+        </div>
+    </section>
+
+    <!-- Guarantee -->
+    <section class="guarantee">
+        <div class="guarantee-content">
+            <h2>Our guarantee</h2>
+            <div class="guarantee-box">
+                <p><span class="guarantee-highlight">If you don't see positive ROI in your first month, you don't pay.</span></p>
+                <p style="margin-top: 1.5rem;">We believe great finance operations should directly impact your bottom line. If we're not driving measurable results, we haven't done our job.</p>
             </div>
         </div>
     </section>
@@ -498,19 +514,7 @@
         <div class="footer-content">
             <div class="footer-brand">
                 <a href="index.html" class="logo">
-                    <div class="logo-icon">
-                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                            <defs>
-                                <linearGradient id="logoGradient2" x1="0%" y1="0%" x2="0%" y2="100%">
-                                    <stop offset="0%" style="stop-color:#7FFF7F;stop-opacity:1" />
-                                    <stop offset="100%" style="stop-color:#00CED1;stop-opacity:1" />
-                                </linearGradient>
-                            </defs>
-                            <circle cx="50" cy="50" r="45" fill="none" stroke="url(#logoGradient2)" stroke-width="8"/>
-                            <rect x="46" y="25" width="8" height="50" fill="url(#logoGradient2)" rx="4"/>
-                        </svg>
-                    </div>
-                    <span>ZERO2ONE</span>
+                    <img src="logo.png" alt="Zero2One">
                 </a>
                 <p>Finance at the speed of ecommerce. Built exclusively for ecommerce brands ready to scale.</p>
             </div>
@@ -544,5 +548,5 @@
         </div>
     </footer>
 </body>
-
 </html>
+
