@@ -1,9 +1,7 @@
 {
-    "cleanUrls": true,
-    "rewrites": [
-          {
-                  "source": "/",
-                  "destination": "/index-logo.html"
-          }
-    ]
+  "rewrites": [
+    { "source": "/about", "destination": "/about.html" },
+    { "source": "/financial-scorecard", "destination": "/financial-scorecard.html" },
+    { "source": "/onboarding", "destination": "/onboarding.html" }
+  ]
 }
