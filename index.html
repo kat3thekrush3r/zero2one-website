@@ -174,12 +174,6 @@
             border-color: #7FFF7F;
         }
 
-        /* Dashboard Showcase */
-        .dashboard-showcase {
-            padding: 8rem 6%;
-            background: linear-gradient(135deg, #0a0e1a 0%, #1a1f2e 100%);
-        }
-
         .section-header {
             text-align: center;
             margin-bottom: 5rem;
@@ -193,26 +187,6 @@
         .section-header p {
             color: rgba(255, 255, 255, 0.6);
             font-size: 1.2rem;
-        }
-
-        .dashboard-placeholder {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: rgba(127, 255, 127, 0.03);
-            border: 2px dashed rgba(127, 255, 127, 0.3);
-            border-radius: 16px;
-            padding: 4rem 2rem;
-            text-align: center;
-        }
-
-        .dashboard-placeholder h3 {
-            font-size: 1.5rem;
-            color: #7FFF7F;
-            margin-bottom: 1rem;
-        }
-
-        .dashboard-placeholder p {
-            color: rgba(255, 255, 255, 0.5);
         }
 
         /* What We Do Section - Tabbed Interface */
@@ -588,9 +562,95 @@
             margin-top: 0.5rem;
         }
 
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1001;
+        }
+
+        .mobile-menu-btn span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: #fff;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-btn.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .mobile-menu-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-btn.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(10, 14, 26, 0.98);
+            z-index: 999;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .mobile-menu.active {
+            display: flex;
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .mobile-menu a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        .mobile-menu a:hover {
+            color: #7FFF7F;
+        }
+
+        .mobile-menu .cta-button {
+            font-size: 1.2rem;
+            padding: 1rem 2rem;
+        }
+
+        .mobile-menu .secondary-button {
+            font-size: 1.2rem;
+            padding: 1rem 2rem;
+        }
+
         @media (max-width: 968px) {
+            nav {
+                transform: translateY(0);
+            }
+
             .nav-links {
                 display: none;
+            }
+
+            .mobile-menu-btn {
+                display: flex;
             }
 
             .cta-buttons {
@@ -630,10 +690,23 @@
         <div class="nav-links">
             <a href="/about">About</a>
             <a href="#">Free Consultation</a>
-            <a href="#" class="cta-button" style="color: #0a0e1a;">10 Minute Audit</a>
+            <a href="#" class="cta-button" style="color: #0a0e1a;">Financial Scorecard</a>
             <a href="#" class="secondary-button">Client Portal</a>
         </div>
+        <button class="mobile-menu-btn" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
     </nav>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <a href="/about">About</a>
+        <a href="#">Free Consultation</a>
+        <a href="#" class="cta-button">Financial Scorecard</a>
+        <a href="#" class="secondary-button">Client Portal</a>
+    </div>
 
     <!-- Hero Section -->
     <section class="hero">
@@ -642,22 +715,10 @@
                 <h1><span class="highlight">Modern Ecommerce</span><br>Full-Stack Finance.</h1>
                 <p class="hero-subtitle">Real-time insights. Expert guidance. Tech-enabled bookkeeping built exclusively for ecommerce brands ready to scale.</p>
                 <div class="hero-cta-group">
-                    <a href="#" class="cta-button">10 Minute Audit</a>
+                    <a href="#" class="cta-button">Financial Scorecard</a>
                     <a href="#" class="secondary-button">Free Consultation</a>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Dashboard Showcase -->
-    <section class="dashboard-showcase">
-        <div class="section-header">
-            <h2>Your Command Center</h2>
-            <p>Everything you need to run your business. Nothing you don't.</p>
-        </div>
-        <div class="dashboard-placeholder">
-            <h3>Real Dashboard Coming Soon</h3>
-            <p>We're building something special. No more logging into QuickBooks. No more spreadsheet hell. Just clean, actionable data at your fingertips.</p>
         </div>
     </section>
 
@@ -809,8 +870,8 @@
                     <span>Gizem Gulec, Dalstrong</span>
                 </div>
                 <div class="scroll-quote">
-                    <p>"10 stars if I could."</p>
-                    <span>Barry Colston, Maersk Oil</span>
+                    <p>"Sorted my gigantic accounting mess."</p>
+                    <span>Karen Friesecke, Doggystylish</span>
                 </div>
                 <div class="scroll-quote">
                     <p>"Saved me $2,000+"</p>
@@ -830,8 +891,8 @@
                     <span>Gizem Gulec, Dalstrong</span>
                 </div>
                 <div class="scroll-quote">
-                    <p>"10 stars if I could."</p>
-                    <span>Barry Colston, Maersk Oil</span>
+                    <p>"Sorted my gigantic accounting mess."</p>
+                    <span>Karen Friesecke, Doggystylish</span>
                 </div>
                 <div class="scroll-quote">
                     <p>"Saved me $2,000+"</p>
@@ -846,10 +907,6 @@
                     <span>Ramin Sadat, Instachew</span>
                 </div>
                 <div class="scroll-quote">
-                    <p>"Lightning speed."</p>
-                    <span>Barry Colston, Maersk Oil</span>
-                </div>
-                <div class="scroll-quote">
                     <p>"Extremely diligent."</p>
                     <span>Carolina Mastretta, Original Fire Games</span>
                 </div>
@@ -858,8 +915,12 @@
                     <span>Siobhan Brenton, Rethink Charity</span>
                 </div>
                 <div class="scroll-quote">
-                    <p>"Would absolutely hire again."</p>
-                    <span>Karen Friesecke, Doggystylish</span>
+                    <p>"A great person to work with."</p>
+                    <span>Robin Ayme, Boltd Solutions</span>
+                </div>
+                <div class="scroll-quote">
+                    <p>"Do not hesitate to hire."</p>
+                    <span>AJ Thompson, BitCreative</span>
                 </div>
                 <!-- Duplicate for seamless loop -->
                 <div class="scroll-quote">
@@ -867,10 +928,6 @@
                     <span>Ramin Sadat, Instachew</span>
                 </div>
                 <div class="scroll-quote">
-                    <p>"Lightning speed."</p>
-                    <span>Barry Colston, Maersk Oil</span>
-                </div>
-                <div class="scroll-quote">
                     <p>"Extremely diligent."</p>
                     <span>Carolina Mastretta, Original Fire Games</span>
                 </div>
@@ -879,8 +936,12 @@
                     <span>Siobhan Brenton, Rethink Charity</span>
                 </div>
                 <div class="scroll-quote">
-                    <p>"Would absolutely hire again."</p>
-                    <span>Karen Friesecke, Doggystylish</span>
+                    <p>"A great person to work with."</p>
+                    <span>Robin Ayme, Boltd Solutions</span>
+                </div>
+                <div class="scroll-quote">
+                    <p>"Do not hesitate to hire."</p>
+                    <span>AJ Thompson, BitCreative</span>
                 </div>
             </div>
         </div>
@@ -889,9 +950,9 @@
     <!-- Final CTA -->
     <section class="final-cta">
         <h2>Stop Guessing. Start Growing.</h2>
-        <p>Take our 10-minute audit or get a free consultation. See exactly where you stand and what's possible.</p>
+        <p>Get your free Financial Scorecard or book a consultation. See exactly where you stand and what's possible.</p>
         <div class="cta-buttons">
-            <a href="#" class="cta-button" style="font-size: 1.1rem; padding: 1rem 2.5rem;">10 Minute Audit</a>
+            <a href="#" class="cta-button" style="font-size: 1.1rem; padding: 1rem 2.5rem;">Financial Scorecard</a>
             <a href="#" class="secondary-button" style="font-size: 1.1rem; padding: 1rem 2.5rem;">Free Consultation</a>
         </div>
     </section>
@@ -963,6 +1024,25 @@
                     nav.classList.remove('visible');
                 }
             }
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const mobileMenu = document.querySelector('.mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenuBtn.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        });
+
+        // Close mobile menu when clicking a link
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenuBtn.classList.remove('active');
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = '';
+            });
         });
     </script>
 </body>
