@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Your Financial Scorecard - Zero2One</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            background: #0a0e1a;
+            color: #ffffff;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* Layout */
+        .onboarding-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 100vh;
+        }
+
+        /* Left Panel - Branding */
+        .left-panel {
+            background: linear-gradient(135deg, #7FFF7F 0%, #00CED1 100%);
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            color: #0a0e1a;
+        }
+
+        .logo img {
+            height: 40px;
+            filter: brightness(0);
+        }
+
+        .left-content {
+            max-width: 400px;
+        }
+
+        .left-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .left-content p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        .account-manager {
+            background: rgba(10, 14, 26, 0.1);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .account-manager-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .manager-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #0a0e1a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: #7FFF7F;
+        }
+
+        .manager-info h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .manager-info p {
+            font-size: 0.85rem;
+            opacity: 0.8;
+            margin: 0;
+        }
+
+        .manager-bio {
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .step-indicators {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        .step-dot {
+            width: 40px;
+            height: 4px;
+            background: rgba(10, 14, 26, 0.2);
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+
+        .step-dot.active {
+            background: #0a0e1a;
+        }
+
+        .step-dot.completed {
+            background: #0a0e1a;
+        }
+
+        /* Right Panel - Form */
+        .right-panel {
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .form-container {
+            width: 100%;
+            max-width: 440px;
+        }
+
+        .step {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .step.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .step-label {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+        }
+
+        .step h2 {
+            font-size: 1.8rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .step-subtitle {
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 2rem;
+        }
+
+        /* Form Elements */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: #fff;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #7FFF7F;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .form-group input::placeholder {
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, #7FFF7F 0%, #00CED1 100%);
+            border: none;
+            border-radius: 8px;
+            color: #0a0e1a;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(127, 255, 127, 0.3);
+        }
+
+        .btn-secondary {
+            width: 100%;
+            padding: 1rem;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 1rem;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Connection Cards */
+        .connection-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .connection-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(127, 255, 127, 0.3);
+        }
+
+        .connection-card.connected {
+            border-color: #7FFF7F;
+            background: rgba(127, 255, 127, 0.05);
+        }
+
+        .connection-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .connection-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .connection-icon {
+            width: 48px;
+            height: 48px;
+            background: #fff;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.8rem;
+            color: #0a0e1a;
+        }
+
+        .connection-icon.qbo {
+            background: #2CA01C;
+            color: #fff;
+        }
+
+        .connection-icon.amazon {
+            background: #FF9900;
+            color: #0a0e1a;
+        }
+
+        .connection-icon.shopify {
+            background: #96BF48;
+            color: #fff;
+        }
+
+        .connection-name h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .connection-name p {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin: 0;
+        }
+
+        .connection-status {
+            font-size: 0.85rem;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .connection-status.connected {
+            background: rgba(127, 255, 127, 0.2);
+            color: #7FFF7F;
+        }
+
+        .channels-note {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.5);
+            text-align: center;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Completion */
+        .completion-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #7FFF7F 0%, #00CED1 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            font-size: 2.5rem;
+        }
+
+        .step-4 h2 {
+            text-align: center;
+        }
+
+        .step-4 .step-subtitle {
+            text-align: center;
+        }
+
+        /* Progress Tracker */
+        .progress-tracker {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .progress-header h4 {
+            font-size: 1rem;
+        }
+
+        .eta {
+            font-size: 0.9rem;
+            color: #7FFF7F;
+        }
+
+        .progress-bar {
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(135deg, #7FFF7F 0%, #00CED1 100%);
+            width: 25%;
+            transition: width 0.5s ease;
+        }
+
+        .progress-steps {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .progress-step {
+            text-align: center;
+            flex: 1;
+        }
+
+        .progress-step-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 0.5rem;
+            font-size: 0.8rem;
+        }
+
+        .progress-step-icon.active {
+            background: linear-gradient(135deg, #7FFF7F 0%, #00CED1 100%);
+            color: #0a0e1a;
+        }
+
+        .progress-step-icon.completed {
+            background: #7FFF7F;
+            color: #0a0e1a;
+        }
+
+        .progress-step span {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .progress-step.active span {
+            color: #7FFF7F;
+        }
+
+        /* Callback Options */
+        .callback-options {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .callback-option {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1.25rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .callback-option:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(127, 255, 127, 0.3);
+        }
+
+        .callback-option.selected {
+            border-color: #7FFF7F;
+            background: rgba(127, 255, 127, 0.05);
+        }
+
+        .callback-option h4 {
+            margin-bottom: 0.25rem;
+        }
+
+        .callback-option p {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin: 0;
+        }
+
+        .phone-input {
+            margin-top: 1rem;
+            display: none;
+        }
+
+        .phone-input.visible {
+            display: block;
+        }
+
+        .contact-info {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            text-align: center;
+            display: none;
+        }
+
+        .contact-info.visible {
+            display: block;
+        }
+
+        .contact-info p {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-info a {
+            color: #7FFF7F;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* Chat Widget */
+        .chat-widget {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 1000;
+        }
+
+        .chat-button {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #7FFF7F 0%, #00CED1 100%);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(127, 255, 127, 0.3);
+            transition: all 0.3s;
+        }
+
+        .chat-button:hover {
+            transform: scale(1.1);
+        }
+
+        .chat-button svg {
+            width: 28px;
+            height: 28px;
+            fill: #0a0e1a;
+        }
+
+        .chat-tooltip {
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            background: #1a1f2e;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1rem;
+            width: 280px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .chat-tooltip p {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 0.75rem;
+        }
+
+        .chat-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .chat-actions button {
+            flex: 1;
+            padding: 0.6rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .chat-actions .chat-btn {
+            background: linear-gradient(135deg, #7FFF7F 0%, #00CED1 100%);
+            border: none;
+            color: #0a0e1a;
+        }
+
+        .chat-actions .call-btn {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .onboarding-container {
+                grid-template-columns: 1fr;
+            }
+
+            .left-panel {
+                padding: 2rem;
+                min-height: auto;
+            }
+
+            .left-content h1 {
+                font-size: 1.8rem;
+            }
+
+            .account-manager {
+                display: none;
+            }
+
+            .right-panel {
+                padding: 2rem;
+            }
+
+            .chat-widget {
+                bottom: 1rem;
+                right: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="onboarding-container">
+        <!-- Left Panel -->
+        <div class="left-panel">
+            <a href="/" class="logo">
+                <img src="logo.png" alt="Zero2One">
+            </a>
+            
+            <div class="left-content">
+                <h1>Your Financial Scorecard</h1>
+                <p>In just 3 minutes, connect your accounts and we'll deliver a comprehensive financial health assessment.</p>
+                
+                <div class="account-manager">
+                    <div class="account-manager-header">
+                        <div class="manager-avatar">KM</div>
+                        <div class="manager-info">
+                            <h4>Kate MacPherson</h4>
+                            <p>Your Account Manager</p>
+                        </div>
+                    </div>
+                    <p class="manager-bio">Hi! I'll be your dedicated point of contact. I've helped dozens of ecommerce brands get clarity on their finances. Feel free to chat or call anytime — I'm here to help.</p>
+                </div>
+
+                <div class="step-indicators">
+                    <div class="step-dot active" data-step="1"></div>
+                    <div class="step-dot" data-step="2"></div>
+                    <div class="step-dot" data-step="3"></div>
+                    <div class="step-dot" data-step="4"></div>
+                </div>
+            </div>
+
+            <div></div>
+        </div>
+
+        <!-- Right Panel -->
+        <div class="right-panel">
+            <div class="form-container">
+                
+                <!-- Step 1: Email -->
+                <div class="step active" id="step-1">
+                    <p class="step-label">Step 1 of 4</p>
+                    <h2>Let's get started</h2>
+                    <p class="step-subtitle">Enter your email and we'll send you a magic link. No password needed.</p>
+                    
+                    <form id="email-form">
+                        <div class="form-group">
+                            <label for="email">Work email</label>
+                            <input type="email" id="email" placeholder="you@company.com" required>
+                        </div>
+                        <button type="submit" class="btn-primary">Continue</button>
+                    </form>
+                </div>
+
+                <!-- Step 2: Connect QBO -->
+                <div class="step" id="step-2">
+                    <p class="step-label">Step 2 of 4</p>
+                    <h2>Connect QuickBooks</h2>
+                    <p class="step-subtitle">Add Zero2One as a firm to give us read access to your books.</p>
+                    
+                    <div class="connection-card" id="qbo-connect">
+                        <div class="connection-header">
+                            <div class="connection-info">
+                                <div class="connection-icon qbo">QBO</div>
+                                <div class="connection-name">
+                                    <h4>QuickBooks Online</h4>
+                                    <p>We'll be added as your accountant</p>
+                                </div>
+                            </div>
+                            <span class="connection-status" id="qbo-status">Connect</span>
+                        </div>
+                    </div>
+
+                    <button class="btn-primary" id="qbo-continue" disabled>Continue</button>
+                    <button class="btn-secondary" id="qbo-help">I need help connecting</button>
+                </div>
+
+                <!-- Step 3: Sales Channels -->
+                <div class="step" id="step-3">
+                    <p class="step-label">Step 3 of 4</p>
+                    <h2>Connect sales channels</h2>
+                    <p class="step-subtitle">For the fastest impact, let's focus on your main channels.</p>
+                    
+                    <div class="connection-card" id="amazon-connect">
+                        <div class="connection-header">
+                            <div class="connection-info">
+                                <div class="connection-icon amazon">AMZ</div>
+                                <div class="connection-name">
+                                    <h4>Amazon Seller Central</h4>
+                                    <p>Connect your Amazon account</p>
+                                </div>
+                            </div>
+                            <span class="connection-status" id="amazon-status">Connect</span>
+                        </div>
+                    </div>
+
+                    <div class="connection-card" id="shopify-connect">
+                        <div class="connection-header">
+                            <div class="connection-info">
+                                <div class="connection-icon shopify">SHOP</div>
+                                <div class="connection-name">
+                                    <h4>Shopify</h4>
+                                    <p>Connect your Shopify store</p>
+                                </div>
+                            </div>
+                            <span class="connection-status" id="shopify-status">Connect</span>
+                        </div>
+                    </div>
+
+                    <p class="channels-note">We support all sales channels. You can add more later.</p>
+
+                    <button class="btn-primary" id="channels-continue">Continue</button>
+                </div>
+
+                <!-- Step 4: Complete -->
+                <div class="step step-4" id="step-4">
+                    <div class="completion-icon">✓</div>
+                    <h2>You're all set!</h2>
+                    <p class="step-subtitle">Your account manager will reach out with your Financial Scorecard shortly.</p>
+
+                    <div class="progress-tracker">
+                        <div class="progress-header">
+                            <h4>Preparing your scorecard</h4>
+                            <span class="eta">ETA: ~3 hours</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                        <div class="progress-steps">
+                            <div class="progress-step active">
+                                <div class="progress-step-icon active">✓</div>
+                                <span>Access confirmed</span>
+                            </div>
+                            <div class="progress-step">
+                                <div class="progress-step-icon">2</div>
+                                <span>Reviewing</span>
+                            </div>
+                            <div class="progress-step">
+                                <div class="progress-step-icon">3</div>
+                                <span>Preparing report</span>
+                            </div>
+                            <div class="progress-step">
+                                <div class="progress-step-icon">4</div>
+                                <span>Complete</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p style="margin-bottom: 1rem; color: rgba(255,255,255,0.7);">Would you like a quick call when your scorecard is ready?</p>
+
+                    <div class="callback-options">
+                        <div class="callback-option" id="callback-yes">
+                            <h4>Yes, call me</h4>
+                            <p>We'll walk you through your scorecard</p>
+                        </div>
+                        <div class="callback-option" id="callback-no">
+                            <h4>No thanks, just email</h4>
+                            <p>We'll send your scorecard via email</p>
+                        </div>
+                    </div>
+
+                    <div class="phone-input" id="phone-input">
+                        <div class="form-group">
+                            <label for="phone">Your phone number</label>
+                            <input type="tel" id="phone" placeholder="+1 (555) 000-0000">
+                        </div>
+                        <button class="btn-primary" id="submit-phone">Submit</button>
+                    </div>
+
+                    <div class="contact-info" id="contact-info">
+                        <p>No worries! Keep an eye out for our email.</p>
+                        <p>Questions? Call us anytime: <a href="tel:+15551234567">(555) 123-4567</a></p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Chat Widget -->
+    <div class="chat-widget">
+        <div class="chat-tooltip" id="chat-tooltip">
+            <p>👋 Hey! I'm Kate, your account manager. Need help or have questions?</p>
+            <div class="chat-actions">
+                <button class="chat-btn">Chat</button>
+                <button class="call-btn">Call</button>
+            </div>
+        </div>
+        <button class="chat-button" id="chat-button">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h16v12z"/>
+            </svg>
+        </button>
+    </div>
+
+    <script>
+        // Step navigation
+        let currentStep = 1;
+        const totalSteps = 4;
+
+        function goToStep(step) {
+            // Hide all steps
+            document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+            // Show target step
+            document.getElementById(`step-${step}`).classList.add('active');
+            
+            // Update indicators
+            document.querySelectorAll('.step-dot').forEach((dot, index) => {
+                dot.classList.remove('active', 'completed');
+                if (index + 1 < step) dot.classList.add('completed');
+                if (index + 1 === step) dot.classList.add('active');
+            });
+            
+            currentStep = step;
+        }
+
+        // Step 1: Email form
+        document.getElementById('email-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            if (email) {
+                // In production: send magic link
+                goToStep(2);
+            }
+        });
+
+        // Step 2: QBO connection
+        document.getElementById('qbo-connect').addEventListener('click', () => {
+            // In production: OAuth flow
+            document.getElementById('qbo-status').textContent = 'Connected';
+            document.getElementById('qbo-status').classList.add('connected');
+            document.getElementById('qbo-connect').classList.add('connected');
+            document.getElementById('qbo-continue').disabled = false;
+        });
+
+        document.getElementById('qbo-continue').addEventListener('click', () => {
+            goToStep(3);
+        });
+
+        document.getElementById('qbo-help').addEventListener('click', () => {
+            // In production: open help modal or chat
+            alert('Opening help guide...');
+        });
+
+        // Step 3: Sales channels
+        document.getElementById('amazon-connect').addEventListener('click', () => {
+            document.getElementById('amazon-status').textContent = 'Connected';
+            document.getElementById('amazon-status').classList.add('connected');
+            document.getElementById('amazon-connect').classList.add('connected');
+        });
+
+        document.getElementById('shopify-connect').addEventListener('click', () => {
+            document.getElementById('shopify-status').textContent = 'Connected';
+            document.getElementById('shopify-status').classList.add('connected');
+            document.getElementById('shopify-connect').classList.add('connected');
+        });
+
+        document.getElementById('channels-continue').addEventListener('click', () => {
+            goToStep(4);
+        });
+
+        // Step 4: Callback options
+        document.getElementById('callback-yes').addEventListener('click', () => {
+            document.querySelectorAll('.callback-option').forEach(o => o.classList.remove('selected'));
+            document.getElementById('callback-yes').classList.add('selected');
+            document.getElementById('phone-input').classList.add('visible');
+            document.getElementById('contact-info').classList.remove('visible');
+        });
+
+        document.getElementById('callback-no').addEventListener('click', () => {
+            document.querySelectorAll('.callback-option').forEach(o => o.classList.remove('selected'));
+            document.getElementById('callback-no').classList.add('selected');
+            document.getElementById('phone-input').classList.remove('visible');
+            document.getElementById('contact-info').classList.add('visible');
+        });
+
+        document.getElementById('submit-phone').addEventListener('click', () => {
+            const phone = document.getElementById('phone').value;
+            if (phone) {
+                alert('Thanks! We\'ll call you when your scorecard is ready.');
+                document.getElementById('phone-input').classList.remove('visible');
+            }
+        });
+
+        // Chat widget
+        const chatButton = document.getElementById('chat-button');
+        const chatTooltip = document.getElementById('chat-tooltip');
+        let tooltipVisible = true;
+
+        // Hide tooltip after 5 seconds
+        setTimeout(() => {
+            chatTooltip.style.display = 'none';
+            tooltipVisible = false;
+        }, 5000);
+
+        chatButton.addEventListener('click', () => {
+            if (tooltipVisible) {
+                chatTooltip.style.display = 'none';
+                tooltipVisible = false;
+            } else {
+                chatTooltip.style.display = 'block';
+                tooltipVisible = true;
+            }
+        });
+    </script>
+</body>
+</html>
