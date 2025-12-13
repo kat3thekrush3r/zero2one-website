@@ -432,7 +432,7 @@
             color: #7FFF7F;
         }
 
-        /* Social Proof - Scrolling Quotes */
+        /* Social Proof - Two Row Scrolling Quotes */
         .social-proof {
             padding: 5rem 0;
             background: #1a1f2e;
@@ -454,22 +454,37 @@
         .quotes-scroll {
             position: relative;
             width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
         }
 
         .quotes-track {
             display: flex;
             gap: 3rem;
-            animation: scroll-quotes 35s linear infinite;
             width: max-content;
+        }
+
+        .track-left {
+            animation: scroll-left 40s linear infinite;
+        }
+
+        .track-right {
+            animation: scroll-right 40s linear infinite;
         }
 
         .quotes-track:hover {
             animation-play-state: paused;
         }
 
-        @keyframes scroll-quotes {
+        @keyframes scroll-left {
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); }
+        }
+
+        @keyframes scroll-right {
+            0% { transform: translateX(-50%); }
+            100% { transform: translateX(0); }
         }
 
         .scroll-quote {
@@ -479,16 +494,16 @@
         }
 
         .scroll-quote p {
-            font-size: clamp(1.5rem, 3vw, 2.2rem);
+            font-size: clamp(1.3rem, 2.5vw, 1.8rem);
             font-weight: 500;
             color: #ffffff;
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.5rem;
             white-space: nowrap;
         }
 
         .scroll-quote span {
-            font-size: 0.9rem;
-            color: rgba(127, 255, 127, 0.7);
+            font-size: 0.85rem;
+            color: rgba(127, 255, 127, 0.6);
         }
 
         /* Final CTA */
@@ -783,7 +798,8 @@
         </div>
         
         <div class="quotes-scroll">
-            <div class="quotes-track">
+            <!-- Row 1 - scrolls left -->
+            <div class="quotes-track track-left">
                 <div class="scroll-quote">
                     <p>"A true financial ninja."</p>
                     <span>Barry Colston, Maersk Oil</span>
@@ -795,10 +811,6 @@
                 <div class="scroll-quote">
                     <p>"Indispensable part of the team."</p>
                     <span>Gizem Gulec, Dalstrong</span>
-                </div>
-                <div class="scroll-quote">
-                    <p>"Above and beyond."</p>
-                    <span>Ramin Sadat, Instachew</span>
                 </div>
                 <div class="scroll-quote">
                     <p>"10 stars if I could."</p>
@@ -822,16 +834,57 @@
                     <span>Gizem Gulec, Dalstrong</span>
                 </div>
                 <div class="scroll-quote">
-                    <p>"Above and beyond."</p>
-                    <span>Ramin Sadat, Instachew</span>
-                </div>
-                <div class="scroll-quote">
                     <p>"10 stars if I could."</p>
                     <span>Barry Colston, Maersk Oil</span>
                 </div>
                 <div class="scroll-quote">
                     <p>"Saved me $2,000+"</p>
                     <span>Brenna T., Temple Copywriting</span>
+                </div>
+            </div>
+            
+            <!-- Row 2 - scrolls right -->
+            <div class="quotes-track track-right">
+                <div class="scroll-quote">
+                    <p>"Above and beyond."</p>
+                    <span>Ramin Sadat, Instachew</span>
+                </div>
+                <div class="scroll-quote">
+                    <p>"Lightning speed."</p>
+                    <span>Barry Colston, Maersk Oil</span>
+                </div>
+                <div class="scroll-quote">
+                    <p>"Extremely diligent."</p>
+                    <span>Carolina Mastretta, Original Fire Games</span>
+                </div>
+                <div class="scroll-quote">
+                    <p>"Exceeded our expectations."</p>
+                    <span>Siobhan Brenton, Rethink Charity</span>
+                </div>
+                <div class="scroll-quote">
+                    <p>"Would absolutely hire again."</p>
+                    <span>Karen Friesecke, Doggystylish</span>
+                </div>
+                <!-- Duplicate for seamless loop -->
+                <div class="scroll-quote">
+                    <p>"Above and beyond."</p>
+                    <span>Ramin Sadat, Instachew</span>
+                </div>
+                <div class="scroll-quote">
+                    <p>"Lightning speed."</p>
+                    <span>Barry Colston, Maersk Oil</span>
+                </div>
+                <div class="scroll-quote">
+                    <p>"Extremely diligent."</p>
+                    <span>Carolina Mastretta, Original Fire Games</span>
+                </div>
+                <div class="scroll-quote">
+                    <p>"Exceeded our expectations."</p>
+                    <span>Siobhan Brenton, Rethink Charity</span>
+                </div>
+                <div class="scroll-quote">
+                    <p>"Would absolutely hire again."</p>
+                    <span>Karen Friesecke, Doggystylish</span>
                 </div>
             </div>
         </div>
