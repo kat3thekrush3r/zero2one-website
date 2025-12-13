@@ -432,86 +432,63 @@
             color: #7FFF7F;
         }
 
-        /* Social Proof */
+        /* Social Proof - Scrolling Quotes */
         .social-proof {
-            padding: 8rem 6%;
+            padding: 5rem 0;
             background: #1a1f2e;
+            overflow: hidden;
         }
 
-        .social-header {
+        .proof-header {
             text-align: center;
-            margin-bottom: 4rem;
+            margin-bottom: 3rem;
         }
 
-        .social-header h2 {
-            font-size: clamp(2rem, 4vw, 3rem);
-            margin-bottom: 1rem;
+        .proof-header span {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
         }
 
-        .social-header .subtitle {
-            font-size: 1.3rem;
-            color: #7FFF7F;
-            font-weight: 600;
+        .quotes-scroll {
+            position: relative;
+            width: 100%;
         }
 
-        .testimonial-grid {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-
-        .testimonial {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            padding: 2.5rem;
-        }
-
-        .testimonial-text {
-            font-size: 1rem;
-            line-height: 1.7;
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 2rem;
-            font-style: italic;
-        }
-
-        .testimonial-author {
+        .quotes-track {
             display: flex;
-            align-items: center;
-            gap: 1rem;
+            gap: 3rem;
+            animation: scroll-quotes 35s linear infinite;
+            width: max-content;
         }
 
-        .author-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #7FFF7F 0%, #00CED1 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 1.1rem;
-            color: #0a0e1a;
+        .quotes-track:hover {
+            animation-play-state: paused;
         }
 
-        .author-logo {
-            width: 50px;
-            height: 50px;
-            border-radius: 8px;
-            object-fit: cover;
-            background: #fff;
+        @keyframes scroll-quotes {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
         }
 
-        .author-info h4 {
-            font-size: 1rem;
-            margin-bottom: 0.25rem;
+        .scroll-quote {
+            flex-shrink: 0;
+            text-align: center;
+            padding: 0 1rem;
         }
 
-        .author-info p {
-            color: rgba(255, 255, 255, 0.5);
+        .scroll-quote p {
+            font-size: clamp(1.5rem, 3vw, 2.2rem);
+            font-weight: 500;
+            color: #ffffff;
+            margin-bottom: 0.75rem;
+            white-space: nowrap;
+        }
+
+        .scroll-quote span {
             font-size: 0.9rem;
+            color: rgba(127, 255, 127, 0.7);
         }
 
         /* Final CTA */
@@ -801,39 +778,60 @@
 
     <!-- Social Proof -->
     <section class="social-proof">
-        <div class="social-header">
-            <h2>The Proof Is in the Numbers</h2>
-            <p class="subtitle">31 Happy CEOs & Counting</p>
+        <div class="proof-header">
+            <span>31 Happy CEOs</span>
         </div>
-        <div class="testimonial-grid">
-            <div class="testimonial">
-                <div class="testimonial-text">"Joel did an amazing job taking over our NetSuite implementation and putting together a brand new structure for our financial reporting. He's been an indispensable part of the Dalstrong team—hiring accountants, managing supply chain projects, and proving himself as an excellent team leader."</div>
-                <div class="testimonial-author">
-                    <img src="ascend-logo.jpeg" alt="Ascend Solutions" class="author-logo">
-                    <div class="author-info">
-                        <h4>Nicholas Love</h4>
-                        <p>Managing Director, Ascend Solutions</p>
-                    </div>
+        
+        <div class="quotes-scroll">
+            <div class="quotes-track">
+                <div class="scroll-quote">
+                    <p>"A true financial ninja."</p>
+                    <span>Barry Colston, Maersk Oil</span>
                 </div>
-            </div>
-            <div class="testimonial">
-                <div class="testimonial-text">"Clear communication, very professional and timely work. Exactly what we needed."</div>
-                <div class="testimonial-author">
-                    <div class="author-avatar">HC</div>
-                    <div class="author-info">
-                        <h4>Hannah Chisholm</h4>
-                        <p>Founder, Eggcitables</p>
-                    </div>
+                <div class="scroll-quote">
+                    <p>"Literally a lifesaver."</p>
+                    <span>Karen Danudjaja, Blume</span>
                 </div>
-            </div>
-            <div class="testimonial">
-                <div class="testimonial-text">"Joel was literally a lifesaver. Our books needed way more work than I thought, and he was patient, communicative, and thorough through the whole process. First time working with a consultant and the experience was seamless—entirely because of Joel's professionalism."</div>
-                <div class="testimonial-author">
-                    <img src="blume-logo.jpeg" alt="Blume" class="author-logo">
-                    <div class="author-info">
-                        <h4>Karen Danudjaja</h4>
-                        <p>Co-Founder & CEO, Blume</p>
-                    </div>
+                <div class="scroll-quote">
+                    <p>"Indispensable part of the team."</p>
+                    <span>Gizem Gulec, Dalstrong</span>
+                </div>
+                <div class="scroll-quote">
+                    <p>"Above and beyond."</p>
+                    <span>Ramin Sadat, Instachew</span>
+                </div>
+                <div class="scroll-quote">
+                    <p>"10 stars if I could."</p>
+                    <span>Barry Colston, Maersk Oil</span>
+                </div>
+                <div class="scroll-quote">
+                    <p>"Saved me $2,000+"</p>
+                    <span>Brenna T., Temple Copywriting</span>
+                </div>
+                <!-- Duplicate for seamless loop -->
+                <div class="scroll-quote">
+                    <p>"A true financial ninja."</p>
+                    <span>Barry Colston, Maersk Oil</span>
+                </div>
+                <div class="scroll-quote">
+                    <p>"Literally a lifesaver."</p>
+                    <span>Karen Danudjaja, Blume</span>
+                </div>
+                <div class="scroll-quote">
+                    <p>"Indispensable part of the team."</p>
+                    <span>Gizem Gulec, Dalstrong</span>
+                </div>
+                <div class="scroll-quote">
+                    <p>"Above and beyond."</p>
+                    <span>Ramin Sadat, Instachew</span>
+                </div>
+                <div class="scroll-quote">
+                    <p>"10 stars if I could."</p>
+                    <span>Barry Colston, Maersk Oil</span>
+                </div>
+                <div class="scroll-quote">
+                    <p>"Saved me $2,000+"</p>
+                    <span>Brenna T., Temple Copywriting</span>
                 </div>
             </div>
         </div>
