@@ -96,23 +96,50 @@
             padding: 8rem 6% 4rem;
             position: relative;
             background: linear-gradient(135deg, #0a0e1a 0%, #1a1f2e 100%);
+            overflow: hidden;
         }
 
-        .hero::before {
-            content: '';
+        .parallax-container {
             position: absolute;
-            top: 20%;
-            right: 10%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .parallax-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+        }
+
+        .orb-1 {
             width: 500px;
             height: 500px;
-            background: radial-gradient(circle, rgba(127, 255, 127, 0.2) 0%, transparent 70%);
-            border-radius: 50%;
-            animation: pulse 8s ease-in-out infinite;
+            background: radial-gradient(circle, rgba(127, 255, 127, 0.4) 0%, transparent 70%);
+            top: 10%;
+            right: 5%;
+            transition: transform 0.4s ease-out;
         }
 
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 0.6; }
-            50% { transform: scale(1.2); opacity: 1; }
+        .orb-2 {
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, rgba(0, 206, 209, 0.3) 0%, transparent 70%);
+            top: 40%;
+            right: 20%;
+            transition: transform 0.2s ease-out;
+        }
+
+        .orb-3 {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(127, 255, 127, 0.25) 0%, transparent 70%);
+            bottom: 10%;
+            left: 10%;
+            transition: transform 0.6s ease-out;
         }
 
         .hero-grid {
@@ -710,6 +737,13 @@
 
     <!-- Hero Section -->
     <section class="hero">
+        <!-- Floating Orbs -->
+        <div class="parallax-container">
+            <div class="parallax-orb orb-1" data-speed="0.04" data-max="40"></div>
+            <div class="parallax-orb orb-2" data-speed="0.08" data-max="70"></div>
+            <div class="parallax-orb orb-3" data-speed="0.025" data-max="25"></div>
+        </div>
+        
         <div class="hero-grid">
             <div class="hero-content">
                 <h1><span class="highlight">Modern Ecommerce</span><br>Full-Stack Finance.</h1>
@@ -1042,6 +1076,37 @@
                 mobileMenuBtn.classList.remove('active');
                 mobileMenu.classList.remove('active');
                 document.body.style.overflow = '';
+            });
+        });
+
+        // Mouse parallax effect for orbs
+        const parallaxOrbs = document.querySelectorAll('.parallax-orb');
+        const hero = document.querySelector('.hero');
+
+        hero.addEventListener('mousemove', (e) => {
+            const rect = hero.getBoundingClientRect();
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            const mouseX = e.clientX - rect.left - centerX;
+            const mouseY = e.clientY - rect.top - centerY;
+
+            parallaxOrbs.forEach(orb => {
+                const speed = parseFloat(orb.dataset.speed);
+                const max = parseFloat(orb.dataset.max) || 50;
+                let x = mouseX * speed;
+                let y = mouseY * speed;
+                
+                // Clamp to max distance
+                x = Math.max(-max, Math.min(max, x));
+                y = Math.max(-max, Math.min(max, y));
+                
+                orb.style.transform = `translate(${x}px, ${y}px)`;
+            });
+        });
+
+        hero.addEventListener('mouseleave', () => {
+            parallaxOrbs.forEach(orb => {
+                orb.style.transform = 'translate(0, 0)';
             });
         });
     </script>
