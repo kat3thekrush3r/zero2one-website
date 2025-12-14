@@ -1312,10 +1312,7 @@
         // =====================================================
         // INITIALIZATION - Check for returning user via magic link
         // =====================================================
-        async function init() {
-            // Check if user is returning from magic link or Google
-            const session = await checkSession();
-            
+        async function handleAuthenticatedUser(session) {
             if (session && session.user) {
                 // User is authenticated!
                 userEmail = session.user.email;
@@ -1335,6 +1332,22 @@
                 
                 // Skip to step 2 (QBO connection)
                 goToStep(2);
+            }
+        }
+        
+        async function init() {
+            // Listen for auth state changes (handles OAuth redirects)
+            supabase.auth.onAuthStateChange(async (event, session) => {
+                console.log('Auth event:', event);
+                if (event === 'SIGNED_IN' && session) {
+                    await handleAuthenticatedUser(session);
+                }
+            });
+            
+            // Also check for existing session on page load
+            const session = await checkSession();
+            if (session) {
+                await handleAuthenticatedUser(session);
             }
         }
         
