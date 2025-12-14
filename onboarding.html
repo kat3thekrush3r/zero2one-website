@@ -912,9 +912,9 @@
                         </div>
                     </div>
 
-                    <p style="margin-bottom: 1rem; color: rgba(255,255,255,0.7);">Would you like a quick call when your scorecard is ready?</p>
+                    <p class="callback-question" id="callback-question" style="margin-bottom: 1rem; color: rgba(255,255,255,0.7);">Would you like a quick call when your scorecard is ready?</p>
 
-                    <div class="callback-options">
+                    <div class="callback-options" id="callback-options">
                         <div class="callback-option" id="callback-yes">
                             <h4>Yes, call me</h4>
                             <p>We'll walk you through your scorecard</p>
@@ -933,9 +933,9 @@
                         <button class="btn-primary" id="submit-phone">Submit</button>
                     </div>
 
-                    <div class="contact-info" id="contact-info">
-                        <p>No worries! Keep an eye out for our email.</p>
-                        <p>Questions? Call us anytime: <a href="tel:+15551234567">(555) 123-4567</a></p>
+                    <div class="email-confirmation" id="email-confirmation" style="display: none;">
+                        <p style="color: rgba(255,255,255,0.8); margin-bottom: 0.5rem;">✓ We'll email your scorecard when it's ready.</p>
+                        <p style="font-size: 0.85rem; color: rgba(255,255,255,0.5);">Changed your mind? <a href="#" id="request-call-link" style="color: #7FFF7F;">Request a call instead</a></p>
                     </div>
                 </div>
 
@@ -1261,18 +1261,29 @@
             document.querySelectorAll('.callback-option').forEach(o => o.classList.remove('selected'));
             document.getElementById('callback-yes').classList.add('selected');
             document.getElementById('phone-input').classList.add('visible');
-            document.getElementById('contact-info').classList.remove('visible');
+            document.getElementById('email-confirmation').style.display = 'none';
         });
         
         document.getElementById('callback-no').addEventListener('click', async () => {
-            document.querySelectorAll('.callback-option').forEach(o => o.classList.remove('selected'));
-            document.getElementById('callback-no').classList.add('selected');
+            // Hide the question and options
+            document.getElementById('callback-question').style.display = 'none';
+            document.getElementById('callback-options').style.display = 'none';
             document.getElementById('phone-input').classList.remove('visible');
-            document.getElementById('contact-info').classList.add('visible');
+            
+            // Show email confirmation
+            document.getElementById('email-confirmation').style.display = 'block';
             
             if (currentLeadId) {
                 await updateLead(currentLeadId, { callback_requested: false });
             }
+        });
+        
+        // "Request a call instead" link
+        document.getElementById('request-call-link').addEventListener('click', (e) => {
+            e.preventDefault();
+            document.getElementById('email-confirmation').style.display = 'none';
+            document.getElementById('callback-question').style.display = 'block';
+            document.getElementById('callback-options').style.display = 'flex';
         });
         
         document.getElementById('submit-phone').addEventListener('click', async () => {
@@ -1286,9 +1297,16 @@
                 });
             }
             
-            alert('Thanks! We\'ll call you when your scorecard is ready.');
+            // Hide phone input and options, show confirmation
             document.getElementById('phone-input').classList.remove('visible');
-            document.getElementById('contact-info').classList.add('visible');
+            document.getElementById('callback-question').style.display = 'none';
+            document.getElementById('callback-options').style.display = 'none';
+            
+            // Show call confirmation instead of email
+            document.getElementById('email-confirmation').innerHTML = `
+                <p style="color: rgba(255,255,255,0.8); margin-bottom: 0.5rem;">✓ We'll call you when your scorecard is ready.</p>
+            `;
+            document.getElementById('email-confirmation').style.display = 'block';
         });
         
         // =====================================================
