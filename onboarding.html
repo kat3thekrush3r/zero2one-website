@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Get Your Financial Scorecard - Zero2One</title>
+    
+    <!-- Supabase JS Client -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
     <style>
         * {
             margin: 0;
@@ -214,9 +218,72 @@
             transition: all 0.3s;
         }
 
-        .btn-primary:hover {
+        .btn-primary:hover:not(:disabled) {
             transform: translateY(-2px);
             box-shadow: 0 8px 25px rgba(127, 255, 127, 0.3);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        /* Google Sign In Button */
+        .btn-google {
+            width: 100%;
+            padding: 1rem;
+            background: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: #333;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .btn-google:hover {
+            background: #f5f5f5;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-google.loading {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        /* Divider */
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 1.5rem 0;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .divider span {
+            padding: 0 1rem;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.85rem;
+        }
+
+        /* Auth Note */
+        .auth-note {
+            text-align: center;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.4);
+            margin-top: 1rem;
         }
 
         .btn-secondary {
@@ -236,6 +303,57 @@
         .btn-secondary:hover {
             background: rgba(255, 255, 255, 0.05);
             border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Loading State */
+        .btn-primary.loading {
+            position: relative;
+            color: transparent;
+        }
+
+        .btn-primary.loading::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            top: 50%;
+            left: 50%;
+            margin-left: -10px;
+            margin-top: -10px;
+            border: 2px solid #0a0e1a;
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Success/Error Messages */
+        .message {
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .message.success {
+            background: rgba(127, 255, 127, 0.1);
+            border: 1px solid rgba(127, 255, 127, 0.3);
+            color: #7FFF7F;
+        }
+
+        .message.error {
+            background: rgba(255, 100, 100, 0.1);
+            border: 1px solid rgba(255, 100, 100, 0.3);
+            color: #ff6464;
+        }
+
+        .message.info {
+            background: rgba(0, 206, 209, 0.1);
+            border: 1px solid rgba(0, 206, 209, 0.3);
+            color: #00CED1;
         }
 
         /* Connection Cards */
@@ -654,15 +772,46 @@
                 <div class="step active" id="step-1">
                     <p class="step-label">Step 1 of 4</p>
                     <h2>Let's get started</h2>
-                    <p class="step-subtitle">Enter your email and we'll send you a magic link. No password needed.</p>
+                    <p class="step-subtitle">Sign in to get your personalized Financial Scorecard.</p>
                     
+                    <div id="email-message"></div>
+                    
+                    <!-- Google Sign In -->
+                    <button type="button" class="btn-google" id="google-signin">
+                        <svg viewBox="0 0 24 24" width="20" height="20">
+                            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                        </svg>
+                        Continue with Google
+                    </button>
+                    
+                    <div class="divider">
+                        <span>or</span>
+                    </div>
+                    
+                    <!-- Magic Link -->
                     <form id="email-form">
                         <div class="form-group">
                             <label for="email">Work email</label>
                             <input type="email" id="email" placeholder="you@company.com" required>
                         </div>
-                        <button type="submit" class="btn-primary">Continue</button>
+                        <button type="submit" class="btn-primary" id="email-submit">Continue with Email</button>
                     </form>
+                    
+                    <p class="auth-note">We'll send you a magic link. No password needed.</p>
+                </div>
+
+                <!-- Step 1b: Check Email -->
+                <div class="step" id="step-1b">
+                    <p class="step-label">Step 1 of 4</p>
+                    <h2>Check your email</h2>
+                    <p class="step-subtitle">We sent a magic link to <strong id="sent-email"></strong>. Click the link to continue.</p>
+                    
+                    <div class="message info">
+                        <p>📧 Didn't receive it? Check your spam folder or <a href="#" id="resend-link" style="color: #7FFF7F;">resend the link</a>.</p>
+                    </div>
                 </div>
 
                 <!-- Step 2: Connect QBO -->
@@ -807,71 +956,302 @@
     </div>
 
     <script>
-        // Step navigation
+        // =====================================================
+        // SUPABASE CONFIGURATION
+        // =====================================================
+        const SUPABASE_URL = 'https://smqvtigserqnrjbaavkd.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNtcXZ0aWdzZXJxbnJqYmFhdmtkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjU2NzQyNTUsImV4cCI6MjA4MTI1MDI1NX0.hMHDCmPs1lSC_S1OW9z0OYTKFk3_IilXIbg7xIVRQ50';
+        
+        // Initialize Supabase client
+        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        
+        // =====================================================
+        // STATE MANAGEMENT
+        // =====================================================
         let currentStep = 1;
-        const totalSteps = 4;
-
+        let currentLeadId = null;
+        let userEmail = null;
+        
+        // =====================================================
+        // UTILITY FUNCTIONS
+        // =====================================================
+        function showMessage(containerId, message, type = 'info') {
+            const container = document.getElementById(containerId);
+            container.innerHTML = `<div class="message ${type}">${message}</div>`;
+        }
+        
+        function clearMessage(containerId) {
+            document.getElementById(containerId).innerHTML = '';
+        }
+        
+        function setLoading(buttonId, loading) {
+            const btn = document.getElementById(buttonId);
+            if (loading) {
+                btn.classList.add('loading');
+                btn.disabled = true;
+            } else {
+                btn.classList.remove('loading');
+                btn.disabled = false;
+            }
+        }
+        
+        // =====================================================
+        // STEP NAVIGATION
+        // =====================================================
         function goToStep(step) {
             // Hide all steps
             document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
-            // Show target step
-            document.getElementById(`step-${step}`).classList.add('active');
             
-            // Update indicators
+            // Show target step
+            const stepEl = document.getElementById(`step-${step}`);
+            if (stepEl) {
+                stepEl.classList.add('active');
+            }
+            
+            // Update indicators (map step 1b to indicator 1)
+            const indicatorStep = step === '1b' ? 1 : parseInt(step);
             document.querySelectorAll('.step-dot').forEach((dot, index) => {
                 dot.classList.remove('active', 'completed');
-                if (index + 1 < step) dot.classList.add('completed');
-                if (index + 1 === step) dot.classList.add('active');
+                if (index + 1 < indicatorStep) dot.classList.add('completed');
+                if (index + 1 === indicatorStep) dot.classList.add('active');
             });
             
             currentStep = step;
         }
-
-        // Step 1: Email form
-        document.getElementById('email-form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const email = document.getElementById('email').value;
-            if (email) {
-                // In production: send magic link
-                goToStep(2);
+        
+        // =====================================================
+        // DATABASE FUNCTIONS
+        // =====================================================
+        async function createLead(email) {
+            const { data, error } = await supabase
+                .from('leads')
+                .insert([{ email: email, status: 'started', current_step: 1 }])
+                .select()
+                .single();
+            
+            if (error) {
+                console.error('Error creating lead:', error);
+                throw error;
+            }
+            
+            return data;
+        }
+        
+        async function updateLead(leadId, updates) {
+            const { data, error } = await supabase
+                .from('leads')
+                .update(updates)
+                .eq('id', leadId)
+                .select()
+                .single();
+            
+            if (error) {
+                console.error('Error updating lead:', error);
+                throw error;
+            }
+            
+            return data;
+        }
+        
+        async function getLeadByEmail(email) {
+            const { data, error } = await supabase
+                .from('leads')
+                .select('*')
+                .eq('email', email)
+                .order('created_at', { ascending: false })
+                .limit(1)
+                .single();
+            
+            if (error && error.code !== 'PGRST116') { // PGRST116 = no rows returned
+                console.error('Error getting lead:', error);
+                throw error;
+            }
+            
+            return data;
+        }
+        
+        // =====================================================
+        // AUTHENTICATION
+        // =====================================================
+        async function sendMagicLink(email) {
+            const { data, error } = await supabase.auth.signInWithOtp({
+                email: email,
+                options: {
+                    emailRedirectTo: window.location.origin + '/onboarding'
+                }
+            });
+            
+            if (error) {
+                console.error('Error sending magic link:', error);
+                throw error;
+            }
+            
+            return data;
+        }
+        
+        async function signInWithGoogle() {
+            const { data, error } = await supabase.auth.signInWithOAuth({
+                provider: 'google',
+                options: {
+                    redirectTo: window.location.origin + '/onboarding'
+                }
+            });
+            
+            if (error) {
+                console.error('Error signing in with Google:', error);
+                throw error;
+            }
+            
+            return data;
+        }
+        
+        async function checkSession() {
+            const { data: { session }, error } = await supabase.auth.getSession();
+            
+            if (error) {
+                console.error('Error checking session:', error);
+                return null;
+            }
+            
+            return session;
+        }
+        
+        // =====================================================
+        // EVENT HANDLERS
+        // =====================================================
+        
+        // Google Sign In
+        document.getElementById('google-signin').addEventListener('click', async () => {
+            const btn = document.getElementById('google-signin');
+            btn.classList.add('loading');
+            btn.disabled = true;
+            
+            try {
+                await signInWithGoogle();
+                // User will be redirected to Google, then back to /onboarding
+            } catch (error) {
+                showMessage('email-message', 'Error signing in with Google. Please try again.', 'error');
+                console.error(error);
+                btn.classList.remove('loading');
+                btn.disabled = false;
             }
         });
-
-        // Step 2: QBO connection
-        document.getElementById('qbo-connect').addEventListener('click', () => {
-            // In production: OAuth flow
+        
+        // Step 1: Email form submission
+        document.getElementById('email-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value.trim();
+            if (!email) return;
+            
+            userEmail = email;
+            setLoading('email-submit', true);
+            clearMessage('email-message');
+            
+            try {
+                // Create or get existing lead
+                let lead = await getLeadByEmail(email);
+                if (!lead) {
+                    lead = await createLead(email);
+                }
+                currentLeadId = lead.id;
+                
+                // Send magic link
+                await sendMagicLink(email);
+                
+                // Show "check email" step
+                document.getElementById('sent-email').textContent = email;
+                goToStep('1b');
+                
+            } catch (error) {
+                showMessage('email-message', 'Something went wrong. Please try again.', 'error');
+                console.error(error);
+            } finally {
+                setLoading('email-submit', false);
+            }
+        });
+        
+        // Resend magic link
+        document.getElementById('resend-link').addEventListener('click', async (e) => {
+            e.preventDefault();
+            
+            if (!userEmail) return;
+            
+            try {
+                await sendMagicLink(userEmail);
+                alert('Magic link resent! Check your email.');
+            } catch (error) {
+                alert('Error resending link. Please try again.');
+                console.error(error);
+            }
+        });
+        
+        // Step 2: QBO connection (placeholder - will be real OAuth in Phase 2)
+        document.getElementById('qbo-connect').addEventListener('click', async () => {
+            // TODO: Replace with real QBO OAuth flow in Phase 2
             document.getElementById('qbo-status').textContent = 'Connected';
             document.getElementById('qbo-status').classList.add('connected');
             document.getElementById('qbo-connect').classList.add('connected');
             document.getElementById('qbo-continue').disabled = false;
+            
+            // Update lead in database
+            if (currentLeadId) {
+                await updateLead(currentLeadId, {
+                    qbo_connected: true,
+                    qbo_connected_at: new Date().toISOString(),
+                    status: 'qbo_connected',
+                    current_step: 2
+                });
+            }
         });
-
+        
         document.getElementById('qbo-continue').addEventListener('click', () => {
             goToStep(3);
         });
-
+        
         document.getElementById('qbo-help').addEventListener('click', () => {
-            // In production: open help modal or chat
+            // TODO: Open help modal or chat
             alert('Opening help guide...');
         });
-
-        // Step 3: Sales channels
-        document.getElementById('amazon-connect').addEventListener('click', () => {
+        
+        // Step 3: Sales channels (placeholder - will be real OAuth in Phase 2)
+        document.getElementById('amazon-connect').addEventListener('click', async () => {
             document.getElementById('amazon-status').textContent = 'Connected';
             document.getElementById('amazon-status').classList.add('connected');
             document.getElementById('amazon-connect').classList.add('connected');
+            
+            if (currentLeadId) {
+                await updateLead(currentLeadId, {
+                    amazon_connected: true,
+                    amazon_connected_at: new Date().toISOString()
+                });
+            }
         });
-
-        document.getElementById('shopify-connect').addEventListener('click', () => {
+        
+        document.getElementById('shopify-connect').addEventListener('click', async () => {
             document.getElementById('shopify-status').textContent = 'Connected';
             document.getElementById('shopify-status').classList.add('connected');
             document.getElementById('shopify-connect').classList.add('connected');
+            
+            if (currentLeadId) {
+                await updateLead(currentLeadId, {
+                    shopify_connected: true,
+                    shopify_connected_at: new Date().toISOString()
+                });
+            }
         });
-
-        document.getElementById('channels-continue').addEventListener('click', () => {
+        
+        document.getElementById('channels-continue').addEventListener('click', async () => {
+            if (currentLeadId) {
+                await updateLead(currentLeadId, {
+                    status: 'completed',
+                    current_step: 4,
+                    completed_at: new Date().toISOString()
+                });
+            }
             goToStep(4);
         });
-
+        
         // Step 4: Callback options
         document.getElementById('callback-yes').addEventListener('click', () => {
             document.querySelectorAll('.callback-option').forEach(o => o.classList.remove('selected'));
@@ -879,33 +1259,46 @@
             document.getElementById('phone-input').classList.add('visible');
             document.getElementById('contact-info').classList.remove('visible');
         });
-
-        document.getElementById('callback-no').addEventListener('click', () => {
+        
+        document.getElementById('callback-no').addEventListener('click', async () => {
             document.querySelectorAll('.callback-option').forEach(o => o.classList.remove('selected'));
             document.getElementById('callback-no').classList.add('selected');
             document.getElementById('phone-input').classList.remove('visible');
             document.getElementById('contact-info').classList.add('visible');
-        });
-
-        document.getElementById('submit-phone').addEventListener('click', () => {
-            const phone = document.getElementById('phone').value;
-            if (phone) {
-                alert('Thanks! We\'ll call you when your scorecard is ready.');
-                document.getElementById('phone-input').classList.remove('visible');
+            
+            if (currentLeadId) {
+                await updateLead(currentLeadId, { callback_requested: false });
             }
         });
-
-        // Chat widget
+        
+        document.getElementById('submit-phone').addEventListener('click', async () => {
+            const phone = document.getElementById('phone').value.trim();
+            if (!phone) return;
+            
+            if (currentLeadId) {
+                await updateLead(currentLeadId, {
+                    callback_requested: true,
+                    phone: phone
+                });
+            }
+            
+            alert('Thanks! We\'ll call you when your scorecard is ready.');
+            document.getElementById('phone-input').classList.remove('visible');
+            document.getElementById('contact-info').classList.add('visible');
+        });
+        
+        // =====================================================
+        // CHAT WIDGET
+        // =====================================================
         const chatButton = document.getElementById('chat-button');
         const chatTooltip = document.getElementById('chat-tooltip');
         let tooltipVisible = true;
-
-        // Hide tooltip after 5 seconds
+        
         setTimeout(() => {
             chatTooltip.style.display = 'none';
             tooltipVisible = false;
         }, 5000);
-
+        
         chatButton.addEventListener('click', () => {
             if (tooltipVisible) {
                 chatTooltip.style.display = 'none';
@@ -915,6 +1308,38 @@
                 tooltipVisible = true;
             }
         });
+        
+        // =====================================================
+        // INITIALIZATION - Check for returning user via magic link
+        // =====================================================
+        async function init() {
+            // Check if user is returning from magic link or Google
+            const session = await checkSession();
+            
+            if (session && session.user) {
+                // User is authenticated!
+                userEmail = session.user.email;
+                
+                // Get or create their lead
+                let lead = await getLeadByEmail(userEmail);
+                if (!lead) {
+                    lead = await createLead(userEmail);
+                }
+                currentLeadId = lead.id;
+                
+                // Update lead with user_id
+                await updateLead(currentLeadId, {
+                    user_id: session.user.id,
+                    status: 'email_verified'
+                });
+                
+                // Skip to step 2 (QBO connection)
+                goToStep(2);
+            }
+        }
+        
+        // Run initialization
+        init();
     </script>
 </body>
 </html>
