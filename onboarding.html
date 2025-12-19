@@ -5,10 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Get Your Financial Scorecard - Zero2One</title>
     
+    <!-- Brand Font: Onest from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
     <!-- Supabase JS Client -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     
     <style>
+        /* =====================================================
+           ZERO2ONE BRAND VARIABLES
+           ===================================================== */
+        :root {
+            --z2o-primary: #b0ff63;
+            --z2o-secondary: #52e8c9;
+            --z2o-dark-charcoal: #1a292b;
+            --z2o-black: #25282a;
+            --z2o-white: #ffffff;
+            --z2o-gradient: linear-gradient(45deg, var(--z2o-primary) 0%, var(--z2o-secondary) 100%);
+            --font-primary: 'Onest', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -16,9 +34,9 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-            background: #0a0e1a;
-            color: #ffffff;
+            font-family: var(--font-primary);
+            background: var(--z2o-dark-charcoal);
+            color: var(--z2o-white);
             min-height: 100vh;
             line-height: 1.6;
         }
@@ -32,12 +50,12 @@
 
         /* Left Panel - Branding */
         .left-panel {
-            background: linear-gradient(135deg, #7FFF7F 0%, #00CED1 100%);
+            background: var(--z2o-gradient);
             padding: 3rem;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            color: #0a0e1a;
+            color: var(--z2o-dark-charcoal);
         }
 
         .logo img {
@@ -53,6 +71,7 @@
             font-size: 2.5rem;
             margin-bottom: 1rem;
             line-height: 1.2;
+            font-weight: 700;
         }
 
         .left-content p {
@@ -62,7 +81,7 @@
         }
 
         .account-manager {
-            background: rgba(10, 14, 26, 0.1);
+            background: rgba(26, 41, 43, 0.1);
             border-radius: 16px;
             padding: 1.5rem;
             margin-top: 2rem;
@@ -79,18 +98,19 @@
             width: 60px;
             height: 60px;
             border-radius: 50%;
-            background: #0a0e1a;
+            background: var(--z2o-dark-charcoal);
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 700;
             font-size: 1.3rem;
-            color: #7FFF7F;
+            color: var(--z2o-primary);
         }
 
         .manager-info h4 {
             font-size: 1.1rem;
             margin-bottom: 0.25rem;
+            font-weight: 600;
         }
 
         .manager-info p {
@@ -113,17 +133,14 @@
         .step-dot {
             width: 40px;
             height: 4px;
-            background: rgba(10, 14, 26, 0.2);
+            background: rgba(26, 41, 43, 0.2);
             border-radius: 2px;
             transition: all 0.3s;
         }
 
-        .step-dot.active {
-            background: #0a0e1a;
-        }
-
+        .step-dot.active,
         .step-dot.completed {
-            background: #0a0e1a;
+            background: var(--z2o-dark-charcoal);
         }
 
         /* Right Panel - Form */
@@ -160,11 +177,13 @@
             text-transform: uppercase;
             letter-spacing: 0.1em;
             margin-bottom: 0.5rem;
+            font-weight: 500;
         }
 
         .step h2 {
             font-size: 1.8rem;
             margin-bottom: 0.75rem;
+            font-weight: 700;
         }
 
         .step-subtitle {
@@ -182,6 +201,7 @@
             font-size: 0.9rem;
             margin-bottom: 0.5rem;
             color: rgba(255, 255, 255, 0.8);
+            font-weight: 500;
         }
 
         .form-group input {
@@ -192,12 +212,13 @@
             border-radius: 8px;
             color: #fff;
             font-size: 1rem;
+            font-family: var(--font-primary);
             transition: all 0.3s;
         }
 
         .form-group input:focus {
             outline: none;
-            border-color: #7FFF7F;
+            border-color: var(--z2o-primary);
             background: rgba(255, 255, 255, 0.08);
         }
 
@@ -208,19 +229,20 @@
         .btn-primary {
             width: 100%;
             padding: 1rem;
-            background: linear-gradient(135deg, #7FFF7F 0%, #00CED1 100%);
+            background: var(--z2o-gradient);
             border: none;
             border-radius: 8px;
-            color: #0a0e1a;
+            color: var(--z2o-dark-charcoal);
             font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
+            font-family: var(--font-primary);
             transition: all 0.3s;
         }
 
         .btn-primary:hover:not(:disabled) {
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(127, 255, 127, 0.3);
+            box-shadow: 0 8px 25px rgba(176, 255, 99, 0.3);
         }
 
         .btn-primary:disabled {
@@ -228,7 +250,6 @@
             cursor: not-allowed;
         }
 
-        /* Google Sign In Button */
         .btn-google {
             width: 100%;
             padding: 1rem;
@@ -239,6 +260,7 @@
             font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
+            font-family: var(--font-primary);
             transition: all 0.3s;
             display: flex;
             align-items: center;
@@ -257,7 +279,6 @@
             cursor: not-allowed;
         }
 
-        /* Divider */
         .divider {
             display: flex;
             align-items: center;
@@ -278,7 +299,6 @@
             font-size: 0.85rem;
         }
 
-        /* Auth Note */
         .auth-note {
             text-align: center;
             font-size: 0.85rem;
@@ -296,6 +316,7 @@
             font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
+            font-family: var(--font-primary);
             transition: all 0.3s;
             margin-top: 1rem;
         }
@@ -305,7 +326,6 @@
             border-color: rgba(255, 255, 255, 0.3);
         }
 
-        /* Loading State */
         .btn-primary.loading {
             position: relative;
             color: transparent;
@@ -320,7 +340,7 @@
             left: 50%;
             margin-left: -10px;
             margin-top: -10px;
-            border: 2px solid #0a0e1a;
+            border: 2px solid var(--z2o-dark-charcoal);
             border-radius: 50%;
             border-top-color: transparent;
             animation: spin 0.8s linear infinite;
@@ -330,7 +350,6 @@
             to { transform: rotate(360deg); }
         }
 
-        /* Success/Error Messages */
         .message {
             padding: 1rem;
             border-radius: 8px;
@@ -339,24 +358,23 @@
         }
 
         .message.success {
-            background: rgba(127, 255, 127, 0.1);
-            border: 1px solid rgba(127, 255, 127, 0.3);
-            color: #7FFF7F;
+            background: rgba(176, 255, 99, 0.1);
+            border: 1px solid rgba(176, 255, 99, 0.3);
+            color: var(--z2o-primary);
         }
 
         .message.error {
-            background: rgba(255, 100, 100, 0.1);
-            border: 1px solid rgba(255, 100, 100, 0.3);
-            color: #ff6464;
+            background: rgba(255, 0, 92, 0.1);
+            border: 1px solid rgba(255, 0, 92, 0.3);
+            color: #ff005c;
         }
 
         .message.info {
-            background: rgba(0, 206, 209, 0.1);
-            border: 1px solid rgba(0, 206, 209, 0.3);
-            color: #00CED1;
+            background: rgba(82, 232, 201, 0.1);
+            border: 1px solid rgba(82, 232, 201, 0.3);
+            color: var(--z2o-secondary);
         }
 
-        /* Connection Cards */
         .connection-card {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -369,12 +387,12 @@
 
         .connection-card:hover {
             background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(127, 255, 127, 0.3);
+            border-color: rgba(255, 255, 255, 0.2);
         }
 
         .connection-card.connected {
-            border-color: #7FFF7F;
-            background: rgba(127, 255, 127, 0.05);
+            border-color: var(--z2o-primary);
+            background: rgba(176, 255, 99, 0.05);
         }
 
         .connection-header {
@@ -399,7 +417,7 @@
             justify-content: center;
             font-weight: 700;
             font-size: 0.8rem;
-            color: #0a0e1a;
+            color: var(--z2o-dark-charcoal);
         }
 
         .connection-icon.qbo {
@@ -409,7 +427,7 @@
 
         .connection-icon.amazon {
             background: #FF9900;
-            color: #0a0e1a;
+            color: var(--z2o-dark-charcoal);
         }
 
         .connection-icon.shopify {
@@ -420,6 +438,7 @@
         .connection-name h4 {
             font-size: 1.1rem;
             margin-bottom: 0.25rem;
+            font-weight: 600;
         }
 
         .connection-name p {
@@ -434,11 +453,12 @@
             border-radius: 20px;
             background: rgba(255, 255, 255, 0.1);
             color: rgba(255, 255, 255, 0.6);
+            font-weight: 500;
         }
 
         .connection-status.connected {
-            background: rgba(127, 255, 127, 0.2);
-            color: #7FFF7F;
+            background: rgba(176, 255, 99, 0.2);
+            color: var(--z2o-primary);
         }
 
         .channels-note {
@@ -450,28 +470,24 @@
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        /* Completion */
         .completion-icon {
             width: 80px;
             height: 80px;
-            background: linear-gradient(135deg, #7FFF7F 0%, #00CED1 100%);
+            background: var(--z2o-gradient);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 2rem;
             font-size: 2.5rem;
+            color: var(--z2o-dark-charcoal);
         }
 
-        .step-4 h2 {
-            text-align: center;
-        }
-
+        .step-4 h2,
         .step-4 .step-subtitle {
             text-align: center;
         }
 
-        /* Progress Tracker */
         .progress-tracker {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -489,11 +505,13 @@
 
         .progress-header h4 {
             font-size: 1rem;
+            font-weight: 600;
         }
 
         .eta {
             font-size: 0.9rem;
-            color: #7FFF7F;
+            color: var(--z2o-primary);
+            font-weight: 500;
         }
 
         .progress-bar {
@@ -506,7 +524,7 @@
 
         .progress-fill {
             height: 100%;
-            background: linear-gradient(135deg, #7FFF7F 0%, #00CED1 100%);
+            background: var(--z2o-gradient);
             width: 25%;
             transition: width 0.5s ease;
         }
@@ -531,16 +549,17 @@
             justify-content: center;
             margin: 0 auto 0.5rem;
             font-size: 0.8rem;
+            font-weight: 600;
         }
 
         .progress-step-icon.active {
-            background: linear-gradient(135deg, #7FFF7F 0%, #00CED1 100%);
-            color: #0a0e1a;
+            background: var(--z2o-gradient);
+            color: var(--z2o-dark-charcoal);
         }
 
         .progress-step-icon.completed {
-            background: #7FFF7F;
-            color: #0a0e1a;
+            background: var(--z2o-primary);
+            color: var(--z2o-dark-charcoal);
         }
 
         .progress-step span {
@@ -549,14 +568,13 @@
         }
 
         .progress-step.active span {
-            color: #7FFF7F;
+            color: var(--z2o-primary);
         }
 
         .progress-step.completed span {
             color: rgba(255, 255, 255, 0.7);
         }
 
-        /* Callback Options */
         .callback-options {
             display: flex;
             flex-direction: column;
@@ -575,16 +593,17 @@
 
         .callback-option:hover {
             background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(127, 255, 127, 0.3);
+            border-color: rgba(255, 255, 255, 0.2);
         }
 
         .callback-option.selected {
-            border-color: #7FFF7F;
-            background: rgba(127, 255, 127, 0.05);
+            border-color: var(--z2o-primary);
+            background: rgba(176, 255, 99, 0.05);
         }
 
         .callback-option h4 {
             margin-bottom: 0.25rem;
+            font-weight: 600;
         }
 
         .callback-option p {
@@ -602,32 +621,6 @@
             display: block;
         }
 
-        .contact-info {
-            margin-top: 1.5rem;
-            padding: 1rem;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 8px;
-            text-align: center;
-            display: none;
-        }
-
-        .contact-info.visible {
-            display: block;
-        }
-
-        .contact-info p {
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.6);
-            margin-bottom: 0.5rem;
-        }
-
-        .contact-info a {
-            color: #7FFF7F;
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        /* Chat Widget */
         .chat-widget {
             position: fixed;
             bottom: 2rem;
@@ -639,13 +632,13 @@
             width: 60px;
             height: 60px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #7FFF7F 0%, #00CED1 100%);
+            background: var(--z2o-gradient);
             border: none;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 20px rgba(127, 255, 127, 0.3);
+            box-shadow: 0 4px 20px rgba(176, 255, 99, 0.3);
             transition: all 0.3s;
         }
 
@@ -656,14 +649,14 @@
         .chat-button svg {
             width: 28px;
             height: 28px;
-            fill: #0a0e1a;
+            fill: var(--z2o-dark-charcoal);
         }
 
         .chat-tooltip {
             position: absolute;
             bottom: 70px;
             right: 0;
-            background: #1a1f2e;
+            background: var(--z2o-black);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 12px;
             padding: 1rem;
@@ -689,13 +682,14 @@
             font-size: 0.85rem;
             font-weight: 600;
             cursor: pointer;
+            font-family: var(--font-primary);
             transition: all 0.2s;
         }
 
         .chat-actions .chat-btn {
-            background: linear-gradient(135deg, #7FFF7F 0%, #00CED1 100%);
+            background: var(--z2o-gradient);
             border: none;
-            color: #0a0e1a;
+            color: var(--z2o-dark-charcoal);
         }
 
         .chat-actions .call-btn {
@@ -704,7 +698,6 @@
             color: #fff;
         }
 
-        /* Responsive */
         @media (max-width: 968px) {
             .onboarding-container {
                 grid-template-columns: 1fr;
@@ -736,7 +729,6 @@
 </head>
 <body>
     <div class="onboarding-container">
-        <!-- Left Panel -->
         <div class="left-panel">
             <a href="/" class="logo">
                 <img src="logo.png" alt="Zero2One">
@@ -768,11 +760,9 @@
             <div></div>
         </div>
 
-        <!-- Right Panel -->
         <div class="right-panel">
             <div class="form-container">
                 
-                <!-- Step 1: Email -->
                 <div class="step active" id="step-1">
                     <p class="step-label">Step 1 of 4</p>
                     <h2>Let's get started</h2>
@@ -780,7 +770,6 @@
                     
                     <div id="email-message"></div>
                     
-                    <!-- Google Sign In -->
                     <button type="button" class="btn-google" id="google-signin">
                         <svg viewBox="0 0 24 24" width="20" height="20">
                             <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
@@ -791,11 +780,8 @@
                         Continue with Google
                     </button>
                     
-                    <div class="divider">
-                        <span>or</span>
-                    </div>
+                    <div class="divider"><span>or</span></div>
                     
-                    <!-- Magic Link -->
                     <form id="email-form">
                         <div class="form-group">
                             <label for="email">Work email</label>
@@ -807,18 +793,16 @@
                     <p class="auth-note">We'll send you a magic link. No password needed.</p>
                 </div>
 
-                <!-- Step 1b: Check Email -->
                 <div class="step" id="step-1b">
                     <p class="step-label">Step 1 of 4</p>
                     <h2>Check your email</h2>
                     <p class="step-subtitle">We sent a magic link to <strong id="sent-email"></strong>. Click the link to continue.</p>
                     
                     <div class="message info">
-                        <p>📧 Didn't receive it? Check your spam folder or <a href="#" id="resend-link" style="color: #7FFF7F;">resend the link</a>.</p>
+                        <p>📧 Didn't receive it? Check your spam folder or <a href="#" id="resend-link" style="color: var(--z2o-primary);">resend the link</a>.</p>
                     </div>
                 </div>
 
-                <!-- Step 2: Connect QBO -->
                 <div class="step" id="step-2">
                     <p class="step-label">Step 2 of 4</p>
                     <h2>Connect QuickBooks</h2>
@@ -841,7 +825,6 @@
                     <button class="btn-secondary" id="qbo-help">I need help connecting</button>
                 </div>
 
-                <!-- Step 3: Sales Channels -->
                 <div class="step" id="step-3">
                     <p class="step-label">Step 3 of 4</p>
                     <h2>Connect sales channels</h2>
@@ -878,7 +861,6 @@
                     <button class="btn-primary" id="channels-continue">Continue</button>
                 </div>
 
-                <!-- Step 4: Complete -->
                 <div class="step step-4" id="step-4">
                     <div class="completion-icon">✓</div>
                     <h2>You're all set!</h2>
@@ -935,7 +917,7 @@
 
                     <div class="email-confirmation" id="email-confirmation" style="display: none;">
                         <p style="color: rgba(255,255,255,0.8); margin-bottom: 0.5rem;">✓ We'll email your scorecard when it's ready.</p>
-                        <p style="font-size: 0.85rem; color: rgba(255,255,255,0.5);">Changed your mind? <a href="#" id="request-call-link" style="color: #7FFF7F;">Request a call instead</a></p>
+                        <p style="font-size: 0.85rem; color: rgba(255,255,255,0.5);">Changed your mind? <a href="#" id="request-call-link" style="color: var(--z2o-primary);">Request a call instead</a></p>
                     </div>
                 </div>
 
@@ -943,7 +925,6 @@
         </div>
     </div>
 
-    <!-- Chat Widget -->
     <div class="chat-widget">
         <div class="chat-tooltip" id="chat-tooltip">
             <p>👋 Hey! I'm Kate. Need help or have questions?</p>
@@ -960,28 +941,16 @@
     </div>
 
     <script>
-        // =====================================================
-        // SUPABASE CONFIGURATION
-        // =====================================================
         const SUPABASE_URL = 'https://smqvtigserqnrjbaavkd.supabase.co';
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNtcXZ0aWdzZXJxbnJqYmFhdmtkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjU2NzQyNTUsImV4cCI6MjA4MTI1MDI1NX0.hMHDCmPs1lSC_S1OW9z0OYTKFk3_IilXIbg7xIVRQ50';
-        
-        // Initialize Supabase client
         const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
         
-        // =====================================================
-        // STATE MANAGEMENT
-        // =====================================================
         let currentStep = 1;
         let currentLeadId = null;
         let userEmail = null;
         
-        // =====================================================
-        // UTILITY FUNCTIONS
-        // =====================================================
         function showMessage(containerId, message, type = 'info') {
-            const container = document.getElementById(containerId);
-            container.innerHTML = `<div class="message ${type}">${message}</div>`;
+            document.getElementById(containerId).innerHTML = `<div class="message ${type}">${message}</div>`;
         }
         
         function clearMessage(containerId) {
@@ -990,161 +959,72 @@
         
         function setLoading(buttonId, loading) {
             const btn = document.getElementById(buttonId);
-            if (loading) {
-                btn.classList.add('loading');
-                btn.disabled = true;
-            } else {
-                btn.classList.remove('loading');
-                btn.disabled = false;
-            }
+            btn.classList.toggle('loading', loading);
+            btn.disabled = loading;
         }
         
-        // =====================================================
-        // STEP NAVIGATION
-        // =====================================================
         function goToStep(step) {
-            // Hide all steps
             document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
-            
-            // Show target step
             const stepEl = document.getElementById(`step-${step}`);
-            if (stepEl) {
-                stepEl.classList.add('active');
-            }
+            if (stepEl) stepEl.classList.add('active');
             
-            // Update indicators (map step 1b to indicator 1)
             const indicatorStep = step === '1b' ? 1 : parseInt(step);
             document.querySelectorAll('.step-dot').forEach((dot, index) => {
                 dot.classList.remove('active', 'completed');
                 if (index + 1 < indicatorStep) dot.classList.add('completed');
                 if (index + 1 === indicatorStep) dot.classList.add('active');
             });
-            
             currentStep = step;
         }
         
-        // =====================================================
-        // DATABASE FUNCTIONS
-        // =====================================================
         async function createLead(email) {
-            const { data, error } = await supabase
-                .from('leads')
-                .insert([{ email: email, status: 'started', current_step: 1 }])
-                .select()
-                .single();
-            
-            if (error) {
-                console.error('Error creating lead:', error);
-                throw error;
-            }
-            
+            const { data, error } = await supabase.from('leads').insert([{ email, status: 'started', current_step: 1 }]).select().single();
+            if (error) throw error;
             return data;
         }
         
         async function updateLead(leadId, updates) {
-            const { data, error } = await supabase
-                .from('leads')
-                .update(updates)
-                .eq('id', leadId)
-                .select()
-                .single();
-            
-            if (error) {
-                console.error('Error updating lead:', error);
-                throw error;
-            }
-            
+            const { data, error } = await supabase.from('leads').update(updates).eq('id', leadId).select().single();
+            if (error) throw error;
             return data;
         }
         
         async function getLeadByEmail(email) {
-            const { data, error } = await supabase
-                .from('leads')
-                .select('*')
-                .eq('email', email)
-                .order('created_at', { ascending: false })
-                .limit(1)
-                .single();
-            
-            if (error && error.code !== 'PGRST116') { // PGRST116 = no rows returned
-                console.error('Error getting lead:', error);
-                throw error;
-            }
-            
+            const { data, error } = await supabase.from('leads').select('*').eq('email', email).order('created_at', { ascending: false }).limit(1).single();
+            if (error && error.code !== 'PGRST116') throw error;
             return data;
         }
         
-        // =====================================================
-        // AUTHENTICATION
-        // =====================================================
         async function sendMagicLink(email) {
-            const { data, error } = await supabase.auth.signInWithOtp({
-                email: email,
-                options: {
-                    emailRedirectTo: window.location.origin + '/onboarding'
-                }
-            });
-            
-            if (error) {
-                console.error('Error sending magic link:', error);
-                throw error;
-            }
-            
-            return data;
+            const { error } = await supabase.auth.signInWithOtp({ email, options: { emailRedirectTo: window.location.origin + '/onboarding' } });
+            if (error) throw error;
         }
         
         async function signInWithGoogle() {
-            const { data, error } = await supabase.auth.signInWithOAuth({
-                provider: 'google',
-                options: {
-                    redirectTo: window.location.origin + '/onboarding'
-                }
-            });
-            
-            if (error) {
-                console.error('Error signing in with Google:', error);
-                throw error;
-            }
-            
-            return data;
+            const { error } = await supabase.auth.signInWithOAuth({ provider: 'google', options: { redirectTo: window.location.origin + '/onboarding' } });
+            if (error) throw error;
         }
         
         async function checkSession() {
-            const { data: { session }, error } = await supabase.auth.getSession();
-            
-            if (error) {
-                console.error('Error checking session:', error);
-                return null;
-            }
-            
+            const { data: { session } } = await supabase.auth.getSession();
             return session;
         }
         
-        // =====================================================
-        // EVENT HANDLERS
-        // =====================================================
-        
-        // Google Sign In
         document.getElementById('google-signin').addEventListener('click', async () => {
             const btn = document.getElementById('google-signin');
             btn.classList.add('loading');
             btn.disabled = true;
-            
             try {
                 await signInWithGoogle();
-                // User will be redirected to Google, then back to /onboarding
             } catch (error) {
                 showMessage('email-message', 'Error signing in with Google. Please try again.', 'error');
-                console.error(error);
                 btn.classList.remove('loading');
                 btn.disabled = false;
             }
         });
         
-        // Step 1: Email form submission
         document.getElementById('email-form').addEventListener('submit', async (e) => {
             e.preventDefault();
-            
             const email = document.getElementById('email').value.trim();
             if (!email) return;
             
@@ -1153,110 +1033,60 @@
             clearMessage('email-message');
             
             try {
-                // Create or get existing lead
                 let lead = await getLeadByEmail(email);
-                if (!lead) {
-                    lead = await createLead(email);
-                }
+                if (!lead) lead = await createLead(email);
                 currentLeadId = lead.id;
-                
-                // Send magic link
                 await sendMagicLink(email);
-                
-                // Show "check email" step
                 document.getElementById('sent-email').textContent = email;
                 goToStep('1b');
-                
             } catch (error) {
                 showMessage('email-message', 'Something went wrong. Please try again.', 'error');
-                console.error(error);
             } finally {
                 setLoading('email-submit', false);
             }
         });
         
-        // Resend magic link
         document.getElementById('resend-link').addEventListener('click', async (e) => {
             e.preventDefault();
-            
             if (!userEmail) return;
-            
             try {
                 await sendMagicLink(userEmail);
                 alert('Magic link resent! Check your email.');
             } catch (error) {
                 alert('Error resending link. Please try again.');
-                console.error(error);
             }
         });
         
-        // Step 2: QBO connection (placeholder - will be real OAuth in Phase 2)
         document.getElementById('qbo-connect').addEventListener('click', async () => {
-            // TODO: Replace with real QBO OAuth flow in Phase 2
             document.getElementById('qbo-status').textContent = 'Connected';
             document.getElementById('qbo-status').classList.add('connected');
             document.getElementById('qbo-connect').classList.add('connected');
             document.getElementById('qbo-continue').disabled = false;
-            
-            // Update lead in database
-            if (currentLeadId) {
-                await updateLead(currentLeadId, {
-                    qbo_connected: true,
-                    qbo_connected_at: new Date().toISOString(),
-                    status: 'qbo_connected',
-                    current_step: 2
-                });
-            }
+            if (currentLeadId) await updateLead(currentLeadId, { qbo_connected: true, qbo_connected_at: new Date().toISOString(), status: 'qbo_connected', current_step: 2 });
         });
         
-        document.getElementById('qbo-continue').addEventListener('click', () => {
-            goToStep(3);
-        });
+        document.getElementById('qbo-continue').addEventListener('click', () => goToStep(3));
+        document.getElementById('qbo-help').addEventListener('click', () => alert('Opening help guide...'));
         
-        document.getElementById('qbo-help').addEventListener('click', () => {
-            // TODO: Open help modal or chat
-            alert('Opening help guide...');
-        });
-        
-        // Step 3: Sales channels (placeholder - will be real OAuth in Phase 2)
         document.getElementById('amazon-connect').addEventListener('click', async () => {
             document.getElementById('amazon-status').textContent = 'Connected';
             document.getElementById('amazon-status').classList.add('connected');
             document.getElementById('amazon-connect').classList.add('connected');
-            
-            if (currentLeadId) {
-                await updateLead(currentLeadId, {
-                    amazon_connected: true,
-                    amazon_connected_at: new Date().toISOString()
-                });
-            }
+            if (currentLeadId) await updateLead(currentLeadId, { amazon_connected: true, amazon_connected_at: new Date().toISOString() });
         });
         
         document.getElementById('shopify-connect').addEventListener('click', async () => {
             document.getElementById('shopify-status').textContent = 'Connected';
             document.getElementById('shopify-status').classList.add('connected');
             document.getElementById('shopify-connect').classList.add('connected');
-            
-            if (currentLeadId) {
-                await updateLead(currentLeadId, {
-                    shopify_connected: true,
-                    shopify_connected_at: new Date().toISOString()
-                });
-            }
+            if (currentLeadId) await updateLead(currentLeadId, { shopify_connected: true, shopify_connected_at: new Date().toISOString() });
         });
         
         document.getElementById('channels-continue').addEventListener('click', async () => {
-            if (currentLeadId) {
-                await updateLead(currentLeadId, {
-                    status: 'completed',
-                    current_step: 4,
-                    completed_at: new Date().toISOString()
-                });
-            }
+            if (currentLeadId) await updateLead(currentLeadId, { status: 'completed', current_step: 4, completed_at: new Date().toISOString() });
             goToStep(4);
         });
         
-        // Step 4: Callback options
         document.getElementById('callback-yes').addEventListener('click', () => {
             document.querySelectorAll('.callback-option').forEach(o => o.classList.remove('selected'));
             document.getElementById('callback-yes').classList.add('selected');
@@ -1265,20 +1095,13 @@
         });
         
         document.getElementById('callback-no').addEventListener('click', async () => {
-            // Hide the question and options
             document.getElementById('callback-question').style.display = 'none';
             document.getElementById('callback-options').style.display = 'none';
             document.getElementById('phone-input').classList.remove('visible');
-            
-            // Show email confirmation
             document.getElementById('email-confirmation').style.display = 'block';
-            
-            if (currentLeadId) {
-                await updateLead(currentLeadId, { callback_requested: false });
-            }
+            if (currentLeadId) await updateLead(currentLeadId, { callback_requested: false });
         });
         
-        // "Request a call instead" link
         document.getElementById('request-call-link').addEventListener('click', (e) => {
             e.preventDefault();
             document.getElementById('email-confirmation').style.display = 'none';
@@ -1289,91 +1112,42 @@
         document.getElementById('submit-phone').addEventListener('click', async () => {
             const phone = document.getElementById('phone').value.trim();
             if (!phone) return;
-            
-            if (currentLeadId) {
-                await updateLead(currentLeadId, {
-                    callback_requested: true,
-                    phone: phone
-                });
-            }
-            
-            // Hide phone input and options, show confirmation
+            if (currentLeadId) await updateLead(currentLeadId, { callback_requested: true, phone });
             document.getElementById('phone-input').classList.remove('visible');
             document.getElementById('callback-question').style.display = 'none';
             document.getElementById('callback-options').style.display = 'none';
-            
-            // Show call confirmation instead of email
-            document.getElementById('email-confirmation').innerHTML = `
-                <p style="color: rgba(255,255,255,0.8); margin-bottom: 0.5rem;">✓ We'll call you when your scorecard is ready.</p>
-            `;
+            document.getElementById('email-confirmation').innerHTML = `<p style="color: rgba(255,255,255,0.8); margin-bottom: 0.5rem;">✓ We'll call you when your scorecard is ready.</p>`;
             document.getElementById('email-confirmation').style.display = 'block';
         });
         
-        // =====================================================
-        // CHAT WIDGET
-        // =====================================================
         const chatButton = document.getElementById('chat-button');
         const chatTooltip = document.getElementById('chat-tooltip');
         let tooltipVisible = true;
-        
-        setTimeout(() => {
-            chatTooltip.style.display = 'none';
-            tooltipVisible = false;
-        }, 5000);
-        
+        setTimeout(() => { chatTooltip.style.display = 'none'; tooltipVisible = false; }, 5000);
         chatButton.addEventListener('click', () => {
-            if (tooltipVisible) {
-                chatTooltip.style.display = 'none';
-                tooltipVisible = false;
-            } else {
-                chatTooltip.style.display = 'block';
-                tooltipVisible = true;
-            }
+            chatTooltip.style.display = tooltipVisible ? 'none' : 'block';
+            tooltipVisible = !tooltipVisible;
         });
         
-        // =====================================================
-        // INITIALIZATION - Check for returning user via magic link
-        // =====================================================
         async function handleAuthenticatedUser(session) {
             if (session && session.user) {
-                // User is authenticated!
                 userEmail = session.user.email;
-                
-                // Get or create their lead
                 let lead = await getLeadByEmail(userEmail);
-                if (!lead) {
-                    lead = await createLead(userEmail);
-                }
+                if (!lead) lead = await createLead(userEmail);
                 currentLeadId = lead.id;
-                
-                // Update lead with user_id
-                await updateLead(currentLeadId, {
-                    user_id: session.user.id,
-                    status: 'email_verified'
-                });
-                
-                // Skip to step 2 (QBO connection)
+                await updateLead(currentLeadId, { user_id: session.user.id, status: 'email_verified' });
                 goToStep(2);
             }
         }
         
         async function init() {
-            // Listen for auth state changes (handles OAuth redirects)
             supabase.auth.onAuthStateChange(async (event, session) => {
-                console.log('Auth event:', event);
-                if (event === 'SIGNED_IN' && session) {
-                    await handleAuthenticatedUser(session);
-                }
+                if (event === 'SIGNED_IN' && session) await handleAuthenticatedUser(session);
             });
-            
-            // Also check for existing session on page load
             const session = await checkSession();
-            if (session) {
-                await handleAuthenticatedUser(session);
-            }
+            if (session) await handleAuthenticatedUser(session);
         }
         
-        // Run initialization
         init();
     </script>
 </body>
