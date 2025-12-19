@@ -11,9 +11,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <style>
-        /* =====================================================
-           ZERO2ONE BRAND VARIABLES
-           ===================================================== */
         :root {
             --z2o-primary: #b0ff63;
             --z2o-secondary: #52e8c9;
@@ -56,22 +53,14 @@
         .logo {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
-            font-size: 1.3rem;
-            font-weight: 600;
-            letter-spacing: 0.05em;
+            gap: 0rem;
             text-decoration: none;
             color: white;
         }
 
-        .logo-icon {
-            width: 36px;
-            height: 36px;
-        }
-
-        .logo-icon svg {
-            width: 100%;
-            height: 100%;
+        .logo img {
+            height: 40px;
+            width: auto;
         }
 
         .nav-links {
@@ -100,37 +89,126 @@
             font-weight: 600;
         }
 
-        /* Hero */
+        /* Hero - Split Layout */
         .hero {
-            padding: 10rem 6% 4rem;
-            text-align: center;
-            background: var(--z2o-dark-charcoal);
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            padding-top: 80px;
         }
 
-        .hero h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
+        .hero-content {
+            padding: 6rem 6% 6rem 8%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 4vw, 3.5rem);
             margin-bottom: 1.5rem;
             letter-spacing: -0.02em;
             font-weight: 700;
+            line-height: 1.15;
             color: var(--z2o-white);
         }
 
-        .hero p {
-            font-size: 1.3rem;
+        .hero-content > p {
+            font-size: 1.2rem;
             color: rgba(255, 255, 255, 0.7);
-            max-width: 700px;
-            margin: 0 auto 1rem;
+            margin-bottom: 3rem;
+            max-width: 480px;
+            line-height: 1.7;
         }
 
-        .hero-subtext {
+        .value-props {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+            margin-bottom: 3rem;
+        }
+
+        .value-prop {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .value-prop-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--z2o-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .value-prop-icon svg {
+            width: 12px;
+            height: 12px;
+            stroke: var(--z2o-dark-charcoal);
+            stroke-width: 3;
+            fill: none;
+        }
+
+        .value-prop-text {
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .value-prop-text strong {
+            color: var(--z2o-white);
+        }
+
+        /* Calendly Side */
+        .hero-calendly {
+            background: var(--z2o-black);
+            padding: 6rem 4%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .calendly-wrapper {
+            width: 100%;
+            max-width: 500px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .calendly-header {
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .calendly-header h3 {
             font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .calendly-header p {
+            font-size: 0.9rem;
             color: rgba(255, 255, 255, 0.5);
         }
 
-        /* What's Included */
-        .whats-included {
-            padding: 6rem 6%;
-            max-width: 1200px;
+        .calendly-embed-container {
+            min-height: 600px;
+        }
+
+        /* Process Section */
+        .process {
+            padding: 8rem 6%;
+            background: var(--z2o-dark-charcoal);
+        }
+
+        .process-container {
+            max-width: 900px;
             margin: 0 auto;
         }
 
@@ -140,209 +218,66 @@
         }
 
         .section-header h2 {
-            font-size: clamp(2rem, 4vw, 3rem);
+            font-size: clamp(2rem, 4vw, 2.5rem);
             margin-bottom: 1rem;
             font-weight: 700;
         }
 
         .section-header p {
             color: rgba(255, 255, 255, 0.6);
-            font-size: 1.2rem;
-        }
-
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .benefit-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            padding: 2rem;
-            transition: all 0.3s;
-        }
-
-        .benefit-card:hover {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(255, 255, 255, 0.2);
-            transform: translateY(-5px);
-        }
-
-        .benefit-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .benefit-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 0.75rem;
-            font-weight: 600;
-        }
-
-        .benefit-card p {
-            color: rgba(255, 255, 255, 0.6);
-            line-height: 1.7;
-        }
-
-        /* Calendly Section */
-        .calendly-section {
-            padding: 6rem 6%;
-            background: var(--z2o-black);
-        }
-
-        .calendly-container {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .calendly-embed {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            padding: 3rem;
-            min-height: 700px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .calendly-placeholder {
-            text-align: center;
-        }
-
-        .calendly-placeholder h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        .calendly-placeholder p {
-            color: rgba(255, 255, 255, 0.5);
-            margin-bottom: 2rem;
-        }
-
-        .calendly-placeholder code {
-            background: rgba(0, 0, 0, 0.3);
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            display: inline-block;
-            font-size: 0.9rem;
-        }
-
-        /* Process */
-        .process {
-            padding: 6rem 6%;
-            max-width: 1200px;
-            margin: 0 auto;
+            font-size: 1.1rem;
         }
 
         .process-steps {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-        }
-
-        @media (max-width: 1024px) {
-            .process-steps {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 640px) {
-            .process-steps {
-                grid-template-columns: 1fr;
-            }
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            position: relative;
         }
 
         .process-step {
-            text-align: center;
-            padding: 2rem;
+            display: grid;
+            grid-template-columns: 60px 1fr;
+            gap: 2rem;
+            padding: 2rem 0;
+            position: relative;
+        }
+
+        .process-step:not(:last-child)::before {
+            content: '';
+            position: absolute;
+            left: 29px;
+            top: 80px;
+            bottom: 0;
+            width: 2px;
+            background: rgba(255, 255, 255, 0.1);
         }
 
         .step-number {
             width: 60px;
             height: 60px;
             border-radius: 50%;
-            background: var(--z2o-gradient);
-            color: var(--z2o-dark-charcoal);
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.1);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             font-weight: 700;
-            margin: 0 auto 1.5rem;
+            color: var(--z2o-primary);
+            position: relative;
+            z-index: 1;
         }
 
-        .process-step h3 {
+        .step-content h3 {
             font-size: 1.3rem;
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.5rem;
             font-weight: 600;
         }
 
-        .process-step p {
+        .step-content p {
             color: rgba(255, 255, 255, 0.6);
-        }
-
-        /* Social Proof */
-        .social-proof {
-            padding: 6rem 6%;
-            background: var(--z2o-black);
-        }
-
-        .testimonial-grid {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-
-        .testimonial {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            padding: 2.5rem;
-        }
-
-        .testimonial-text {
-            font-size: 1rem;
             line-height: 1.7;
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 2rem;
-            font-style: italic;
-        }
-
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .author-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--z2o-gradient);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 1.1rem;
-            color: var(--z2o-dark-charcoal);
-        }
-
-        .author-info h4 {
-            font-size: 1rem;
-            margin-bottom: 0.25rem;
-            font-weight: 600;
-        }
-
-        .author-info p {
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 0.9rem;
         }
 
         /* Footer */
@@ -352,56 +287,70 @@
             background: var(--z2o-dark-charcoal);
         }
 
-        .footer-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 4rem;
+        .footer-center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+            text-align: center;
         }
 
-        .footer-brand p {
+        .footer-tagline {
             color: rgba(255, 255, 255, 0.5);
-            line-height: 1.7;
-            margin-top: 1rem;
+            font-size: 0.95rem;
         }
 
-        .footer-links h4 {
-            margin-bottom: 1.5rem;
-            font-size: 1rem;
-            font-weight: 600;
+        .footer-links-row {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
         }
 
-        .footer-links ul {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.75rem;
-        }
-
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.5);
+        .footer-links-row a {
+            color: rgba(255, 255, 255, 0.6);
             text-decoration: none;
+            font-size: 0.9rem;
             transition: color 0.3s;
+            font-weight: 500;
         }
 
-        .footer-links a:hover {
+        .footer-links-row a:hover {
             color: var(--z2o-white);
         }
 
-        .footer-bottom {
-            max-width: 1400px;
-            margin: 3rem auto 0;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            text-align: center;
-            color: rgba(255, 255, 255, 0.4);
+        .footer-dot {
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .footer-copy {
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+        }
+
+        .highlight-text {
+            background: var(--z2o-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         @media (max-width: 968px) {
             .nav-links {
                 display: none;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                min-height: auto;
+            }
+
+            .hero-content {
+                padding: 4rem 6%;
+            }
+
+            .hero-calendly {
+                padding: 3rem 6%;
             }
 
             .footer-content {
@@ -412,165 +361,125 @@
             .testimonial-grid {
                 grid-template-columns: 1fr;
             }
+
+            .process-step {
+                grid-template-columns: 50px 1fr;
+                gap: 1.5rem;
+            }
+
+            .step-number {
+                width: 50px;
+                height: 50px;
+                font-size: 1.1rem;
+            }
+
+            .process-step:not(:last-child)::before {
+                left: 24px;
+                top: 70px;
+            }
         }
     </style>
 </head>
 <body>
     <!-- Navigation -->
     <nav>
-        <a href="index.html" class="logo">
-            <div class="logo-icon">
-                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <linearGradient id="logoGradient" x1="0%" y1="100%" x2="100%" y2="0%">
-                            <stop offset="0%" style="stop-color:#b0ff63;stop-opacity:1" />
-                            <stop offset="100%" style="stop-color:#52e8c9;stop-opacity:1" />
-                        </linearGradient>
-                    </defs>
-                    <circle cx="50" cy="50" r="45" fill="none" stroke="url(#logoGradient)" stroke-width="8"/>
-                    <rect x="46" y="25" width="8" height="50" fill="url(#logoGradient)" rx="4"/>
-                </svg>
-            </div>
-            <span>ZERO2ONE</span>
+        <a href="/" class="logo">
+            <img src="logo.png" alt="Zero2One">
         </a>
         <div class="nav-links">
-            <a href="index.html#features">Features</a>
-            <a href="index.html#how-it-works">How it Works</a>
-            <a href="about.html">About</a>
-            <a href="index.html">Back to Home</a>
+            <a href="/about">About</a>
+            <a href="/financial-scorecard#consultation-booking">Free Consultation</a>
+            <a href="/onboarding" class="cta-button" style="color: var(--z2o-dark-charcoal);">Financial Scorecard</a>
         </div>
     </nav>
 
-    <!-- Hero -->
+    <!-- Hero - Split Layout -->
     <section class="hero">
-        <h1>Free <span class="highlight">Financial Audit</span></h1>
-        <p>Get a comprehensive review of your ecommerce financials. Uncover issues, identify opportunities, and see what great finance looks like.</p>
-        <p class="hero-subtext">No cost. No obligation. Just clarity.</p>
-    </section>
-
-    <!-- What's Included -->
-    <section class="whats-included">
-        <div class="section-header">
-            <h2>What you'll get</h2>
-            <p>A 45-minute deep dive into your financial operations</p>
-        </div>
-        <div class="benefits-grid">
-            <div class="benefit-card">
-                <div class="benefit-icon">🔍</div>
-                <h3>Books Review</h3>
-                <p>We'll examine your current accounting setup and identify any gaps, errors, or inefficiencies.</p>
-            </div>
-            <div class="benefit-card">
-                <div class="benefit-icon">💰</div>
-                <h3>Cash Flow Analysis</h3>
-                <p>Understand where your cash is going and how to optimize your working capital.</p>
-            </div>
-            <div class="benefit-card">
-                <div class="benefit-icon">📊</div>
-                <h3>ROAS & Profitability</h3>
-                <p>Get visibility into your true profitability across channels and understand your unit economics.</p>
-            </div>
-            <div class="benefit-card">
-                <div class="benefit-icon">🎯</div>
-                <h3>Quick Wins</h3>
-                <p>Walk away with actionable recommendations you can implement immediately.</p>
-            </div>
-            <div class="benefit-card">
-                <div class="benefit-icon">🚀</div>
-                <h3>Growth Roadmap</h3>
-                <p>See what financial infrastructure you need to scale confidently.</p>
-            </div>
-            <div class="benefit-card">
-                <div class="benefit-icon">✅</div>
-                <h3>Custom Plan</h3>
-                <p>If we're a fit, we'll create a tailored plan for ongoing financial partnership.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Calendly Booking -->
-    <section class="calendly-section">
-        <div class="section-header">
-            <h2>Schedule your free audit</h2>
-            <p>Pick a time that works for you</p>
-        </div>
-        <div class="calendly-container">
-            <div class="calendly-embed">
-                <!-- Calendly inline widget begin -->
-                <div class="calendly-inline-widget" 
-                     data-url="https://calendly.com/joel-zero2one/30min?hide_event_type_details=1&hide_gdpr_banner=1" 
-                     style="min-width:320px;height:700px;width:100%;">
+        <div class="hero-content">
+            <h1>Get clarity on your <span class="highlight">ecommerce finances</span></h1>
+            <p>A 45-minute deep dive with our team. We'll review your books, identify gaps, and show you what great finance looks like.</p>
+            
+            <div class="value-props">
+                <div class="value-prop">
+                    <div class="value-prop-icon">
+                        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    </div>
+                    <span class="value-prop-text"><strong>Full books review</strong> — we'll examine your accounting setup and identify inefficiencies</span>
                 </div>
-                <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
-                <!-- Calendly inline widget end -->
+                <div class="value-prop">
+                    <div class="value-prop-icon">
+                        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    </div>
+                    <span class="value-prop-text"><strong>Cash flow analysis</strong> — understand where your money is going</span>
+                </div>
+                <div class="value-prop">
+                    <div class="value-prop-icon">
+                        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    </div>
+                    <span class="value-prop-text"><strong>Profitability breakdown</strong> — get visibility into true unit economics</span>
+                </div>
+                <div class="value-prop">
+                    <div class="value-prop-icon">
+                        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    </div>
+                    <span class="value-prop-text"><strong>Actionable next steps</strong> — walk away with quick wins you can implement today</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-calendly">
+            <div class="calendly-wrapper">
+                <div class="calendly-header">
+                    <h3>Schedule your free audit</h3>
+                    <p>Pick a time that works for you</p>
+                </div>
+                <div class="calendly-embed-container">
+                    <!-- Calendly inline widget begin -->
+                    <div class="calendly-inline-widget" 
+                         data-url="https://calendly.com/joel-zero2one/30min?hide_event_type_details=1&hide_gdpr_banner=1&background_color=25282a&text_color=ffffff&primary_color=b0ff63" 
+                         style="min-width:280px;height:600px;width:100%;">
+                    </div>
+                    <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+                    <!-- Calendly inline widget end -->
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Process -->
     <section class="process">
-        <div class="section-header">
-            <h2>What happens next</h2>
-            <p>Simple and straightforward</p>
-        </div>
-        <div class="process-steps">
-            <div class="process-step">
-                <div class="step-number">1</div>
-                <h3>Book Your Call</h3>
-                <p>Choose a time that works for your schedule</p>
+        <div class="process-container">
+            <div class="section-header">
+                <h2>How it works</h2>
+                <p>Simple and straightforward</p>
             </div>
-            <div class="process-step">
-                <div class="step-number">2</div>
-                <h3>Brief Intro Call</h3>
-                <p>We'll discuss your business, current challenges, and what you're looking for</p>
-            </div>
-            <div class="process-step">
-                <div class="step-number">3</div>
-                <h3>Share Access</h3>
-                <p>Grant us access to your accounting system so we can review your books</p>
-            </div>
-            <div class="process-step">
-                <div class="step-number">4</div>
-                <h3>Get Your Audit</h3>
-                <p>We'll walk through our findings, identify opportunities, and create a custom plan</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Social Proof -->
-    <section class="social-proof">
-        <div class="section-header">
-            <h2>What others discovered</h2>
-            <p>Real results from real audits</p>
-        </div>
-        <div class="testimonial-grid">
-            <div class="testimonial">
-                <div class="testimonial-text">"It has been a pleasure working with Joel. He did an amazing job taking over the NetSuite implementation and putting together a brand new structure for our financial reporting."</div>
-                <div class="testimonial-author">
-                    <div class="author-avatar">NL</div>
-                    <div class="author-info">
-                        <h4>Nicholas Love</h4>
-                        <p>Managing Director, Ascend Solutions</p>
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Book your call</h3>
+                        <p>Choose a time that works for your schedule. The whole process takes about 45 minutes.</p>
                     </div>
                 </div>
-            </div>
-            <div class="testimonial">
-                <div class="testimonial-text">"Clear communication, very professional and timely work!"</div>
-                <div class="testimonial-author">
-                    <div class="author-avatar">HC</div>
-                    <div class="author-info">
-                        <h4>Hannah Chisholm</h4>
-                        <p>Founder, Eggcitables</p>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Quick intro</h3>
+                        <p>We'll discuss your business, current challenges, and what you're looking for in a finance partner.</p>
                     </div>
                 </div>
-            </div>
-            <div class="testimonial">
-                <div class="testimonial-text">"Joel was literally a lifesaver. Our books needed more work than I thought and he was patient, communicative and thorough."</div>
-                <div class="testimonial-author">
-                    <div class="author-avatar">KD</div>
-                    <div class="author-info">
-                        <h4>Karen Danudjaja</h4>
-                        <p>Co-Founder & CEO, Blume</p>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Share access</h3>
+                        <p>Grant us temporary read-only access to your accounting system so we can review your books.</p>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Get your audit</h3>
+                        <p>We'll walk through our findings, identify opportunities, and create a custom plan if we're a fit.</p>
                     </div>
                 </div>
             </div>
@@ -579,52 +488,19 @@
 
     <!-- Footer -->
     <footer>
-        <div class="footer-content">
-            <div class="footer-brand">
-                <a href="index.html" class="logo">
-                    <div class="logo-icon">
-                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                            <defs>
-                                <linearGradient id="logoGradient2" x1="0%" y1="100%" x2="100%" y2="0%">
-                                    <stop offset="0%" style="stop-color:#b0ff63;stop-opacity:1" />
-                                    <stop offset="100%" style="stop-color:#52e8c9;stop-opacity:1" />
-                                </linearGradient>
-                            </defs>
-                            <circle cx="50" cy="50" r="45" fill="none" stroke="url(#logoGradient2)" stroke-width="8"/>
-                            <rect x="46" y="25" width="8" height="50" fill="url(#logoGradient2)" rx="4"/>
-                        </svg>
-                    </div>
-                    <span>ZERO2ONE</span>
-                </a>
-                <p>Finance at the speed of ecommerce. Built exclusively for ecommerce brands ready to scale.</p>
+        <div class="footer-center">
+            <a href="/" class="logo">
+                <img src="logo.png" alt="Zero2One">
+            </a>
+            <p class="footer-tagline">Talented people backed by smart software. <span class="highlight-text">Laser focused on ecommerce.</span></p>
+            <div class="footer-links-row">
+                <a href="/about">About</a>
+                <span class="footer-dot">·</span>
+                <a href="/financial-scorecard">Contact</a>
+                <span class="footer-dot">·</span>
+                <a href="https://app.zero2one.finance">Client Portal</a>
             </div>
-            <div class="footer-links">
-                <h4>Product</h4>
-                <ul>
-                    <li><a href="index.html#features">Features</a></li>
-                    <li><a href="#">Pricing</a></li>
-                    <li><a href="index.html#how-it-works">How It Works</a></li>
-                </ul>
-            </div>
-            <div class="footer-links">
-                <h4>Company</h4>
-                <ul>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="#">Careers</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-            </div>
-            <div class="footer-links">
-                <h4>Resources</h4>
-                <ul>
-                    <li><a href="#">Blog</a></li>
-                    <li><a href="#">Case Studies</a></li>
-                    <li><a href="#">Support</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 Zero2One. All rights reserved.</p>
+            <p class="footer-copy">&copy; 2025 Zero2One</p>
         </div>
     </footer>
 </body>
