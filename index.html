@@ -4,7 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zero2One - Modern Ecommerce Full-Stack Finance</title>
+    
+    <!-- Brand Font: Onest from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
     <style>
+        /* =====================================================
+           ZERO2ONE BRAND VARIABLES
+           Based on Official Brand Guidelines (December 2025)
+           ===================================================== */
+        :root {
+            /* Primary Colors */
+            --z2o-primary: #b0ff63;           /* Pantone 375 - Lime Green */
+            --z2o-secondary: #52e8c9;         /* Pantone 325 - Aqua/Teal */
+            --z2o-dark-charcoal: #1a292b;     /* Pantone Neutral Black - Main Dark BG */
+            
+            /* Neutrals */
+            --z2o-light-gray: #d9d9d9;
+            --z2o-neutral: #f5f5f5;
+            --z2o-charcoal: #4b4f5d;
+            --z2o-black: #25282a;
+            --z2o-mid-gray: #82828c;
+            --z2o-dark-gray: #62616f;
+            --z2o-cool-gray: #c8c8c8;
+            --z2o-white: #ffffff;
+            
+            /* Contextual Colors */
+            --z2o-danger: #ff005c;
+            --z2o-warning: #ff683e;
+            --z2o-success: #b0ff63;
+            --z2o-info: #b0ff63;
+            
+            /* Brand Gradient (45 degrees per guidelines) */
+            --z2o-gradient: linear-gradient(45deg, var(--z2o-primary) 0%, var(--z2o-secondary) 100%);
+            
+            /* Typography */
+            --font-primary: 'Onest', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -12,9 +51,9 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-            background: #0a0e1a;
-            color: #ffffff;
+            font-family: var(--font-primary);
+            background: var(--z2o-dark-charcoal);
+            color: var(--z2o-white);
             overflow-x: hidden;
             line-height: 1.6;
         }
@@ -29,9 +68,9 @@
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
-            background: rgba(10, 14, 26, 0.9);
+            background: rgba(26, 41, 43, 0.9);
             backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(127, 255, 127, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
             transform: translateY(-100%);
             transition: transform 0.3s ease;
         }
@@ -63,16 +102,17 @@
             color: rgba(255, 255, 255, 0.7);
             text-decoration: none;
             font-size: 0.95rem;
+            font-weight: 500;
             transition: color 0.3s;
         }
 
         .nav-links a:hover {
-            color: #7FFF7F;
+            color: var(--z2o-white);
         }
 
         .cta-button {
-            background: linear-gradient(135deg, #7FFF7F 0%, #00CED1 100%);
-            color: #0a0e1a;
+            background: var(--z2o-gradient);
+            color: var(--z2o-dark-charcoal);
             padding: 0.7rem 1.6rem;
             border-radius: 8px;
             text-decoration: none;
@@ -85,7 +125,7 @@
 
         .cta-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(127, 255, 127, 0.3);
+            box-shadow: 0 8px 25px rgba(176, 255, 99, 0.3);
         }
 
         /* Hero Section */
@@ -95,7 +135,7 @@
             align-items: center;
             padding: 8rem 6% 4rem;
             position: relative;
-            background: linear-gradient(135deg, #0a0e1a 0%, #1a1f2e 100%);
+            background: var(--z2o-dark-charcoal);
             overflow: hidden;
         }
 
@@ -118,7 +158,7 @@
         .orb-1 {
             width: 500px;
             height: 500px;
-            background: radial-gradient(circle, rgba(127, 255, 127, 0.4) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(176, 255, 99, 0.25) 0%, transparent 70%);
             top: 10%;
             right: 5%;
             transition: transform 0.4s ease-out;
@@ -127,7 +167,7 @@
         .orb-2 {
             width: 350px;
             height: 350px;
-            background: radial-gradient(circle, rgba(0, 206, 209, 0.3) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(82, 232, 201, 0.2) 0%, transparent 70%);
             top: 40%;
             right: 20%;
             transition: transform 0.2s ease-out;
@@ -136,7 +176,7 @@
         .orb-3 {
             width: 300px;
             height: 300px;
-            background: radial-gradient(circle, rgba(127, 255, 127, 0.25) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(176, 255, 99, 0.18) 0%, transparent 70%);
             bottom: 10%;
             left: 10%;
             transition: transform 0.6s ease-out;
@@ -154,10 +194,11 @@
             line-height: 1.1;
             margin-bottom: 1.5rem;
             letter-spacing: -0.02em;
+            color: var(--z2o-white);
         }
 
         .hero-content .highlight {
-            background: linear-gradient(135deg, #7FFF7F 0%, #00CED1 100%);
+            background: var(--z2o-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -169,10 +210,11 @@
             margin-bottom: 2.5rem;
             line-height: 1.6;
             max-width: 900px;
+            font-weight: 400;
         }
 
         .highlight-text {
-            background: linear-gradient(135deg, #7FFF7F 0%, #00CED1 100%);
+            background: var(--z2o-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -186,19 +228,19 @@
 
         .secondary-button {
             background: transparent;
-            color: #ffffff;
+            color: var(--z2o-white);
             padding: 0.7rem 1.6rem;
             border-radius: 8px;
             text-decoration: none;
             font-weight: 600;
             font-size: 0.95rem;
             transition: all 0.2s;
-            border: 1px solid rgba(127, 255, 127, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
         .secondary-button:hover {
-            background: rgba(127, 255, 127, 0.1);
-            border-color: #7FFF7F;
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.6);
         }
 
         .section-header {
@@ -209,17 +251,20 @@
         .section-header h2 {
             font-size: clamp(2rem, 4vw, 3rem);
             margin-bottom: 1rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
         }
 
         .section-header p {
             color: rgba(255, 255, 255, 0.6);
             font-size: 1.2rem;
+            font-weight: 400;
         }
 
         /* What We Do Section - Tabbed Interface */
         .what-we-do {
             padding: 8rem 6%;
-            background: #1a1f2e;
+            background: var(--z2o-black);
         }
 
         .tools-tabs {
@@ -231,7 +276,7 @@
             display: flex;
             flex-wrap: wrap;
             gap: 0;
-            border-bottom: 2px solid rgba(127, 255, 127, 0.2);
+            border-bottom: 2px solid rgba(176, 255, 99, 0.2);
             margin-bottom: 0;
         }
 
@@ -246,16 +291,17 @@
             transition: all 0.3s;
             position: relative;
             white-space: nowrap;
+            font-family: var(--font-primary);
         }
 
         .tab-button:hover {
-            color: #7FFF7F;
-            background: rgba(127, 255, 127, 0.05);
+            color: var(--z2o-primary);
+            background: rgba(176, 255, 99, 0.05);
         }
 
         .tab-button.active {
-            color: #7FFF7F;
-            background: rgba(127, 255, 127, 0.1);
+            color: var(--z2o-primary);
+            background: rgba(176, 255, 99, 0.1);
         }
 
         .tab-button.active::after {
@@ -265,12 +311,12 @@
             left: 0;
             right: 0;
             height: 2px;
-            background: linear-gradient(135deg, #7FFF7F 0%, #00CED1 100%);
+            background: var(--z2o-gradient);
         }
 
         .tabs-content {
-            background: rgba(127, 255, 127, 0.03);
-            border: 1px solid rgba(127, 255, 127, 0.2);
+            background: rgba(176, 255, 99, 0.03);
+            border: 1px solid rgba(176, 255, 99, 0.2);
             border-top: none;
             border-radius: 0 0 16px 16px;
             min-height: 250px;
@@ -293,8 +339,9 @@
 
         .tab-pane h3 {
             font-size: 1.8rem;
-            color: #7FFF7F;
+            color: var(--z2o-primary);
             margin-bottom: 1.5rem;
+            font-weight: 700;
         }
 
         .tab-pane p {
@@ -302,13 +349,14 @@
             color: rgba(255, 255, 255, 0.8);
             line-height: 1.8;
             max-width: 900px;
+            font-weight: 400;
         }
 
         /* Impact Finance Section */
         .impact-finance {
             padding: 8rem 6%;
-            background: linear-gradient(135deg, #7FFF7F 0%, #00CED1 100%);
-            color: #0a0e1a;
+            background: var(--z2o-gradient);
+            color: var(--z2o-dark-charcoal);
         }
 
         .impact-content {
@@ -359,8 +407,8 @@
         }
 
         .impact-tag {
-            background: rgba(10, 14, 26, 0.8);
-            color: #7FFF7F;
+            background: rgba(26, 41, 43, 0.8);
+            color: var(--z2o-primary);
             padding: 1rem 1.5rem;
             border-radius: 8px;
             font-weight: 600;
@@ -370,10 +418,10 @@
             flex-shrink: 0;
         }
 
-        /* How We Work - New Design from how-we-work.html */
+        /* How We Work */
         .how-we-work {
             padding: 8rem 6%;
-            background: linear-gradient(135deg, #0a0e1a 0%, #1a1f2e 100%);
+            background: var(--z2o-dark-charcoal);
         }
 
         .principles {
@@ -392,22 +440,24 @@
         .principle h3 {
             font-size: clamp(2rem, 4vw, 2.5rem);
             margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, #7FFF7F 0%, #00CED1 100%);
+            background: var(--z2o-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            font-weight: 700;
         }
 
         .principle p {
             font-size: 1.25rem;
             line-height: 1.8;
             color: rgba(255, 255, 255, 0.8);
+            font-weight: 400;
         }
 
         /* Promise Section */
         .promise {
             padding: 8rem 6%;
-            background: linear-gradient(135deg, rgba(127, 255, 127, 0.08) 0%, rgba(0, 206, 209, 0.08) 100%);
+            background: linear-gradient(45deg, rgba(176, 255, 99, 0.08) 0%, rgba(82, 232, 201, 0.08) 100%);
         }
 
         .promise-content {
@@ -419,11 +469,12 @@
         .promise h2 {
             font-size: clamp(2rem, 4vw, 3rem);
             margin-bottom: 2rem;
+            font-weight: 700;
         }
 
         .promise-box {
             background: rgba(255, 255, 255, 0.03);
-            border: 2px solid rgba(127, 255, 127, 0.3);
+            border: 2px solid rgba(176, 255, 99, 0.3);
             border-radius: 16px;
             padding: 3rem;
             margin-top: 2rem;
@@ -437,13 +488,13 @@
 
         .promise-highlight {
             font-weight: 700;
-            color: #7FFF7F;
+            color: var(--z2o-primary);
         }
 
         /* Social Proof - Two Row Scrolling Quotes */
         .social-proof {
             padding: 5rem 0;
-            background: #1a1f2e;
+            background: var(--z2o-black);
             overflow: hidden;
         }
 
@@ -457,6 +508,7 @@
             color: rgba(255, 255, 255, 0.4);
             text-transform: uppercase;
             letter-spacing: 0.2em;
+            font-weight: 600;
         }
 
         .quotes-scroll {
@@ -504,26 +556,28 @@
         .scroll-quote p {
             font-size: clamp(1.3rem, 2.5vw, 1.8rem);
             font-weight: 500;
-            color: #ffffff;
+            color: var(--z2o-white);
             margin-bottom: 0.5rem;
             white-space: nowrap;
         }
 
         .scroll-quote span {
             font-size: 0.85rem;
-            color: rgba(127, 255, 127, 0.6);
+            color: rgba(176, 255, 99, 0.6);
+            font-weight: 500;
         }
 
         /* Final CTA */
         .final-cta {
             padding: 8rem 6%;
             text-align: center;
-            background: linear-gradient(135deg, #0a0e1a 0%, #1a1f2e 100%);
+            background: var(--z2o-dark-charcoal);
         }
 
         .final-cta h2 {
             font-size: clamp(2.5rem, 5vw, 4rem);
             margin-bottom: 1.5rem;
+            font-weight: 700;
         }
 
         .final-cta p {
@@ -545,8 +599,8 @@
         /* Footer */
         footer {
             padding: 4rem 6%;
-            border-top: 1px solid rgba(127, 255, 127, 0.1);
-            background: #0a0e1a;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            background: var(--z2o-black);
         }
 
         .footer-center {
@@ -573,10 +627,11 @@
             text-decoration: none;
             font-size: 0.9rem;
             transition: color 0.3s;
+            font-weight: 500;
         }
 
         .footer-links-row a:hover {
-            color: #7FFF7F;
+            color: var(--z2o-white);
         }
 
         .footer-dot {
@@ -629,7 +684,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(10, 14, 26, 0.98);
+            background: rgba(26, 41, 43, 0.98);
             z-index: 999;
             flex-direction: column;
             align-items: center;
@@ -651,10 +706,11 @@
             text-decoration: none;
             font-size: 1.5rem;
             transition: color 0.3s;
+            font-weight: 500;
         }
 
         .mobile-menu a:hover {
-            color: #7FFF7F;
+            color: var(--z2o-white);
         }
 
         .mobile-menu .cta-button {
@@ -691,7 +747,7 @@
 
             .tab-button {
                 text-align: left;
-                border-bottom: 1px solid rgba(127, 255, 127, 0.1);
+                border-bottom: 1px solid rgba(176, 255, 99, 0.1);
             }
 
             .tab-button.active::after {
@@ -717,7 +773,7 @@
         <div class="nav-links">
             <a href="/about">About</a>
             <a href="/financial-scorecard#consultation-booking">Free Consultation</a>
-            <a href="/onboarding" class="cta-button" style="color: #0a0e1a;">Financial Scorecard</a>
+            <a href="/onboarding" class="cta-button" style="color: var(--z2o-dark-charcoal);">Financial Scorecard</a>
             <a href="#" class="secondary-button">Client Portal</a>
         </div>
         <button class="mobile-menu-btn" aria-label="Toggle menu">
@@ -739,9 +795,9 @@
     <section class="hero">
         <!-- Floating Orbs -->
         <div class="parallax-container">
-            <div class="parallax-orb orb-1" data-speed="0.04" data-max="40"></div>
-            <div class="parallax-orb orb-2" data-speed="0.08" data-max="70"></div>
-            <div class="parallax-orb orb-3" data-speed="0.025" data-max="25"></div>
+            <div class="parallax-orb orb-1" data-speed="0.08" data-max="80"></div>
+            <div class="parallax-orb orb-2" data-speed="0.12" data-max="100"></div>
+            <div class="parallax-orb orb-3" data-speed="0.06" data-max="60"></div>
         </div>
         
         <div class="hero-grid">
@@ -846,7 +902,7 @@
         </div>
     </section>
 
-    <!-- How We Work - New Design -->
+    <!-- How We Work -->
     <section class="how-we-work">
         <div class="section-header">
             <h2>How We Work</h2>
