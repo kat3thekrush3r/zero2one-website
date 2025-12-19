@@ -2,6 +2,8 @@
   "rewrites": [
     { "source": "/about", "destination": "/about.html" },
     { "source": "/financial-scorecard", "destination": "/financial-scorecard.html" },
-    { "source": "/onboarding", "destination": "/onboarding.html" }
+    { "source": "/onboarding", "destination": "/onboarding.html" },
+    { "source": "/pricing", "destination": "/pricing.html" },
+    { "source": "/free-audit", "destination": "/free-audit.html" }
   ]
 }
