@@ -4,7 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pricing - Zero2One</title>
+    
+    <!-- Brand Font: Onest from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
     <style>
+        /* =====================================================
+           ZERO2ONE BRAND VARIABLES
+           ===================================================== */
+        :root {
+            --z2o-primary: #b0ff63;
+            --z2o-secondary: #52e8c9;
+            --z2o-dark-charcoal: #1a292b;
+            --z2o-black: #25282a;
+            --z2o-white: #ffffff;
+            --z2o-gradient: linear-gradient(45deg, var(--z2o-primary) 0%, var(--z2o-secondary) 100%);
+            --font-primary: 'Onest', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -12,9 +31,9 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-            background: #1a1f2e;
-            color: #ffffff;
+            font-family: var(--font-primary);
+            background: var(--z2o-dark-charcoal);
+            color: var(--z2o-white);
             overflow-x: hidden;
             line-height: 1.6;
         }
@@ -29,9 +48,9 @@
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
-            background: rgba(26, 31, 46, 0.8);
+            background: rgba(26, 41, 43, 0.9);
             backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
 
         .logo {
@@ -65,16 +84,17 @@
             color: rgba(255, 255, 255, 0.7);
             text-decoration: none;
             font-size: 0.95rem;
+            font-weight: 500;
             transition: color 0.3s;
         }
 
         .nav-links a:hover {
-            color: #ffffff;
+            color: var(--z2o-white);
         }
 
         .cta-button {
-            background: linear-gradient(135deg, #7FFF7F 0%, #00CED1 100%);
-            color: #0a0e1a;
+            background: var(--z2o-gradient);
+            color: var(--z2o-dark-charcoal);
             padding: 0.7rem 1.6rem;
             border-radius: 8px;
             text-decoration: none;
@@ -87,20 +107,30 @@
 
         .cta-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(127, 255, 127, 0.3);
+            box-shadow: 0 8px 25px rgba(176, 255, 99, 0.3);
+        }
+
+        .highlight {
+            background: var(--z2o-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 600;
         }
 
         /* Hero */
         .hero {
             padding: 10rem 6% 6rem;
             text-align: center;
-            background: linear-gradient(135deg, #1a1f2e 0%, #2a3142 100%);
+            background: var(--z2o-dark-charcoal);
         }
 
         .hero h1 {
             font-size: clamp(2.5rem, 5vw, 4rem);
             margin-bottom: 1.5rem;
             letter-spacing: -0.02em;
+            font-weight: 700;
+            color: var(--z2o-white);
         }
 
         .hero p {
@@ -113,7 +143,7 @@
         /* Quality Banner */
         .quality-banner {
             padding: 6rem 6%;
-            background: #23283a;
+            background: var(--z2o-black);
         }
 
         .quality-content {
@@ -125,6 +155,7 @@
         .quality-content h2 {
             font-size: clamp(2rem, 4vw, 3rem);
             margin-bottom: 1.5rem;
+            font-weight: 700;
         }
 
         .quality-content p {
@@ -151,14 +182,14 @@
 
         .stat:hover {
             background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(127, 255, 127, 0.3);
+            border-color: rgba(255, 255, 255, 0.2);
             transform: translateY(-5px);
         }
 
         .stat-number {
             font-size: 3rem;
             font-weight: 700;
-            background: linear-gradient(135deg, #7FFF7F 0%, #00CED1 100%);
+            background: var(--z2o-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -173,7 +204,7 @@
         /* Pricing Section */
         .pricing-section {
             padding: 8rem 6%;
-            background: linear-gradient(135deg, #1a1f2e 0%, #2a3142 100%);
+            background: var(--z2o-dark-charcoal);
         }
 
         .section-header {
@@ -184,6 +215,7 @@
         .section-header h2 {
             font-size: clamp(2rem, 4vw, 3rem);
             margin-bottom: 1rem;
+            font-weight: 700;
         }
 
         .section-header p {
@@ -214,15 +246,15 @@
         }
 
         .pricing-card.popular {
-            border: 2px solid rgba(127, 255, 127, 0.5);
+            border: 2px solid rgba(176, 255, 99, 0.5);
         }
 
         .popular-badge {
             position: absolute;
             top: -15px;
             right: 30px;
-            background: linear-gradient(135deg, #7FFF7F 0%, #00CED1 100%);
-            color: #0a0e1a;
+            background: var(--z2o-gradient);
+            color: var(--z2o-dark-charcoal);
             padding: 0.5rem 1.5rem;
             border-radius: 20px;
             font-size: 0.85rem;
@@ -256,7 +288,7 @@
         .price-amount {
             font-size: 4rem;
             font-weight: 700;
-            background: linear-gradient(135deg, #7FFF7F 0%, #00CED1 100%);
+            background: var(--z2o-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -291,7 +323,7 @@
         }
 
         .check-icon {
-            color: #7FFF7F;
+            color: var(--z2o-primary);
             font-size: 1.2rem;
             flex-shrink: 0;
             margin-top: 0.2rem;
@@ -303,54 +335,21 @@
         }
 
         .feature-highlight {
-            color: #7FFF7F;
+            color: var(--z2o-primary);
             font-weight: 600;
-        }
-
-        /* Addons Section */
-        .addons-section {
-            padding: 6rem 6%;
-            background: #23283a;
-        }
-
-        .addons-content {
-            max-width: 1000px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .addons-grid {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-top: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .addon-tag {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 1rem 2rem;
-            border-radius: 12px;
-            font-weight: 600;
-            transition: all 0.3s;
-        }
-
-        .addon-tag:hover {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(127, 255, 127, 0.3);
         }
 
         /* CTA Section */
         .cta-section {
             padding: 8rem 6%;
             text-align: center;
-            background: linear-gradient(135deg, #1a1f2e 0%, #2a3142 100%);
+            background: var(--z2o-black);
         }
 
         .cta-section h2 {
             font-size: clamp(2rem, 4vw, 3rem);
             margin-bottom: 1.5rem;
+            font-weight: 700;
         }
 
         .cta-section p {
@@ -362,8 +361,8 @@
         /* Footer */
         footer {
             padding: 4rem 6%;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            background: #1a1f2e;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            background: var(--z2o-dark-charcoal);
         }
 
         .footer-content {
@@ -383,6 +382,7 @@
         .footer-links h4 {
             margin-bottom: 1.5rem;
             font-size: 1rem;
+            font-weight: 600;
         }
 
         .footer-links ul {
@@ -400,7 +400,7 @@
         }
 
         .footer-links a:hover {
-            color: #ffffff;
+            color: var(--z2o-white);
         }
 
         .footer-bottom {
@@ -443,9 +443,9 @@
             <div class="logo-icon">
                 <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                     <defs>
-                        <linearGradient id="logoGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                            <stop offset="0%" style="stop-color:#7FFF7F;stop-opacity:1" />
-                            <stop offset="100%" style="stop-color:#00CED1;stop-opacity:1" />
+                        <linearGradient id="logoGradient" x1="0%" y1="100%" x2="100%" y2="0%">
+                            <stop offset="0%" style="stop-color:#b0ff63;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#52e8c9;stop-opacity:1" />
                         </linearGradient>
                     </defs>
                     <circle cx="50" cy="50" r="45" fill="none" stroke="url(#logoGradient)" stroke-width="8"/>
@@ -458,20 +458,20 @@
             <a href="index.html#features">Features</a>
             <a href="index.html#how-it-works">How it Works</a>
             <a href="about.html">About</a>
-            <a href="free-audit.html" class="cta-button" style="color: #0a0e1a;">Free Audit</a>
+            <a href="free-audit.html" class="cta-button" style="color: var(--z2o-dark-charcoal);">Free Audit</a>
         </div>
     </nav>
 
     <!-- Hero -->
     <section class="hero">
-        <h1>Built by Top Talent.<br>Priced for Growth.</h1>
+        <h1>Built by <span class="highlight">Top Talent</span>.<br>Priced for Growth.</h1>
         <p>Choose the finance solution that scales with your ecommerce business. All plans include our cutting-edge technology platform at no extra cost.</p>
     </section>
 
     <!-- Quality Banner -->
     <section class="quality-banner">
         <div class="quality-content">
-            <h2>Dedicated Team, Real Results</h2>
+            <h2>Dedicated Team, <span class="highlight">Real Results</span></h2>
             <p>All accounting staff are US-based ecommerce specialists. You get dedicated attention from a team that knows your business inside and out.</p>
             <div class="quality-stats">
                 <div class="stat">
@@ -604,7 +604,7 @@
     <section class="cta-section">
         <h2>Ready to transform your ecommerce finance?</h2>
         <p>Get a free audit of your current financials and see exactly where you stand.</p>
-        <a href="free-audit.html" class="cta-button" style="font-size: 1.1rem; padding: 1rem 2.5rem; color: #0a0e1a;">Free Audit</a>
+        <a href="free-audit.html" class="cta-button" style="font-size: 1.1rem; padding: 1rem 2.5rem; color: var(--z2o-dark-charcoal);">Free Audit</a>
     </section>
 
     <!-- Footer -->
@@ -615,9 +615,9 @@
                     <div class="logo-icon">
                         <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                             <defs>
-                                <linearGradient id="logoGradient2" x1="0%" y1="0%" x2="0%" y2="100%">
-                                    <stop offset="0%" style="stop-color:#7FFF7F;stop-opacity:1" />
-                                    <stop offset="100%" style="stop-color:#00CED1;stop-opacity:1" />
+                                <linearGradient id="logoGradient2" x1="0%" y1="100%" x2="100%" y2="0%">
+                                    <stop offset="0%" style="stop-color:#b0ff63;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#52e8c9;stop-opacity:1" />
                                 </linearGradient>
                             </defs>
                             <circle cx="50" cy="50" r="45" fill="none" stroke="url(#logoGradient2)" stroke-width="8"/>
