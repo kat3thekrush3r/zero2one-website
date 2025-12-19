@@ -56,22 +56,14 @@
         .logo {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
-            font-size: 1.3rem;
-            font-weight: 600;
-            letter-spacing: 0.05em;
+            gap: 0rem;
             text-decoration: none;
             color: white;
         }
 
-        .logo-icon {
-            width: 36px;
-            height: 36px;
-        }
-
-        .logo-icon svg {
-            width: 100%;
-            height: 100%;
+        .logo img {
+            height: 40px;
+            width: auto;
         }
 
         .nav-links {
@@ -365,51 +357,52 @@
             background: var(--z2o-dark-charcoal);
         }
 
-        .footer-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 4rem;
+        .footer-center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+            text-align: center;
         }
 
-        .footer-brand p {
+        .footer-tagline {
             color: rgba(255, 255, 255, 0.5);
-            line-height: 1.7;
-            margin-top: 1rem;
+            font-size: 0.95rem;
         }
 
-        .footer-links h4 {
-            margin-bottom: 1.5rem;
-            font-size: 1rem;
-            font-weight: 600;
+        .footer-links-row {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
         }
 
-        .footer-links ul {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.75rem;
-        }
-
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.5);
+        .footer-links-row a {
+            color: rgba(255, 255, 255, 0.6);
             text-decoration: none;
+            font-size: 0.9rem;
             transition: color 0.3s;
+            font-weight: 500;
         }
 
-        .footer-links a:hover {
+        .footer-links-row a:hover {
             color: var(--z2o-white);
         }
 
-        .footer-bottom {
-            max-width: 1400px;
-            margin: 3rem auto 0;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            text-align: center;
-            color: rgba(255, 255, 255, 0.4);
+        .footer-dot {
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .footer-copy {
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+        }
+
+        .highlight-text {
+            background: var(--z2o-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         @media (max-width: 968px) {
@@ -439,26 +432,13 @@
 <body>
     <!-- Navigation -->
     <nav>
-        <a href="index.html" class="logo">
-            <div class="logo-icon">
-                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <linearGradient id="logoGradient" x1="0%" y1="100%" x2="100%" y2="0%">
-                            <stop offset="0%" style="stop-color:#b0ff63;stop-opacity:1" />
-                            <stop offset="100%" style="stop-color:#52e8c9;stop-opacity:1" />
-                        </linearGradient>
-                    </defs>
-                    <circle cx="50" cy="50" r="45" fill="none" stroke="url(#logoGradient)" stroke-width="8"/>
-                    <rect x="46" y="25" width="8" height="50" fill="url(#logoGradient)" rx="4"/>
-                </svg>
-            </div>
-            <span>ZERO2ONE</span>
+        <a href="/" class="logo">
+            <img src="logo.png" alt="Zero2One">
         </a>
         <div class="nav-links">
-            <a href="index.html#features">Features</a>
-            <a href="index.html#how-it-works">How it Works</a>
-            <a href="about.html">About</a>
-            <a href="free-audit.html" class="cta-button" style="color: var(--z2o-dark-charcoal);">Free Audit</a>
+            <a href="/about">About</a>
+            <a href="/financial-scorecard#consultation-booking">Free Consultation</a>
+            <a href="/onboarding" class="cta-button" style="color: var(--z2o-dark-charcoal);">Financial Scorecard</a>
         </div>
     </nav>
 
@@ -609,52 +589,19 @@
 
     <!-- Footer -->
     <footer>
-        <div class="footer-content">
-            <div class="footer-brand">
-                <a href="index.html" class="logo">
-                    <div class="logo-icon">
-                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                            <defs>
-                                <linearGradient id="logoGradient2" x1="0%" y1="100%" x2="100%" y2="0%">
-                                    <stop offset="0%" style="stop-color:#b0ff63;stop-opacity:1" />
-                                    <stop offset="100%" style="stop-color:#52e8c9;stop-opacity:1" />
-                                </linearGradient>
-                            </defs>
-                            <circle cx="50" cy="50" r="45" fill="none" stroke="url(#logoGradient2)" stroke-width="8"/>
-                            <rect x="46" y="25" width="8" height="50" fill="url(#logoGradient2)" rx="4"/>
-                        </svg>
-                    </div>
-                    <span>ZERO2ONE</span>
-                </a>
-                <p>Finance at the speed of ecommerce. Built exclusively for ecommerce brands ready to scale.</p>
+        <div class="footer-center">
+            <a href="/" class="logo">
+                <img src="logo.png" alt="Zero2One">
+            </a>
+            <p class="footer-tagline">Talented people backed by smart software. <span class="highlight-text">Laser focused on ecommerce.</span></p>
+            <div class="footer-links-row">
+                <a href="/about">About</a>
+                <span class="footer-dot">·</span>
+                <a href="/financial-scorecard">Contact</a>
+                <span class="footer-dot">·</span>
+                <a href="https://app.zero2one.finance">Client Portal</a>
             </div>
-            <div class="footer-links">
-                <h4>Product</h4>
-                <ul>
-                    <li><a href="index.html#features">Features</a></li>
-                    <li><a href="pricing.html">Pricing</a></li>
-                    <li><a href="index.html#how-it-works">How It Works</a></li>
-                </ul>
-            </div>
-            <div class="footer-links">
-                <h4>Company</h4>
-                <ul>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="#">Careers</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-            </div>
-            <div class="footer-links">
-                <h4>Resources</h4>
-                <ul>
-                    <li><a href="#">Blog</a></li>
-                    <li><a href="#">Case Studies</a></li>
-                    <li><a href="#">Support</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 Zero2One. All rights reserved.</p>
+            <p class="footer-copy">&copy; 2025 Zero2One</p>
         </div>
     </footer>
 </body>
