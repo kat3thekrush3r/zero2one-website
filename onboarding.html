@@ -850,7 +850,7 @@
     <script>
         const SUPABASE_URL = 'https://smqvtigserqnrjbaavkd.supabase.co';
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNtcXZ0aWdzZXJxbnJqYmFhdmtkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjU2NzQyNTUsImV4cCI6MjA4MTI1MDI1NX0.hMHDCmPs1lSC_S1OW9z0OYTKFk3_IilXIbg7xIVRQ50';
-        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
         
         let currentStep = 1;
         let currentLeadId = null;
@@ -885,45 +885,49 @@
         }
         
         async function createLead(email) {
-            const { data, error } = await supabase.from('leads').insert([{ email, status: 'started', current_step: 1 }]).select().single();
+            const { data, error } = await supabaseClient.from('leads').insert([{ email, status: 'started', current_step: 1 }]).select().single();
             if (error) throw error;
             return data;
         }
         
         async function updateLead(leadId, updates) {
-            const { data, error } = await supabase.from('leads').update(updates).eq('id', leadId).select().single();
+            const { data, error } = await supabaseClient.from('leads').update(updates).eq('id', leadId).select().single();
             if (error) throw error;
             return data;
         }
         
         async function getLeadByEmail(email) {
-            const { data, error } = await supabase.from('leads').select('*').eq('email', email).order('created_at', { ascending: false }).limit(1).single();
+            const { data, error } = await supabaseClient.from('leads').select('*').eq('email', email).order('created_at', { ascending: false }).limit(1).single();
             if (error && error.code !== 'PGRST116') throw error;
             return data;
         }
         
         async function sendMagicLink(email) {
-            const { error } = await supabase.auth.signInWithOtp({ email, options: { emailRedirectTo: window.location.origin + '/onboarding' } });
+            const { error } = await supabaseClient.auth.signInWithOtp({ email, options: { emailRedirectTo: window.location.origin + '/onboarding' } });
             if (error) throw error;
         }
         
         async function signInWithGoogle() {
-            const { error } = await supabase.auth.signInWithOAuth({ provider: 'google', options: { redirectTo: window.location.origin + '/onboarding' } });
+            const { error } = await supabaseClient.auth.signInWithOAuth({ provider: 'google', options: { redirectTo: window.location.origin + '/onboarding' } });
             if (error) throw error;
         }
         
         async function checkSession() {
-            const { data: { session } } = await supabase.auth.getSession();
+            const { data: { session } } = await supabaseClient.auth.getSession();
             return session;
         }
         
         document.getElementById('google-signin').addEventListener('click', async () => {
+            console.log('Google sign-in clicked');
             const btn = document.getElementById('google-signin');
             btn.classList.add('loading');
             btn.disabled = true;
             try {
+                console.log('Calling signInWithGoogle...');
                 await signInWithGoogle();
+                console.log('signInWithGoogle completed');
             } catch (error) {
+                console.error('Google sign-in error:', error);
                 showMessage('email-message', 'Error signing in with Google. Please try again.', 'error');
                 btn.classList.remove('loading');
                 btn.disabled = false;
@@ -1039,7 +1043,8 @@
         }
         
         async function init() {
-            supabase.auth.onAuthStateChange(async (event, session) => {
+            console.log('Init called - Supabase client:', supabaseClient ? 'loaded' : 'NOT loaded');
+            supabaseClient.auth.onAuthStateChange(async (event, session) => {
                 if (event === 'SIGNED_IN' && session) await handleAuthenticatedUser(session);
             });
             const session = await checkSession();
