@@ -625,83 +625,6 @@
             display: block;
         }
 
-        .chat-widget {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            z-index: 1000;
-        }
-
-        .chat-button {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: var(--z2o-gradient);
-            border: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 20px rgba(176, 255, 99, 0.3);
-            transition: all 0.3s;
-        }
-
-        .chat-button:hover {
-            transform: scale(1.1);
-        }
-
-        .chat-button svg {
-            width: 28px;
-            height: 28px;
-            fill: var(--z2o-dark-charcoal);
-        }
-
-        .chat-tooltip {
-            position: absolute;
-            bottom: 70px;
-            right: 0;
-            background: var(--z2o-black);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 1rem;
-            width: 280px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .chat-tooltip p {
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 0.75rem;
-        }
-
-        .chat-actions {
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .chat-actions button {
-            flex: 1;
-            padding: 0.6rem;
-            border-radius: 6px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            cursor: pointer;
-            font-family: var(--font-primary);
-            transition: all 0.2s;
-        }
-
-        .chat-actions .chat-btn {
-            background: var(--z2o-gradient);
-            border: none;
-            color: var(--z2o-dark-charcoal);
-        }
-
-        .chat-actions .call-btn {
-            background: transparent;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: #fff;
-        }
-
         @media (max-width: 968px) {
             .onboarding-container {
                 grid-template-columns: 1fr;
@@ -722,11 +645,6 @@
 
             .right-panel {
                 padding: 2rem;
-            }
-
-            .chat-widget {
-                bottom: 1rem;
-                right: 1rem;
             }
         }
     </style>
@@ -929,21 +847,6 @@
         </div>
     </div>
 
-    <div class="chat-widget">
-        <div class="chat-tooltip" id="chat-tooltip">
-            <p>👋 Hey! I'm Kate. Need help or have questions?</p>
-            <div class="chat-actions">
-                <button class="chat-btn">Chat</button>
-                <button class="call-btn">Call</button>
-            </div>
-        </div>
-        <button class="chat-button" id="chat-button">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h16v12z"/>
-            </svg>
-        </button>
-    </div>
-
     <script>
         const SUPABASE_URL = 'https://smqvtigserqnrjbaavkd.supabase.co';
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNtcXZ0aWdzZXJxbnJqYmFhdmtkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjU2NzQyNTUsImV4cCI6MjA4MTI1MDI1NX0.hMHDCmPs1lSC_S1OW9z0OYTKFk3_IilXIbg7xIVRQ50';
@@ -954,7 +857,7 @@
         let userEmail = null;
         
         function showMessage(containerId, message, type = 'info') {
-            document.getElementById(containerId).innerHTML = '<div class="message ' + type + '">' + message + '</div>';
+            document.getElementById(containerId).innerHTML = `<div class="message ${type}">${message}</div>`;
         }
         
         function clearMessage(containerId) {
@@ -969,7 +872,7 @@
         
         function goToStep(step) {
             document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
-            const stepEl = document.getElementById('step-' + step);
+            const stepEl = document.getElementById(`step-${step}`);
             if (stepEl) stepEl.classList.add('active');
             
             const indicatorStep = step === '1b' ? 1 : parseInt(step);
@@ -982,7 +885,7 @@
         }
         
         async function createLead(email) {
-            const { data, error } = await supabase.from('leads').insert([{ email: email, status: 'started', current_step: 1 }]).select().single();
+            const { data, error } = await supabase.from('leads').insert([{ email, status: 'started', current_step: 1 }]).select().single();
             if (error) throw error;
             return data;
         }
@@ -1000,7 +903,7 @@
         }
         
         async function sendMagicLink(email) {
-            const { error } = await supabase.auth.signInWithOtp({ email: email, options: { emailRedirectTo: window.location.origin + '/onboarding' } });
+            const { error } = await supabase.auth.signInWithOtp({ email, options: { emailRedirectTo: window.location.origin + '/onboarding' } });
             if (error) throw error;
         }
         
@@ -1116,21 +1019,12 @@
         document.getElementById('submit-phone').addEventListener('click', async () => {
             const phone = document.getElementById('phone').value.trim();
             if (!phone) return;
-            if (currentLeadId) await updateLead(currentLeadId, { callback_requested: true, phone: phone });
+            if (currentLeadId) await updateLead(currentLeadId, { callback_requested: true, phone });
             document.getElementById('phone-input').classList.remove('visible');
             document.getElementById('callback-question').style.display = 'none';
             document.getElementById('callback-options').style.display = 'none';
-            document.getElementById('email-confirmation').innerHTML = '<p style="color: rgba(255,255,255,0.8); margin-bottom: 0.5rem;">✓ We\'ll call you when your scorecard is ready.</p>';
+            document.getElementById('email-confirmation').innerHTML = `<p style="color: rgba(255,255,255,0.8); margin-bottom: 0.5rem;">✓ We'll call you when your scorecard is ready.</p>`;
             document.getElementById('email-confirmation').style.display = 'block';
-        });
-        
-        const chatButton = document.getElementById('chat-button');
-        const chatTooltip = document.getElementById('chat-tooltip');
-        let tooltipVisible = true;
-        setTimeout(() => { chatTooltip.style.display = 'none'; tooltipVisible = false; }, 5000);
-        chatButton.addEventListener('click', () => {
-            chatTooltip.style.display = tooltipVisible ? 'none' : 'block';
-            tooltipVisible = !tooltipVisible;
         });
         
         async function handleAuthenticatedUser(session) {
