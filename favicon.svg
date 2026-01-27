@@ -13,6 +13,9 @@
       <stop offset="1" stop-color="#b0ff63" stop-opacity="0"/>
     </linearGradient>
   </defs>
+  <!-- White circle background -->
+  <circle cx="300" cy="300" r="125" fill="#ffffff"/>
+  <!-- Logo mark -->
   <path d="M297.6,186.1v23.9c48.3,0,87.6,39.3,87.6,87.6s-39.3,87.6-87.6,87.6v23.9c61.5,0,111.5-50,111.5-111.5s-50-111.5-111.5-111.5Z" fill="url(#linear-gradient)"/>
   <path d="M285.6,252.9v155.6c4,.4,8,.7,12,.7s8.1-.2,12-.7v-155.6h-24.1Z" fill="url(#linear-gradient1)"/>
   <path d="M210,297.6c0-48.3,39.3-87.6,87.6-87.6v-23.9c-61.5,0-111.5,50-111.5,111.5h23.9Z" fill="#b0ff63"/>
