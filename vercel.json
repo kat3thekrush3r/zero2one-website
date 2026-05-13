@@ -1,9 +1,12 @@
 {
   "rewrites": [
     { "source": "/about", "destination": "/about.html" },
-    { "source": "/financial-scorecard", "destination": "/financial-scorecard.html" },
-    { "source": "/onboarding", "destination": "/onboarding.html" },
+    { "source": "/free-consultation", "destination": "/free-consultation.html" },
     { "source": "/pricing", "destination": "/pricing.html" },
     { "source": "/free-audit", "destination": "/free-audit.html" }
+  ],
+  "redirects": [
+    { "source": "/financial-scorecard", "destination": "/free-consultation", "permanent": true },
+    { "source": "/onboarding", "destination": "/free-consultation", "permanent": false }
   ]
 }
