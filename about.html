@@ -69,19 +69,12 @@
         .principle:last-child { margin-bottom: 0; }
         .principle h3 { font-size: clamp(1.8rem, 3.5vw, 2.5rem); margin-bottom: 1.5rem; background: var(--z2o-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 700; }
         .principle p { font-size: 1.2rem; line-height: 1.8; color: rgba(255, 255, 255, 0.8); }
-        .guarantee { padding: 8rem 6%; background: linear-gradient(45deg, rgba(176, 255, 99, 0.08) 0%, rgba(82, 232, 201, 0.08) 100%); }
-        .guarantee-content { max-width: 1000px; margin: 0 auto; text-align: center; }
-        .guarantee h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 2rem; font-weight: 700; }
-        .guarantee-box { background: rgba(255, 255, 255, 0.03); border: 2px solid rgba(255, 255, 255, 0.15); border-radius: 16px; padding: 3rem; margin-top: 2rem; }
-        .guarantee-box p { font-size: 1.3rem; line-height: 1.8; color: rgba(255, 255, 255, 0.9); }
-        .guarantee-highlight { font-weight: 700; color: var(--z2o-primary); }
         .cta-section { padding: 8rem 6%; text-align: center; background: var(--z2o-black); }
         .cta-section h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1.5rem; font-weight: 700; }
         .cta-section p { font-size: 1.2rem; color: rgba(255, 255, 255, 0.7); margin-bottom: 2.5rem; }
         .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
         @media (max-width: 968px) {
             .founders-grid { grid-template-columns: 1fr; }
-            .guarantee-box { padding: 2rem; }
             .cta-buttons { flex-direction: column; align-items: center; }
         }
 </style>
@@ -90,6 +83,7 @@
     <nav>
         <a href="/" class="logo"><svg viewBox="120 240 600 115" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="lg3a" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#b0ff63"/><stop offset="100%" stop-color="#52e8c9"/></linearGradient><linearGradient id="lg3b" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="20%" stop-color="#b0ff63"/><stop offset="100%" stop-color="#b0ff63" stop-opacity="0"/></linearGradient></defs><path d="M180.4,243.2v11.7c23.6,0,42.8,19.2,42.8,42.8s-19.2,42.8-42.8,42.8v11.7c30,0,54.4-24.4,54.4-54.4s-24.4-54.4-54.4-54.4Z" fill="url(#lg3a)"/><path d="M174.5,275.8v75.9c1.9.2,3.9.3,5.9.3s3.9-.1,5.9-.3v-75.9h-11.7Z" fill="url(#lg3a)"/><path d="M137.6,297.6c0-23.6,19.2-42.8,42.8-42.8v-11.7c-30,0-54.4,24.4-54.4,54.4h11.7Z" fill="#b0ff63"/><path d="M174.5,351.8v-11.8c-20.8-2.9-36.9-20.8-36.9-42.4h-11.7c0,29,22.8,52.8,51.4,54.4-1,0-1.9-.1-2.9-.2Z" fill="url(#lg3b)"/><polygon points="283 279.6 313.5 279.6 283 314 283 321.7 321 321.7 321 315.3 290.3 315.3 293.5 311.9 321 280.8 321 273.2 283 273.2 283 279.6" fill="#fff"/><polygon points="338.1 321.7 376.1 321.7 376.1 315.3 344.5 315.3 344.5 300.6 370.8 300.6 370.8 294.2 344.5 294.2 344.5 279.6 376.1 279.6 376.1 273.2 338.1 273.2 338.1 321.7" fill="#fff"/><path d="M422.1,299.7c2.2-.8,4-2,5.6-3.7,2.3-2.6,3.4-5.7,3.4-9.1s-.4-3.7-1.1-5.3c-.7-1.6-1.7-3.1-2.9-4.3-1.2-1.2-2.7-2.2-4.3-2.9-1.7-.7-3.4-1.1-5.3-1.1h-24.3v48.5h6.4v-21.1h12.2l14.7,20.7.2.3h7.8l-14.8-21,2.5-.9ZM399.5,294.2v-14.7h17.9c1,0,1.9.2,2.8.6.9.4,1.7.9,2.3,1.6.7.7,1.2,1.5,1.6,2.3.4.9.6,1.8.6,2.8s-.2,1.9-.6,2.8c-.4.9-.9,1.7-1.6,2.4-.7.7-1.4,1.2-2.3,1.6-.9.4-1.8.6-2.8.6h-17.9Z" fill="#fff"/><path d="M490.1,282.3c-.6-1.7-1.5-3.3-2.7-4.6-1.6-1.7-3.5-3-5.7-3.8-1.4-.5-3-.7-4.5-.7h-15.8c-1.6,0-3.1.2-4.6.7-2.2.8-4.1,2.1-5.6,3.8-1.2,1.3-2.1,2.9-2.7,4.6-.3.8-.5,1.5-.6,2.2-.1.7-.2,1.5-.2,2.3v21.1c0,.8,0,1.6.2,2.3.1.8.3,1.5.6,2.3l.2.5.3.5v.3l.2.1v.2l.7.9h0l.7.9v.5h.4l.3.3.7.7h.1l.3.2.2.2.4.3.4.4h.2l.3.2.9.5h.2l.5.5h.3l.4.3h.4l.4.3c.8.3,1.5.5,2.3.6.8.1,1.6.2,2.3.2h15.8c.8,0,1.6,0,2.3-.2.7-.1,1.5-.3,2-.6h.4l.3-.2h.3l.2-.2h.2l.4-.3.4-.2.7-.4.4-.2.3-.2h.1l.4-.4.5-.4,1.4-1.3.3-.3h.4v-.5l.2-.2.3-.5.3-.4.6-1h0l.2-.3v-.2l.2-.2h0l.1-.1v-.6v-.2c.6-1.5.8-3,.8-4.6v-21.1c0-1.6-.2-3.1-.7-4.5h0ZM484.5,307.9c0,1-.2,1.9-.5,2.8-.3.9-.9,1.7-1.5,2.3-1.4,1.4-3.1,2.2-5,2.3h-16.3c-1.9,0-3.6-.8-5-2.3-1.4-1.4-2.1-3.1-2.1-5.1v-21.1c0-2,.7-3.7,2.1-5.1,1.5-1.5,3.1-2.2,5.1-2.2h16.2c1.9,0,3.6.7,5,2.2.7.7,1.2,1.5,1.5,2.3.3.9.5,1.8.5,2.8v21.1Z" fill="#fff"/><path d="M536.5,277.2c-1.3-1.2-2.7-2.2-4.4-2.9-1.6-.7-3.4-1.1-5.3-1.1h-5.3c-1.6,0-3.2.3-4.7.8-1.5.5-2.8,1.3-4,2.2-1.2.9-2.2,2.1-3,3.4-.8,1.3-1.4,2.7-1.7,4.3l-.2.9h6.6l.2-.5c.3-.9.9-1.8,1.7-2.6,1.4-1.4,3.1-2.1,5.1-2.1h5.3c1,0,1.9.2,2.8.6.9.4,1.7.9,2.3,1.6.7.7,1.2,1.4,1.6,2.3.4.9.6,1.8.6,2.8v2.6c0,1.9-.6,3.5-2,4.9l-24.3,19.8v7.5h32.6v-6.4h-23.8l17.9-14.6c.7-.4,1.3-.9,1.7-1.3l.2-.2c.4-.4.8-.8,1.1-1.2.4-.5.7-1,1-1.5,1.3-2.1,1.9-4.5,1.9-7v-2.6c0-1.9-.4-3.6-1.1-5.3-.7-1.6-1.7-3.1-3-4.3Z" fill="#fff"/><path d="M600.1,282.3c-.6-1.7-1.5-3.3-2.7-4.6-1.6-1.7-3.5-3-5.7-3.8-1.4-.5-3-.7-4.5-.7h-15.8c-1.6,0-3.1.2-4.6.7-2.2.8-4.1,2.1-5.6,3.8-1.2,1.3-2.1,2.9-2.7,4.6-.3.8-.5,1.5-.6,2.2-.1.7-.2,1.5-.2,2.3v21.1c0,.8,0,1.6.2,2.3.1.8.3,1.5.6,2.3l.2.5.3.5v.3l.2.1v.2l.7.9h0l.7.9v.5h.4l.3.3.7.7h.1l.3.2.2.2.4.3.4.4h.2l.3.2.9.5h.2l.5.5h.3l.4.3h.4l.4.3c.8.3,1.5.5,2.3.6.8.1,1.6.2,2.3.2h15.8c.8,0,1.6,0,2.3-.2.7-.1,1.5-.3,2-.6h.4l.3-.2h.3l.2-.2h.2l.4-.3.4-.2.7-.4.4-.2.3-.2h.1l.4-.4.5-.4,1.4-1.3.3-.3h.4v-.5l.2-.2.3-.5.3-.4.6-1h0l.2-.3v-.2l.2-.2h0l.1-.1v-.6v-.2c.6-1.5.8-3,.8-4.6v-21.1c0-1.6-.2-3.1-.7-4.5h0ZM594.5,307.9c0,1-.2,1.9-.5,2.8-.3.9-.9,1.7-1.5,2.3-1.4,1.4-3.1,2.2-5,2.3h-16.3c-1.9,0-3.6-.8-5-2.3-1.4-1.4-2.1-3.1-2.1-5.1v-21.1c0-2,.7-3.7,2.1-5.1,1.5-1.5,3.1-2.2,5.1-2.2h16.2c1.9,0,3.6.7,5,2.2.7.7,1.2,1.5,1.5,2.3.3.9.5,1.8.5,2.8v21.1Z" fill="#fff"/><polygon points="654.5 312.2 625.7 273.5 625.4 273.2 617.9 273.2 617.9 321.7 624.3 321.7 624.3 282.4 653.4 321.4 653.6 321.7 660.9 321.7 660.9 273.2 654.5 273.2 654.5 312.2" fill="#fff"/><polygon points="716 279.6 716 273.2 678 273.2 678 321.7 716 321.7 716 315.3 684.4 315.3 684.4 300.6 710.7 300.6 710.7 294.2 684.4 294.2 684.4 279.6 716 279.6" fill="#fff"/></svg></a>
         <div class="nav-links">
+            <a href="/pricing-tiers">Pricing</a>
             <a href="/about">About</a>
             <a href="/free-consultation" class="cta-button" style="color: var(--z2o-dark-charcoal);">Free Consultation</a>
             <a href="https://app.zero2one.finance" class="secondary-button">Client Portal</a>
@@ -98,66 +92,48 @@
     </nav>
     <div class="mobile-menu">
         <a href="/">Home</a>
+        <a href="/pricing-tiers">Pricing</a>
         <a href="/about">About</a>
         <a href="/free-consultation" class="cta-button">Free Consultation</a>
         <a href="https://app.zero2one.finance" class="secondary-button">Client Portal</a>
     </div>
     <section class="hero">
-        <h1>Built by <span class="highlight">operators who get it</span></h1>
-        <p>We've scaled companies from 2 to 100+ employees. We've managed complex accounting systems. We've built the tech. Now we're bringing it all to ecommerce brands.</p>
+        <h1>Boring books, <span class="highlight">done right</span></h1>
+        <p>Zero2One is a small, founder-led accounting firm for ecommerce brands on Shopify and Amazon. We keep your books reconciled every month and explain them in plain language — no jargon, no surprises at month-end.</p>
     </section>
     <section class="story">
         <h2>Why Zero2One exists</h2>
-        <p>Traditional accounting firms weren't built for the speed and complexity of modern ecommerce. Month-end closes that take weeks. Reports that arrive too late to be useful. Accountants who don't understand marketplace fees, COGS allocation, or multi-channel inventory.</p>
-        <p>We built Zero2One because <span class="highlight">ecommerce brands deserve better.</span></p>
-        <p>Our system is engineered to go beyond standard reporting. We focus on continuous, data-driven insights—giving you the operational clarity and cash flow control needed to scale confidently with real-time profit analysis.</p>
-        <p>This isn't just bookkeeping. It's <span class="highlight">financial leadership for fast-moving ecommerce brands.</span></p>
+        <p>Most ecommerce founders don't need a flashy "finance platform." They need their books done properly, on time, every month — by someone who understands how Shopify payouts, processor fees, refunds, and Amazon settlements actually flow.</p>
+        <p>That's what Zero2One does. We set your books up the way online sellers need them — <span class="highlight">A2X for Shopify and Amazon, a clean chart of accounts, and COGS tracked properly</span> — then keep them reconciled and send you a short report you'll actually read.</p>
+        <p>We keep our client list small on purpose, so the work stays careful and you deal with the person actually doing it.</p>
     </section>
     <section class="founders">
-        <div class="section-header"><h2>Meet the founders</h2><p>Operators, builders, and problem-solvers</p></div>
-        <div class="founders-grid">
+        <div class="section-header"><h2>Who you're working with</h2><p>Founder-led, hands-on, and qualified</p></div>
+        <div class="founders-grid" style="grid-template-columns: minmax(0, 1fr); max-width: 640px;">
             <div class="founder-card">
-                <div class="founder-header"><div class="founder-avatar">KM</div><div class="founder-info"><h3>Kate MacPherson</h3><p>Founder & CEO</p></div></div>
-                <div class="founder-bio">Kate brings deep operational and financial expertise from scaling multiple companies. As Co-Founder of HomeRoom, she spearheaded all core operational functions—including HR, finance, and asset management—scaling the internal team from 2 to 50 employees in 18 months.</div>
+                <div class="founder-header"><div class="founder-avatar">KM</div><div class="founder-info"><h3>Kate MacPherson</h3><p>Founder</p></div></div>
+                <div class="founder-bio">Kate runs Zero2One day to day — she's the one who reconciles your books, prepares your monthly reports, and answers your emails. No account managers, no handoffs to a junior you've never met.</div>
                 <ul class="founder-highlights">
-                    <li>Scaled multiple companies from 10 to 100+ employees</li>
-                    <li>Built and sold OneFirm, managing critical client relations</li>
-                    <li>Director of Operations at APM Help, scaling from 10 to 100+ employees</li>
-                    <li>Bachelor's Degree in Accounting & Management from Crandall University</li>
-                </ul>
-            </div>
-            <div class="founder-card">
-                <div class="founder-header"><div class="founder-avatar">JM</div><div class="founder-info"><h3>Joel MacPherson</h3><p>Co-Founder & Strategic Advisor</p></div></div>
-                <div class="founder-bio">Joel is all about increasing cashflow for ecommerce businesses. Starting as a CPA auditor in public accounting, he transitioned to CFO roles for 8-figure ecommerce brands. Currently CFO/COO of TrueOps, helping Amazon sellers recover over $10M in reimbursements.</div>
-                <ul class="founder-highlights">
-                    <li>CPA with deep ecommerce finance expertise</li>
-                    <li>Built finance operations for Dalstrong with NetSuite</li>
-                    <li>Founder of OneFirm, sold portfolio for 6 figures</li>
-                    <li>CFO/COO of TrueOps, recovering millions for Amazon sellers</li>
+                    <li>Bachelor of Business Administration (Accounting &amp; Management)</li>
+                    <li>QuickBooks Online ProAdvisor — Level 2</li>
+                    <li>A2X certified for Shopify &amp; Amazon</li>
+                    <li>Specialized in bookkeeping for Shopify and Amazon sellers</li>
                 </ul>
             </div>
         </div>
     </section>
     <section class="how-we-work">
-        <div class="section-header"><h2>How we work</h2><p>Our principles guide everything we do</p></div>
-        <div class="principle"><h3>We ruthlessly eliminate busywork</h3><p>If a machine can do it, a human shouldn't. We use AI, automation, and smart integrations to eliminate every manual, repetitive task from your finance operations.</p></div>
-        <div class="principle"><h3>We take full ownership</h3><p>If it has a dollar sign attached to it, we're responsible. We work with a limited number of clients so we can be fully embedded in your business.</p></div>
-        <div class="principle"><h3>Cash drives every decision</h3><p>We prioritize work based on one question: Will this increase profitability? The answer guides everything we build and every recommendation we make.</p></div>
-    </section>
-    <section class="guarantee">
-        <div class="guarantee-content">
-            <h2>Our guarantee</h2>
-            <div class="guarantee-box">
-                <p><span class="guarantee-highlight">If you don't see positive ROI in your first month, you don't pay.</span></p>
-                <p style="margin-top: 1.5rem;">We believe great finance operations should directly impact your bottom line.</p>
-            </div>
-        </div>
+        <div class="section-header"><h2>How we work</h2><p>Simple principles, consistently applied</p></div>
+        <div class="principle"><h3>Reconciled every month</h3><p>Your accounts are closed and reconciled monthly, with payouts, processor fees, and refunds handled the way ecommerce actually works — not forced into a generic small-business template.</p></div>
+        <div class="principle"><h3>Built for ecommerce</h3><p>A2X for Shopify and Amazon, a clean chart of accounts, and COGS tracked properly — so your profit and margins are numbers you can trust and act on.</p></div>
+        <div class="principle"><h3>Plain language, direct contact</h3><p>You get a short monthly report and a quick walkthrough. When you have a question, you talk to the person who keeps your books — not a call center.</p></div>
+        <div class="principle"><h3>Month to month</h3><p>No long contracts and no lock-in. If we're not the right fit, you can leave whenever, with no penalty.</p></div>
     </section>
     <section class="cta-section">
-        <h2>Ready to work together?</h2>
-        <p>Let's talk about how Zero2One can help your ecommerce brand scale confidently.</p>
+        <h2>Want a second set of eyes on your books?</h2>
+        <p>Book a free 30-minute call. We'll look at where your books are today and tell you honestly whether we can help.</p>
         <div class="cta-buttons">
-            <a href="/free-consultation" class="cta-button" style="font-size: 1.1rem; padding: 1rem 2.5rem;">Free Consultation</a>
+            <a href="/free-consultation" class="cta-button" style="font-size: 1.1rem; padding: 1rem 2.5rem;">Book a free intro call</a>
         </div>
     </section>
     <footer>
@@ -167,11 +143,13 @@
             <div class="footer-links-row">
                 <a href="/about">About</a>
                 <span class="footer-dot">·</span>
+                <a href="/pricing-tiers">Pricing</a>
+                <span class="footer-dot">·</span>
                 <a href="/free-consultation">Contact</a>
                 <span class="footer-dot">·</span>
                 <a href="https://app.zero2one.finance">Client Portal</a>
             </div>
-            <p class="footer-copy">&copy; 2025 Zero2One</p>
+            <p class="footer-copy">&copy; 2026 Zero2One</p>
         </div>
     </footer>
 <script>

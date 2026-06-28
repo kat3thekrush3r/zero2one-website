@@ -3,6 +3,7 @@
     { "source": "/about", "destination": "/about.html" },
     { "source": "/free-consultation", "destination": "/free-consultation.html" },
     { "source": "/pricing", "destination": "/pricing.html" },
+    { "source": "/pricing-tiers", "destination": "/pricing-tiers.html" },
     { "source": "/free-audit", "destination": "/free-audit.html" }
   ],
   "redirects": [
