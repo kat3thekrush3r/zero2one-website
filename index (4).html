@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zero2One — Ecommerce Bookkeeping, Done Right</title>
+    <meta name="description" content="A small, founder-led accounting firm for ecommerce brands on Shopify and Amazon. Clean monthly books, reconciled and explained in plain language.">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #1a292b;
+            --bg-soft: #1f3133;
+            --card: #213537;
+            --line: rgba(255,255,255,0.08);
+            --text: #ffffff;
+            --muted: rgba(255,255,255,0.66);
+            --muted-soft: rgba(255,255,255,0.45);
+            /* Zero2One brand */
+            --accent: #b0ff63;
+            --accent-2: #52e8c9;
+            --on-accent: #1a292b;
+            --accent-grad: linear-gradient(45deg, #b0ff63 0%, #52e8c9 100%);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Onest', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        a { color: inherit; text-decoration: none; }
+
+        .wrap { width: 100%; max-width: 1120px; margin: 0 auto; padding: 0 6%; }
+
+        /* ---------- Nav ---------- */
+        nav {
+            position: fixed; top: 0; left: 0; width: 100%;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1.1rem 6%;
+            background: rgba(26,31,46,0.82);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--line);
+            z-index: 1000;
+        }
+        .logo { display: flex; align-items: center; gap: 0.6rem; font-size: 1.25rem; font-weight: 600; letter-spacing: 0.02em; }
+        .logo .mark {
+            width: 30px; height: 30px; display: block; flex: none;
+        }
+        .logo .mark svg { width: 100%; height: 100%; display: block; }
+        .logo b { font-weight: 700; }
+        .logo span { color: var(--accent); }
+        .nav-links { display: flex; align-items: center; gap: 2rem; }
+        .nav-links a { color: var(--muted); font-size: 0.94rem; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--text); }
+        .btn {
+            display: inline-block; font-weight: 600; font-size: 0.94rem;
+            padding: 0.7rem 1.3rem; border-radius: 10px;
+            background: var(--accent-grad); color: var(--on-accent);
+            transition: transform 0.18s ease, box-shadow 0.18s ease;
+        }
+        .btn:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(176,255,99,0.22); }
+        .btn-ghost {
+            background: transparent; color: var(--text);
+            border: 1px solid var(--line);
+        }
+        .btn-ghost:hover { border-color: var(--accent); box-shadow: none; }
+        .nav-toggle { display: none; background: none; border: 0; color: var(--text); font-size: 1.4rem; cursor: pointer; }
+
+        /* ---------- Hero ---------- */
+        .hero { padding: 11rem 0 6rem; position: relative; }
+        .hero::before {
+            content: ""; position: absolute; top: -10%; right: -10%;
+            width: 620px; height: 620px; border-radius: 50%;
+            background: radial-gradient(circle, rgba(176,255,99,0.14), transparent 65%);
+            filter: blur(20px); z-index: 0; pointer-events: none;
+        }
+        .hero .wrap { position: relative; z-index: 1; }
+        .eyebrow {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase;
+            color: var(--accent); font-weight: 600; margin-bottom: 1.5rem;
+        }
+        .eyebrow::before { content: ""; width: 22px; height: 1px; background: var(--accent); display: inline-block; }
+        h1 {
+            font-size: clamp(2.3rem, 5vw, 3.6rem);
+            line-height: 1.08; font-weight: 700; letter-spacing: -0.02em;
+            max-width: 18ch; margin-bottom: 1.4rem;
+        }
+        h1 .grad {
+            background: var(--accent-grad);
+            -webkit-background-clip: text; background-clip: text; color: transparent;
+        }
+        .lede { font-size: 1.18rem; color: var(--muted); max-width: 56ch; margin-bottom: 2.2rem; }
+        .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+        .hero-note { margin-top: 1.4rem; font-size: 0.9rem; color: var(--muted-soft); }
+
+        /* ---------- Section scaffolding ---------- */
+        section { position: relative; }
+        .band { padding: 5.5rem 0; }
+        .band-soft { background: var(--bg-soft); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+        .section-eyebrow { font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 0.9rem; }
+        h2 { font-size: clamp(1.7rem, 3.4vw, 2.4rem); font-weight: 700; letter-spacing: -0.01em; line-height: 1.15; max-width: 22ch; }
+        .section-sub { color: var(--muted); font-size: 1.05rem; max-width: 56ch; margin-top: 1rem; }
+
+        /* ---------- Cards ---------- */
+        .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; margin-top: 3rem; }
+        .card {
+            background: var(--card); border: 1px solid var(--line);
+            border-radius: 16px; padding: 1.8rem; transition: border-color 0.25s, transform 0.25s;
+        }
+        .card:hover { border-color: rgba(176,255,99,0.4); transform: translateY(-3px); }
+        .card .ic {
+            width: 44px; height: 44px; border-radius: 11px; margin-bottom: 1.1rem;
+            background: rgba(176,255,99,0.1); display: grid; place-items: center;
+            color: var(--accent);
+        }
+        .card .ic svg { width: 22px; height: 22px; fill: none; stroke: var(--accent); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+        .card h3 { font-size: 1.15rem; font-weight: 650; margin-bottom: 0.55rem; }
+        .card p { color: var(--muted); font-size: 0.97rem; }
+
+        /* ---------- Why / two-col ---------- */
+        .two-col { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 3.5rem; align-items: start; }
+        .reasons { display: grid; gap: 1.4rem; }
+        .reason { display: flex; gap: 1rem; align-items: flex-start; }
+        .reason .tick {
+            flex: none; width: 26px; height: 26px; border-radius: 7px; margin-top: 2px;
+            background: var(--accent-grad); display: grid; place-items: center;
+        }
+        .reason .tick svg { width: 14px; height: 14px; fill: none; stroke: var(--on-accent); stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+        .reason h4 { font-size: 1.02rem; font-weight: 650; margin-bottom: 0.2rem; }
+        .reason p { color: var(--muted); font-size: 0.95rem; }
+
+        /* ---------- Stack / tools ---------- */
+        .pills { display: flex; flex-wrap: wrap; gap: 0.7rem; margin-top: 2rem; }
+        .pill { border: 1px solid var(--line); border-radius: 999px; padding: 0.5rem 1.1rem; font-size: 0.9rem; color: var(--muted); }
+
+        /* ---------- CTA band ---------- */
+        .cta-band { text-align: center; }
+        .cta-band h2 { margin: 0 auto; }
+        .cta-band .section-sub { margin-left: auto; margin-right: auto; }
+        .cta-band .hero-cta { justify-content: center; margin-top: 2rem; }
+
+        /* ---------- Footer ---------- */
+        footer { padding: 3rem 0; border-top: 1px solid var(--line); }
+        .foot { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.2rem; }
+        .foot-links { display: flex; gap: 1.6rem; flex-wrap: wrap; }
+        .foot-links a { color: var(--muted); font-size: 0.92rem; }
+        .foot-links a:hover { color: var(--text); }
+        .copy { color: var(--muted-soft); font-size: 0.86rem; }
+
+        /* ---------- Responsive ---------- */
+        @media (max-width: 860px) {
+            .cards { grid-template-columns: 1fr; }
+            .two-col { grid-template-columns: 1fr; gap: 2.4rem; }
+            .nav-links { display: none; }
+            .nav-toggle { display: block; }
+            .nav-links.open {
+                display: flex; flex-direction: column; align-items: flex-start; gap: 1.2rem;
+                position: absolute; top: 100%; left: 0; width: 100%;
+                background: var(--bg); padding: 1.5rem 6%; border-bottom: 1px solid var(--line);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * { transition: none !important; scroll-behavior: auto; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Zero2One arc mark (from favicon.svg) — reusable -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+        <symbol id="z2o-mark" viewBox="175 175 250 250">
+            <linearGradient id="z2oA" x1="268.3" y1="245.3" x2="369.4" y2="346.4" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#b0ff63"/><stop offset="1" stop-color="#52e8c9"/></linearGradient>
+            <linearGradient id="z2oB" x1="297.6" y1="266.9" x2="297.6" y2="381.5" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#b0ff63"/><stop offset="1" stop-color="#52e8c9"/></linearGradient>
+            <linearGradient id="z2oC" x1="186.1" y1="353.3" x2="291.5" y2="353.3" gradientUnits="userSpaceOnUse"><stop offset=".2" stop-color="#b0ff63"/><stop offset="1" stop-color="#b0ff63" stop-opacity="0"/></linearGradient>
+            <path d="M297.6,186.1v23.9c48.3,0,87.6,39.3,87.6,87.6s-39.3,87.6-87.6,87.6v23.9c61.5,0,111.5-50,111.5-111.5s-50-111.5-111.5-111.5Z" fill="url(#z2oA)"/>
+            <path d="M285.6,252.9v155.6c4,.4,8,.7,12,.7s8.1-.2,12-.7v-155.6h-24.1Z" fill="url(#z2oB)"/>
+            <path d="M210,297.6c0-48.3,39.3-87.6,87.6-87.6v-23.9c-61.5,0-111.5,50-111.5,111.5h23.9Z" fill="#b0ff63"/>
+            <path d="M285.6,408.5v-24.1c-42.6-5.9-75.6-42.5-75.6-86.8h-23.9c0,59.4,46.7,108.2,105.4,111.4-2-.1-3.9-.3-5.9-.5Z" fill="url(#z2oC)"/>
+        </symbol>
+    </svg>
+
+    <!-- ============ NAV ============ -->
+    <nav>
+        <a href="/" class="logo">
+            <span class="mark"><svg><use href="#z2o-mark"/></svg></span>
+            <span style="color:#fff">Zero2One</span>
+        </a>
+        <div class="nav-links" id="navLinks">
+            <a href="#services">What we do</a>
+            <a href="#approach">How we work</a>
+            <a href="/about">About</a>
+            <a href="#contact" class="btn">Book a free call</a>
+        </div>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">☰</button>
+    </nav>
+
+    <!-- ============ HERO ============ -->
+    <header class="hero">
+        <div class="wrap">
+            <span class="eyebrow">Ecommerce bookkeeping</span>
+            <h1>Clean books, kept by the people you <span class="grad">actually talk to</span>.</h1>
+            <p class="lede">
+                Zero2One is a small, founder-led accounting firm for ecommerce brands on Shopify and Amazon.
+                We keep your books reconciled every month and explain them in plain language —
+                no jargon, no surprises at month-end.
+            </p>
+            <div class="hero-cta">
+                <a href="#contact" class="btn">Book a free intro call</a>
+                <a href="#services" class="btn btn-ghost">See what we do</a>
+            </div>
+            <p class="hero-note">For growing ecommerce brands — whether you're doing $20k a month or a few million a year.</p>
+        </div>
+    </header>
+
+    <!-- ============ SERVICES ============ -->
+    <section class="band" id="services">
+        <div class="wrap">
+            <div class="section-eyebrow">What we do</div>
+            <h2>The bookkeeping ecommerce founders wish they already had.</h2>
+            <p class="section-sub">We focus on doing the fundamentals well, the way online sellers actually need them done.</p>
+
+            <div class="cards">
+                <div class="card">
+                    <div class="ic"><svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg></div>
+                    <h3>Monthly books, reconciled</h3>
+                    <p>Your accounts closed and reconciled every month — with payouts, processor fees, and refunds handled the way ecommerce actually works.</p>
+                </div>
+                <div class="card">
+                    <div class="ic"><svg viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6L5 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg></div>
+                    <h3>Set up for ecommerce</h3>
+                    <p>A2X for Shopify and Amazon, a clean chart of accounts, and COGS tracked properly — so your margins actually mean something.</p>
+                </div>
+                <div class="card">
+                    <div class="ic"><svg viewBox="0 0 24 24"><path d="M4 5v14h16"/><path d="M8 16v-4"/><path d="M12 16V9"/><path d="M16 16v-6"/></svg></div>
+                    <h3>Reporting you'll read</h3>
+                    <p>A short monthly report and a quick walkthrough, so you know where the money went without digging through QuickBooks yourself.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ APPROACH ============ -->
+    <section class="band band-soft" id="approach">
+        <div class="wrap two-col">
+            <div>
+                <div class="section-eyebrow">How we work</div>
+                <h2>Small on purpose.</h2>
+                <p class="section-sub">
+                    We keep our client list small so the work stays careful and the communication
+                    stays direct. You deal with people who know your business and actually pick up.
+                </p>
+                <div class="pills">
+                    <span class="pill">Shopify</span>
+                    <span class="pill">Amazon</span>
+                    <span class="pill">A2X</span>
+                    <span class="pill">QuickBooks Online</span>
+                </div>
+            </div>
+            <div class="reasons">
+                <div class="reason">
+                    <span class="tick"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></span>
+                    <div><h4>Founder-led</h4><p>A hands-on firm where the owner stays close to the actual work, not just the sales call.</p></div>
+                </div>
+                <div class="reason">
+                    <span class="tick"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></span>
+                    <div><h4>Ecommerce-specialized</h4><p>We understand Shopify payouts and Amazon settlements, so the numbers reconcile properly.</p></div>
+                </div>
+                <div class="reason">
+                    <span class="tick"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></span>
+                    <div><h4>Qualified</h4><p>Bachelor of Business Administration (Accounting &amp; Management), QuickBooks Online ProAdvisor (Level 2), and A2X certified.</p></div>
+                </div>
+                <div class="reason">
+                    <span class="tick"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></span>
+                    <div><h4>No long contracts</h4><p>Month to month. If it's not a fit, you can leave whenever — no penalties.</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--
+        TESTIMONIAL SLOT — left out for now since you didn't want to name the client publicly yet.
+        When you're ready, drop a quote here from the PenPath / Productive AI owner and it'll fit
+        right above the contact section.
+    -->
+
+    <!-- ============ CTA / CONTACT ============ -->
+    <section class="band cta-band" id="contact">
+        <div class="wrap">
+            <div class="section-eyebrow" style="display:inline-block">Let's talk</div>
+            <h2>A 30-minute call. No pitch.</h2>
+            <p class="section-sub">
+                We'll look at where your books are today and tell you honestly whether we can help.
+                If we're not the right fit, we'll say so.
+            </p>
+            <div class="hero-cta">
+                <!-- Point this at your real booking page / Calendly / /free-consultation -->
+                <a href="/free-consultation" class="btn">Book a free intro call</a>
+                <a href="mailto:hello@zero2one.finance" class="btn btn-ghost">Email us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ FOOTER ============ -->
+    <footer>
+        <div class="wrap foot">
+            <a href="/" class="logo" style="font-size:1.1rem">
+                <span class="mark" style="width:26px;height:26px"><svg><use href="#z2o-mark"/></svg></span>
+                <span style="color:#fff">Zero2One</span>
+            </a>
+            <div class="foot-links">
+                <a href="#services">What we do</a>
+                <a href="#approach">How we work</a>
+                <a href="/about">About</a>
+                <a href="/free-consultation">Book a call</a>
+            </div>
+            <span class="copy">© 2026 Zero2One — Ecommerce accounting</span>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu
+        var t = document.getElementById('navToggle');
+        var l = document.getElementById('navLinks');
+        if (t) t.addEventListener('click', function () { l.classList.toggle('open'); });
+        Array.prototype.forEach.call(document.querySelectorAll('#navLinks a'), function (a) {
+            a.addEventListener('click', function () { l.classList.remove('open'); });
+        });
+    </script>
+</body>
+</html>
