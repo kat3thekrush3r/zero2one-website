@@ -9,6 +9,8 @@
   "redirects": [
     { "source": "/financial-scorecard", "destination": "/free-consultation", "permanent": true },
     { "source": "/onboarding", "destination": "/free-consultation", "permanent": false },
-    { "source": "/pricing-tiers", "destination": "/pricing", "permanent": true }
+    { "source": "/pricing-tiers", "destination": "/pricing", "permanent": true },
+    { "source": "/classic-home", "destination": "/", "permanent": true },
+    { "source": "/classic-home.html", "destination": "/", "permanent": true }
   ]
 }
