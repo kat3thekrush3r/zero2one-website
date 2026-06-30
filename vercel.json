@@ -3,11 +3,12 @@
     { "source": "/about", "destination": "/about.html" },
     { "source": "/free-consultation", "destination": "/free-consultation.html" },
     { "source": "/pricing", "destination": "/pricing.html" },
-    { "source": "/pricing-tiers", "destination": "/pricing-tiers.html" },
+    { "source": "/pricing-classic", "destination": "/pricing-classic.html" },
     { "source": "/free-audit", "destination": "/free-audit.html" }
   ],
   "redirects": [
     { "source": "/financial-scorecard", "destination": "/free-consultation", "permanent": true },
-    { "source": "/onboarding", "destination": "/free-consultation", "permanent": false }
+    { "source": "/onboarding", "destination": "/free-consultation", "permanent": false },
+    { "source": "/pricing-tiers", "destination": "/pricing", "permanent": true }
   ]
 }
