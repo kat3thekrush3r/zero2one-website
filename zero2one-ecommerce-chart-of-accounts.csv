@@ -1,0 +1,75 @@
+Account #,Account Name,Type,Notes / How to use it
+1010,Operating Checking,Bank,Main business checking — day-to-day operating cash
+1020,Savings / Cash Reserve,Bank,Profit / tax / emergency reserve
+1050,Shopify Payments Clearing,Bank,"Holds sales until Shopify pays out; clear to checking on payout"
+1055,Amazon Settlement Clearing,Bank,"Holds Amazon sales/fees until settlement deposit lands"
+1060,PayPal Clearing,Bank,PayPal balance before transfer to checking
+1070,Stripe Clearing,Bank,Stripe balance before payout
+1080,Undeposited Funds,Other Current Asset,Temporary holding for payments not yet deposited
+1200,Accounts Receivable,Accounts Receivable,"Wholesale / net-terms invoices owed to you"
+1310,Inventory - On Hand,Other Current Asset,"Finished goods you own and can sell"
+1320,Inventory - In Transit,Other Current Asset,"Goods paid for but still shipping from supplier"
+1330,Inventory - At 3PL / FBA,Other Current Asset,"Stock held at fulfillment centers"
+1340,Supplier Deposits / Prepaid Inventory,Other Current Asset,"Deposits paid on POs before goods ship"
+1410,Prepaid Software & Subscriptions,Other Current Asset,Annual app/SaaS plans paid up front
+1420,Prepaid Insurance,Other Current Asset,Policies paid in advance
+1510,Sales Tax Receivable,Other Current Asset,Overpaid / refundable sales tax
+1520,Marketplace Reserves Receivable,Other Current Asset,"Funds platforms are holding back (Amazon/Shopify reserves)"
+1610,Equipment & Hardware,Fixed Asset,Computers / warehouse equipment
+1620,Accumulated Depreciation,Fixed Asset,Contra-asset — running depreciation
+2000,Accounts Payable,Accounts Payable,Supplier / vendor bills you owe
+2110,Credit Card - Amex,Credit Card,
+2120,Credit Card - Visa,Credit Card,
+2200,Sales Tax Payable,Other Current Liability,Tax you collected and owe to states
+2210,Sales Tax Payable - Marketplace Facilitator,Other Current Liability,"Tax Amazon/marketplaces collect & remit for you"
+2310,Shopify Capital / Line of Credit,Other Current Liability,Short-term financing balance
+2320,Amazon Lending,Other Current Liability,Amazon loan balance
+2330,Merchant Cash Advance,Other Current Liability,MCA / revenue-based financing balance
+2340,Term Loan / SBA Loan,Long Term Liability,Bank or SBA term debt
+2400,Gift Cards & Store Credit,Other Current Liability,Unredeemed gift cards / store credit you owe
+2500,Deferred Revenue,Other Current Liability,"Pre-orders & subscriptions billed but not yet fulfilled"
+2600,Payroll Liabilities,Other Current Liability,"Withholdings & payroll taxes owed"
+3000,Owner's Capital / Common Stock,Equity,Money put into the business
+3100,Owner's Draw / Distributions,Equity,Money taken out by owners
+3200,Retained Earnings,Equity,Accumulated prior-year profit
+3900,Opening Balance Equity,Equity,Used only when setting up — should end at zero
+4000,Product Sales - Shopify / DTC,Income,Gross sales from your own store
+4010,Product Sales - Amazon,Income,Gross sales from Amazon
+4020,Product Sales - Wholesale,Income,B2B / wholesale sales
+4030,Product Sales - Other Marketplaces,Income,"Etsy, Walmart, TikTok Shop, etc."
+4100,Shipping Income,Income,Shipping charged to customers
+4200,Discounts & Promotions,Income,Contra-revenue — discount codes & promos
+4300,Returns & Refunds,Income,Contra-revenue — refunded sales
+5000,COGS - Product Cost,Cost of Goods Sold,Landed unit cost of items sold
+5010,COGS - Inbound Freight & Duties,Cost of Goods Sold,Freight & duty to get inventory to you
+5110,COGS - Shopify Payments Fees,Cost of Goods Sold,Card processing fees on DTC sales
+5120,COGS - Amazon Referral & Selling Fees,Cost of Goods Sold,Amazon's cut on each sale
+5130,COGS - PayPal / Stripe Fees,Cost of Goods Sold,Processing fees on other payment methods
+5200,COGS - FBA / Fulfillment Fees,Cost of Goods Sold,"Amazon FBA pick/pack & weight fees"
+5300,COGS - Outbound Shipping,Cost of Goods Sold,Postage to ship orders to customers
+5400,COGS - 3PL & Warehousing,Cost of Goods Sold,3PL fulfillment & storage
+5500,COGS - Packaging & Pick/Pack Supplies,Cost of Goods Sold,Boxes / mailers / inserts
+5600,COGS - Inventory Adjustments & Shrinkage,Cost of Goods Sold,Damages / write-offs / count corrections
+6010,Advertising - Meta Ads,Expense,Facebook / Instagram ad spend
+6020,Advertising - Google Ads,Expense,Google / YouTube ad spend
+6030,Advertising - TikTok & Other Paid,Expense,TikTok / Pinterest / other paid media
+6040,Advertising - Influencer & Affiliate,Expense,Creator / affiliate payouts
+6050,Advertising - Email & SMS,Expense,"Klaviyo, Postscript, etc."
+6060,Advertising - Agency & Creative,Expense,Agencies / freelancers for ads & content
+6100,Software & Apps,Expense,SaaS subscriptions & Shopify apps
+6200,Wages & Salaries,Expense,W-2 payroll
+6210,Contractors & Freelancers,Expense,1099 contractor pay
+6220,Payroll Taxes,Expense,Employer payroll taxes
+6230,Employee Benefits,Expense,Health / benefits
+6300,Professional Fees,Expense,Accounting / bookkeeping / legal
+6400,Rent & Utilities,Expense,Office / warehouse rent & utilities
+6500,Office Supplies,Expense,General supplies
+6600,Bank & Merchant Service Charges,Expense,Bank fees not tied to a sale
+6700,Insurance,Expense,Business / liability insurance
+6800,Travel & Meals,Expense,Business travel & meals
+6900,Other Operating Expense,Expense,Catch-all — keep this small
+7000,Interest Income,Other Income,Interest earned on cash / savings
+8000,Interest Expense,Other Expense,Interest on loans / cards / financing
+8100,Loan & Financing Fees,Other Expense,MCA / factor fees & origination costs
+8200,Depreciation Expense,Other Expense,Depreciation of fixed assets
+8900,Income Tax Expense,Other Expense,Federal / state income tax
