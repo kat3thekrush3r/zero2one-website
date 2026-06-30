@@ -166,6 +166,10 @@
         .foot-links a { color: var(--muted); font-size: 0.92rem; }
         .foot-links a:hover { color: var(--text); }
         .copy { color: var(--muted-soft); font-size: 0.86rem; }
+        .foot-end { display: flex; flex-direction: column; align-items: flex-end; gap: 0.3rem; text-align: right; }
+        .foot-tag { font-size: 0.92rem; color: var(--muted); }
+        .foot-tag em { font-style: normal; color: var(--accent-deep); font-weight: 600; }
+        @media (max-width: 860px) { .foot-end { align-items: flex-start; text-align: left; } }
 
         /* ---------- Responsive ---------- */
         @media (max-width: 860px) {
@@ -317,7 +321,10 @@
                 <a href="/about">About</a>
                 <a href="/free-consultation">Book a call</a>
             </div>
-            <span class="copy">© 2026 Zero2One — Ecommerce accounting</span>
+            <div class="foot-end">
+                <span class="foot-tag">We've got the books. <em>You've got better things to do.</em></span>
+                <span class="copy">© 2026 Zero2One — Ecommerce accounting</span>
+            </div>
         </div>
     </footer>
 
