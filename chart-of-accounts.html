@@ -22,6 +22,19 @@
         .cta-button:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(176, 255, 99, 0.3); }
         .secondary-button { background: #fff; color: #1a292b; padding: 0.7rem 1.6rem; border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: all 0.2s; border: 1px solid rgba(26, 41, 43, 0.18); display: inline-block; }
         .secondary-button:hover { background: rgba(26, 41, 43, 0.04); border-color: rgba(26, 41, 43, 0.35); }
+        .nav-links { display: flex; gap: 2rem; align-items: center; }
+        .nav-links a { color: rgba(26, 41, 43, 0.64); text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: color 0.3s; }
+        .nav-links a:hover { color: #1a292b; }
+        .mobile-menu-btn { display: none; flex-direction: column; justify-content: center; gap: 5px; background: none; border: none; cursor: pointer; padding: 0.5rem; z-index: 1001; }
+        .mobile-menu-btn span { display: block; width: 24px; height: 2px; background: #1a292b; transition: all 0.3s ease; }
+        .mobile-menu-btn.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .mobile-menu-btn.active span:nth-child(2) { opacity: 0; }
+        .mobile-menu-btn.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+        .mobile-menu { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(255, 255, 255, 0.97); z-index: 999; flex-direction: column; align-items: center; justify-content: center; gap: 2rem; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+        .mobile-menu.active { display: flex; opacity: 1; pointer-events: all; }
+        .mobile-menu a { color: #1a292b; text-decoration: none; font-size: 1.5rem; transition: color 0.3s; font-weight: 500; }
+        .mobile-menu .cta-button, .mobile-menu .secondary-button { font-size: 1.2rem; padding: 1rem 2rem; }
+        @media (max-width: 968px) { .nav-links { display: none; } .mobile-menu-btn { display: flex; } }
         .highlight { color: #0e8d77; font-weight: 700; }
         .highlight-text { color: #0e8d77; font-weight: 600; }
         .grad-text { background: var(--z2o-gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
@@ -107,6 +120,23 @@
         .footer-dot { color: rgba(26, 41, 43, 0.3); }
         .footer-copy { color: rgba(26, 41, 43, 0.3); font-size: 0.8rem; margin-top: 0.5rem; }
 
+        /* Income statement */
+        .stmt { max-width: 760px; margin: 3rem auto 0; background: #fff; border: 1px solid rgba(26,41,43,0.10); border-radius: 18px; box-shadow: 0 1px 2px rgba(26,41,43,0.04), 0 14px 40px rgba(26,41,43,0.06); overflow: hidden; }
+        .stmt-block { padding: 1.7rem 2rem; border-bottom: 1px solid rgba(26,41,43,0.07); }
+        .stmt-head { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .stmt-note { font-size: 0.9rem; color: rgba(26,41,43,0.58); line-height: 1.55; border-left: 2px solid var(--z2o-secondary); padding-left: 0.85rem; margin: 0.9rem 0; max-width: 62ch; }
+        .acct { display: grid; grid-template-columns: 66px 1fr; gap: 0.85rem; padding: 0.38rem 0; font-size: 0.96rem; align-items: baseline; }
+        .acct .num { font-variant-numeric: tabular-nums; font-weight: 700; color: var(--z2o-deep); }
+        .acct .nm { color: rgba(26,41,43,0.82); }
+        .acct.header .num { color: #1a292b; }
+        .acct.header .nm { font-weight: 700; color: #1a292b; }
+        .acct.sub { padding-left: 1.5rem; }
+        .acct.sub .num { font-weight: 600; color: rgba(14,141,119,0.9); }
+        .acct.sub .nm { color: rgba(26,41,43,0.66); }
+        .acct.total { border-top: 1px solid rgba(26,41,43,0.14); margin-top: 0.45rem; padding-top: 0.55rem; }
+        .acct.total .nm { font-weight: 700; color: #1a292b; }
+        .stmt-subtotal { padding: 0.95rem 2rem; background: var(--z2o-gradient); color: var(--z2o-dark-charcoal); font-weight: 800; font-size: 0.95rem; letter-spacing: 0.04em; text-transform: uppercase; text-align: center; }
+
         @media (max-width: 900px) {
             .hero-grid { grid-template-columns: 1fr; gap: 2.8rem; }
             .preview-card { transform: none; max-width: 460px; }
@@ -120,19 +150,30 @@
 <body>
     <nav>
         <a href="/" class="logo" aria-label="Zero2One home"><svg viewBox="120 240 600 115" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="coaNav" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#b0ff63"/><stop offset="100%" stop-color="#52e8c9"/></linearGradient><linearGradient id="coaNavF" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="20%" stop-color="#b0ff63"/><stop offset="100%" stop-color="#b0ff63" stop-opacity="0"/></linearGradient></defs><path d="M180.4,243.2v11.7c23.6,0,42.8,19.2,42.8,42.8s-19.2,42.8-42.8,42.8v11.7c30,0,54.4-24.4,54.4-54.4s-24.4-54.4-54.4-54.4Z" fill="url(#coaNav)"/><path d="M174.5,275.8v75.9c1.9.2,3.9.3,5.9.3s3.9-.1,5.9-.3v-75.9h-11.7Z" fill="url(#coaNav)"/><path d="M137.6,297.6c0-23.6,19.2-42.8,42.8-42.8v-11.7c-30,0-54.4,24.4-54.4,54.4h11.7Z" fill="#b0ff63"/><path d="M174.5,351.8v-11.8c-20.8-2.9-36.9-20.8-36.9-42.4h-11.7c0,29,22.8,52.8,51.4,54.4-1,0-1.9-.1-2.9-.2Z" fill="url(#coaNavF)"/><polygon points="283 279.6 313.5 279.6 283 314 283 321.7 321 321.7 321 315.3 290.3 315.3 293.5 311.9 321 280.8 321 273.2 283 273.2 283 279.6" fill="#1a292b"/><polygon points="338.1 321.7 376.1 321.7 376.1 315.3 344.5 315.3 344.5 300.6 370.8 300.6 370.8 294.2 344.5 294.2 344.5 279.6 376.1 279.6 376.1 273.2 338.1 273.2 338.1 321.7" fill="#1a292b"/><path d="M422.1,299.7c2.2-.8,4-2,5.6-3.7,2.3-2.6,3.4-5.7,3.4-9.1s-.4-3.7-1.1-5.3c-.7-1.6-1.7-3.1-2.9-4.3-1.2-1.2-2.7-2.2-4.3-2.9-1.7-.7-3.4-1.1-5.3-1.1h-24.3v48.5h6.4v-21.1h12.2l14.7,20.7.2.3h7.8l-14.8-21,2.5-.9ZM399.5,294.2v-14.7h17.9c1,0,1.9.2,2.8.6.9.4,1.7.9,2.3,1.6.7.7,1.2,1.5,1.6,2.3.4.9.6,1.8.6,2.8s-.2,1.9-.6,2.8c-.4.9-.9,1.7-1.6,2.4-.7.7-1.4,1.2-2.3,1.6-.9.4-1.8.6-2.8.6h-17.9Z" fill="#1a292b"/><path d="M490.1,282.3c-.6-1.7-1.5-3.3-2.7-4.6-1.6-1.7-3.5-3-5.7-3.8-1.4-.5-3-.7-4.5-.7h-15.8c-1.6,0-3.1.2-4.6.7-2.2.8-4.1,2.1-5.6,3.8-1.2,1.3-2.1,2.9-2.7,4.6-.3.8-.5,1.5-.6,2.2-.1.7-.2,1.5-.2,2.3v21.1c0,.8,0,1.6.2,2.3.1.8.3,1.5.6,2.3l.2.5.3.5v.3l.2.1v.2l.7.9h0l.7.9v.5h.4l.3.3.7.7h.1l.3.2.2.2.4.3.4.4h.2l.3.2.9.5h.2l.5.5h.3l.4.3h.4l.4.3c.8.3,1.5.5,2.3.6.8.1,1.6.2,2.3.2h15.8c.8,0,1.6,0,2.3-.2.7-.1,1.5-.3,2-.6h.4l.3-.2h.3l.2-.2h.2l.4-.3.4-.2.7-.4.4-.2.3-.2h.1l.4-.4.5-.4,1.4-1.3.3-.3h.4v-.5l.2-.2.3-.5.3-.4.6-1h0l.2-.3v-.2l.2-.2h0l.1-.1v-.6v-.2c.6-1.5.8-3,.8-4.6v-21.1c0-1.6-.2-3.1-.7-4.5h0ZM484.5,307.9c0,1-.2,1.9-.5,2.8-.3.9-.9,1.7-1.5,2.3-1.4,1.4-3.1,2.2-5,2.3h-16.3c-1.9,0-3.6-.8-5-2.3-1.4-1.4-2.1-3.1-2.1-5.1v-21.1c0-2,.7-3.7,2.1-5.1,1.5-1.5,3.1-2.2,5.1-2.2h16.2c1.9,0,3.6.7,5,2.2.7.7,1.2,1.5,1.5,2.3.3.9.5,1.8.5,2.8v21.1Z" fill="#1a292b"/><path d="M536.5,277.2c-1.3-1.2-2.7-2.2-4.4-2.9-1.6-.7-3.4-1.1-5.3-1.1h-5.3c-1.6,0-3.2.3-4.7.8-1.5.5-2.8,1.3-4,2.2-1.2.9-2.2,2.1-3,3.4-.8,1.3-1.4,2.7-1.7,4.3l-.2.9h6.6l.2-.5c.3-.9.9-1.8,1.7-2.6,1.4-1.4,3.1-2.1,5.1-2.1h5.3c1,0,1.9.2,2.8.6.9.4,1.7.9,2.3,1.6.7.7,1.2,1.4,1.6,2.3.4.9.6,1.8.6,2.8v2.6c0,1.9-.6,3.5-2,4.9l-24.3,19.8v7.5h32.6v-6.4h-23.8l17.9-14.6c.7-.4,1.3-.9,1.7-1.3l.2-.2c.4-.4.8-.8,1.1-1.2.4-.5.7-1,1-1.5,1.3-2.1,1.9-4.5,1.9-7v-2.6c0-1.9-.4-3.6-1.1-5.3-.7-1.6-1.7-3.1-3-4.3Z" fill="#1a292b"/><path d="M600.1,282.3c-.6-1.7-1.5-3.3-2.7-4.6-1.6-1.7-3.5-3-5.7-3.8-1.4-.5-3-.7-4.5-.7h-15.8c-1.6,0-3.1.2-4.6.7-2.2.8-4.1,2.1-5.6,3.8-1.2,1.3-2.1,2.9-2.7,4.6-.3.8-.5,1.5-.6,2.2-.1.7-.2,1.5-.2,2.3v21.1c0,.8,0,1.6.2,2.3.1.8.3,1.5.6,2.3l.2.5.3.5v.3l.2.1v.2l.7.9h0l.7.9v.5h.4l.3.3.7.7h.1l.3.2.2.2.4.3.4.4h.2l.3.2.9.5h.2l.5.5h.3l.4.3h.4l.4.3c.8.3,1.5.5,2.3.6.8.1,1.6.2,2.3.2h15.8c.8,0,1.6,0,2.3-.2.7-.1,1.5-.3,2-.6h.4l.3-.2h.3l.2-.2h.2l.4-.3.4-.2.7-.4.4-.2.3-.2h.1l.4-.4.5-.4,1.4-1.3.3-.3h.4v-.5l.2-.2.3-.5.3-.4.6-1h0l.2-.3v-.2l.2-.2h0l.1-.1v-.6v-.2c.6-1.5.8-3,.8-4.6v-21.1c0-1.6-.2-3.1-.7-4.5h0ZM594.5,307.9c0,1-.2,1.9-.5,2.8-.3.9-.9,1.7-1.5,2.3-1.4,1.4-3.1,2.2-5,2.3h-16.3c-1.9,0-3.6-.8-5-2.3-1.4-1.4-2.1-3.1-2.1-5.1v-21.1c0-2,.7-3.7,2.1-5.1,1.5-1.5,3.1-2.2,5.1-2.2h16.2c1.9,0,3.6.7,5,2.2.7.7,1.2,1.5,1.5,2.3.3.9.5,1.8.5,2.8v21.1Z" fill="#1a292b"/><polygon points="654.5 312.2 625.7 273.5 625.4 273.2 617.9 273.2 617.9 321.7 624.3 321.7 624.3 282.4 653.4 321.4 653.6 321.7 660.9 321.7 660.9 273.2 654.5 273.2 654.5 312.2" fill="#1a292b"/><polygon points="716 279.6 716 273.2 678 273.2 678 321.7 716 321.7 716 315.3 684.4 315.3 684.4 300.6 710.7 300.6 710.7 294.2 684.4 294.2 684.4 279.6 716 279.6" fill="#1a292b"/></svg></a>
-        <a href="#book" class="cta-button">Book a free call</a>
+        <div class="nav-links">
+            <a href="/pricing">Pricing</a>
+            <a href="/about">About</a>
+            <a href="/free-consultation" class="cta-button" style="color: var(--z2o-dark-charcoal);">Free Consultation</a>
+        </div>
+        <button class="mobile-menu-btn" aria-label="Toggle menu"><span></span><span></span><span></span></button>
     </nav>
+    <div class="mobile-menu">
+        <a href="/">Home</a>
+        <a href="/pricing">Pricing</a>
+        <a href="/about">About</a>
+        <a href="/free-consultation" class="cta-button">Free Consultation</a>
+    </div>
 
     <header class="hero">
         <div class="wrap hero-grid">
             <div class="hero-content">
                 <span class="eyebrow">Free ecommerce template</span>
-                <h1>The chart of accounts your <span class="grad-text">Shopify &amp; Amazon</span> books should be built on.</h1>
-                <p>Most ecommerce books are a mess because the foundation is wrong. This is the exact account structure we use to set up clean, investor-ready books — yours to copy, free.</p>
+                <h1>A <span class="grad-text">simple, clean</span> chart of accounts for Shopify &amp; Amazon brands.</h1>
+                <p>The best ecommerce books aren't the most detailed — they're the clearest. This is the exact income-statement structure we use to build reports founders can actually make decisions from. Yours to copy, free.</p>
                 <div class="value-props">
-                    <div class="value-prop"><div class="value-prop-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div><span class="value-prop-text"><strong>Built for ecommerce</strong> — separates clearing accounts, COGS, fees, and inventory the way online sellers actually need</span></div>
-                    <div class="value-prop"><div class="value-prop-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div><span class="value-prop-text"><strong>QuickBooks &amp; Xero ready</strong> — import the CSV or rebuild it by hand in minutes</span></div>
-                    <div class="value-prop"><div class="value-prop-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div><span class="value-prop-text"><strong>Gives you real margins</strong> — finally see gross profit, not just a pile of "sales" and "expenses"</span></div>
+                    <div class="value-prop"><div class="value-prop-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div><span class="value-prop-text"><strong>Simple on purpose</strong> — one revenue account, with Classes to see Profit by Sales Channel (Shopify, Amazon, wholesale) instead of a cluttered chart</span></div>
+                    <div class="value-prop"><div class="value-prop-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div><span class="value-prop-text"><strong>Ecommerce cost of sales, sorted</strong> — COGS, landed costs, fulfillment, and marketplace fees each in their right place</span></div>
+                    <div class="value-prop"><div class="value-prop-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div><span class="value-prop-text"><strong>Reports you can actually read</strong> — gross profit, net ordinary income, and net income at a glance, in plain language</span></div>
                 </div>
                 <div class="hero-cta">
                     <a href="/zero2one-ecommerce-chart-of-accounts.csv" download class="cta-button">Download the template (free)</a>
@@ -148,14 +189,14 @@
                     <span class="preview-title">ecommerce-chart-of-accounts.csv</span>
                 </div>
                 <div class="preview-body">
-                    <div class="coa-group-label">Assets</div>
-                    <div class="coa-row"><span class="coa-num">1010</span><span class="coa-name">Operating Checking</span><span class="coa-tag">Bank</span></div>
-                    <div class="coa-row"><span class="coa-num">1050</span><span class="coa-name">Shopify Payments Clearing</span><span class="coa-tag">Bank</span></div>
-                    <div class="coa-row"><span class="coa-num">1330</span><span class="coa-name">Inventory — At 3PL / FBA</span><span class="coa-tag">Asset</span></div>
-                    <div class="coa-group-label">Cost of goods sold</div>
-                    <div class="coa-row"><span class="coa-num">5000</span><span class="coa-name">COGS — Product Cost</span><span class="coa-tag">COGS</span></div>
-                    <div class="coa-row"><span class="coa-num">5120</span><span class="coa-name">Amazon Referral &amp; Selling Fees</span><span class="coa-tag">COGS</span></div>
-                    <div class="coa-row"><span class="coa-num">5200</span><span class="coa-name">FBA / Fulfillment Fees</span><span class="coa-tag">COGS</span></div>
+                    <div class="coa-group-label">Revenue</div>
+                    <div class="coa-row"><span class="coa-num">40000</span><span class="coa-name">Revenue</span><span class="coa-tag">Income</span></div>
+                    <div class="coa-row"><span class="coa-num">40100</span><span class="coa-name">Sales</span><span class="coa-tag">Income</span></div>
+                    <div class="coa-row"><span class="coa-num">40200</span><span class="coa-name">Sales Returns</span><span class="coa-tag">Income</span></div>
+                    <div class="coa-group-label">Cost of sales</div>
+                    <div class="coa-row"><span class="coa-num">50000</span><span class="coa-name">Cost of Goods Sold</span><span class="coa-tag">COGS</span></div>
+                    <div class="coa-row"><span class="coa-num">50100</span><span class="coa-name">Landed Costs</span><span class="coa-tag">COGS</span></div>
+                    <div class="coa-row"><span class="coa-num">51000</span><span class="coa-name">Fulfillment Costs</span><span class="coa-tag">COGS</span></div>
                 </div>
             </div>
         </div>
@@ -166,13 +207,13 @@
             <div class="section-header">
                 <span class="eyebrow" style="display:inline-flex">Why it matters</span>
                 <h2>If your chart of accounts is wrong, every report after it is too.</h2>
-                <p>It's not that ecommerce founders are bad with numbers. It's that a generic, out-of-the-box chart of accounts was never built for how you actually sell.</p>
+                <p>It's not about tracking everything — it's about tracking the right things clearly. A simple, well-structured income statement shows you what's actually happening; a bloated one hides it.</p>
             </div>
             <div class="problem-grid">
-                <div class="problem-card"><h3>Payouts ≠ revenue</h3><p>When a Shopify or Amazon deposit hits and gets booked as "sales," your revenue is understated and your fees disappear. Clearing accounts fix that.</p></div>
-                <div class="problem-card"><h3>No real gross margin</h3><p>If product cost, freight, and platform fees aren't in COGS, you can't see contribution margin — so you can't price or scale ads with confidence.</p></div>
-                <div class="problem-card"><h3>Inventory in the dark</h3><p>Stock in transit, at the 3PL, and in FBA needs its own homes. Lump it together and your balance sheet stops meaning anything.</p></div>
-                <div class="problem-card"><h3>Surprises at tax time</h3><p>Sales tax collected, owner draws, and financing tangled into the P&amp;L turn year-end into a cleanup project. A clean structure keeps them separate from day one.</p></div>
+                <div class="problem-card"><h3>One sales account, not ten</h3><p>Splitting revenue into a dozen channel accounts clutters your P&amp;L. Keep a single sales account and use Classes to still see Shopify vs. Amazon vs. wholesale.</p></div>
+                <div class="problem-card"><h3>Keep COGS clean</h3><p>Product and landed costs hit here as items sell. Keep adjustments and one-off write-offs out so your gross margin stays trustworthy.</p></div>
+                <div class="problem-card"><h3>Landed costs live on the balance sheet</h3><p>Freight, duties, and brokerage sit in inventory and only hit COGS when the product sells — not the day you pay them.</p></div>
+                <div class="problem-card"><h3>Post to subaccounts, not headers</h3><p>Book to 65010 Bank Charges, never the 65000 header. And no vague "miscellaneous" or "ask accountant" accounts.</p></div>
             </div>
         </div>
     </section>
@@ -180,100 +221,80 @@
     <section>
         <div class="wrap">
             <div class="section-header">
-                <h2>The full chart of accounts</h2>
-                <p>This is the real thing — the layout we set up for our clients, grouped and numbered so it stays organized as you grow. Copy what you need.</p>
+                <h2>The income statement, structured</h2>
+                <p>Built for clarity, not clutter — one revenue account, a proper ecommerce cost of sales, and expenses that roll up to a Net Ordinary Income you can trust. Copy the whole thing.</p>
             </div>
-            <div class="coa-full">
-                <div class="coa-block">
-                    <div class="coa-block-head"><h3>Assets</h3><span>1000s</span></div>
-                    <div class="coa-line"><span class="n">1010</span><span class="nm">Operating Checking</span></div>
-                    <div class="coa-line"><span class="n">1020</span><span class="nm">Savings / Cash Reserve</span></div>
-                    <div class="coa-line"><span class="n">1050</span><span class="nm">Shopify Payments Clearing</span></div>
-                    <div class="coa-line"><span class="n">1055</span><span class="nm">Amazon Settlement Clearing</span></div>
-                    <div class="coa-line"><span class="n">1060</span><span class="nm">PayPal Clearing</span></div>
-                    <div class="coa-line"><span class="n">1070</span><span class="nm">Stripe Clearing</span></div>
-                    <div class="coa-line"><span class="n">1200</span><span class="nm">Accounts Receivable</span></div>
-                    <div class="coa-line"><span class="n">1310</span><span class="nm">Inventory — On Hand</span></div>
-                    <div class="coa-line"><span class="n">1320</span><span class="nm">Inventory — In Transit</span></div>
-                    <div class="coa-line"><span class="n">1330</span><span class="nm">Inventory — At 3PL / FBA</span></div>
-                    <div class="coa-line"><span class="n">1340</span><span class="nm">Supplier Deposits / Prepaid Inventory</span></div>
-                    <div class="coa-line"><span class="n">1510</span><span class="nm">Sales Tax Receivable</span></div>
-                    <div class="coa-line"><span class="n">1520</span><span class="nm">Marketplace Reserves Receivable</span></div>
-                    <div class="coa-line"><span class="n">1610</span><span class="nm">Equipment &amp; Hardware</span></div>
+            <div class="stmt">
+                <div class="stmt-block">
+                    <div class="stmt-head">Revenue</div>
+                    <p class="stmt-note">Keep revenue to a single sales account. To compare channels, tag transactions with Classes and run a Profit by Sales Channel report — you get the Shopify-vs-Amazon view without cluttering the chart.</p>
+                    <div class="acct header"><span class="num">40000</span><span class="nm">Revenue</span></div>
+                    <div class="acct sub"><span class="num">40100</span><span class="nm">Sales</span></div>
+                    <div class="acct sub"><span class="num">40200</span><span class="nm">Sales Returns</span></div>
+                    <div class="acct sub"><span class="num">40300</span><span class="nm">Discounts</span></div>
+                    <div class="acct total"><span class="num"></span><span class="nm">Total Revenue</span></div>
                 </div>
-                <div class="coa-block">
-                    <div class="coa-block-head"><h3>Liabilities</h3><span>2000s</span></div>
-                    <div class="coa-line"><span class="n">2000</span><span class="nm">Accounts Payable</span></div>
-                    <div class="coa-line"><span class="n">2110</span><span class="nm">Credit Card — Amex</span></div>
-                    <div class="coa-line"><span class="n">2120</span><span class="nm">Credit Card — Visa</span></div>
-                    <div class="coa-line"><span class="n">2200</span><span class="nm">Sales Tax Payable</span></div>
-                    <div class="coa-line"><span class="n">2210</span><span class="nm">Sales Tax Payable — Marketplace</span></div>
-                    <div class="coa-line"><span class="n">2310</span><span class="nm">Shopify Capital / Line of Credit</span></div>
-                    <div class="coa-line"><span class="n">2320</span><span class="nm">Amazon Lending</span></div>
-                    <div class="coa-line"><span class="n">2330</span><span class="nm">Merchant Cash Advance</span></div>
-                    <div class="coa-line"><span class="n">2340</span><span class="nm">Term Loan / SBA Loan</span></div>
-                    <div class="coa-line"><span class="n">2400</span><span class="nm">Gift Cards &amp; Store Credit</span></div>
-                    <div class="coa-line"><span class="n">2500</span><span class="nm">Deferred Revenue (Pre-orders / Subs)</span></div>
-                    <div class="coa-line"><span class="n">2600</span><span class="nm">Payroll Liabilities</span></div>
+                <div class="stmt-block">
+                    <div class="stmt-head">Cost of Sales</div>
+                    <p class="stmt-note">Product and landed costs are expensed here as items sell. Keep this section clean of adjustments and one-off write-offs so gross margin stays trustworthy.</p>
+                    <div class="acct header"><span class="num">50000</span><span class="nm">Cost of Goods Sold</span></div>
+                    <div class="acct sub"><span class="num">50010</span><span class="nm">Cost of Goods Sold</span></div>
+                    <div class="acct sub"><span class="num">50020</span><span class="nm">Shrinkage</span></div>
+                    <div class="acct total"><span class="num"></span><span class="nm">Total Cost of Goods Sold</span></div>
+                    <p class="stmt-note">Landed costs live on the balance sheet in inventory — they only reach the P&amp;L, through COGS, when the product sells.</p>
+                    <div class="acct header"><span class="num">50100</span><span class="nm">Landed Costs</span></div>
+                    <div class="acct sub"><span class="num">50110</span><span class="nm">3PL Storage Fees</span></div>
+                    <div class="acct sub"><span class="num">50120</span><span class="nm">FBA Storage Fees</span></div>
+                    <div class="acct sub"><span class="num">50140</span><span class="nm">3PL Labor Charges</span></div>
+                    <div class="acct total"><span class="num"></span><span class="nm">Total Landed Costs</span></div>
+                    <p class="stmt-note">Everything it takes to get product from your warehouse to the customer's door.</p>
+                    <div class="acct header"><span class="num">51000</span><span class="nm">Fulfillment Costs</span></div>
+                    <div class="acct sub"><span class="num">51010</span><span class="nm">Amazon FBA Fees</span></div>
+                    <div class="acct sub"><span class="num">51020</span><span class="nm">Outbound Freight</span></div>
+                    <div class="acct sub"><span class="num">51030</span><span class="nm">Shipping &amp; Delivery</span></div>
+                    <div class="acct total"><span class="num"></span><span class="nm">Total Fulfillment Costs</span></div>
+                    <div class="acct header"><span class="num">52000</span><span class="nm">Marketplace Fees</span></div>
+                    <div class="acct total"><span class="num"></span><span class="nm">Total Cost of Sales</span></div>
                 </div>
-                <div class="coa-block">
-                    <div class="coa-block-head"><h3>Equity</h3><span>3000s</span></div>
-                    <div class="coa-line"><span class="n">3000</span><span class="nm">Owner's Capital / Common Stock</span></div>
-                    <div class="coa-line"><span class="n">3100</span><span class="nm">Owner's Draw / Distributions</span></div>
-                    <div class="coa-line"><span class="n">3200</span><span class="nm">Retained Earnings</span></div>
-                    <div class="coa-line"><span class="n">3900</span><span class="nm">Opening Balance Equity</span></div>
+                <div class="stmt-block">
+                    <div class="stmt-head">Expenses</div>
+                    <p class="stmt-note">Balance simplicity and insight. Combine trivial accounts (roll postage into office expenses); split out large, distinct ones (Google vs. Facebook ads). Post to descriptive subaccounts — e.g. 65010 Bank Charges — never straight to a header.</p>
+                    <div class="acct header"><span class="num">61000</span><span class="nm">Marketing &amp; Advertising</span></div>
+                    <div class="acct header"><span class="num">62000</span><span class="nm">Payroll</span></div>
+                    <div class="acct header"><span class="num">63000</span><span class="nm">Administrative Expenses</span></div>
+                    <div class="acct header"><span class="num">64000</span><span class="nm">Professional Services</span></div>
+                    <div class="acct header"><span class="num">65000</span><span class="nm">Finance Expenses</span></div>
+                    <div class="acct total"><span class="num"></span><span class="nm">Total Expenses</span></div>
                 </div>
-                <div class="coa-block">
-                    <div class="coa-block-head"><h3>Income</h3><span>4000s</span></div>
-                    <div class="coa-line"><span class="n">4000</span><span class="nm">Product Sales — Shopify / DTC</span></div>
-                    <div class="coa-line"><span class="n">4010</span><span class="nm">Product Sales — Amazon</span></div>
-                    <div class="coa-line"><span class="n">4020</span><span class="nm">Product Sales — Wholesale</span></div>
-                    <div class="coa-line"><span class="n">4030</span><span class="nm">Product Sales — Other Marketplaces</span></div>
-                    <div class="coa-line"><span class="n">4100</span><span class="nm">Shipping Income</span></div>
-                    <div class="coa-line"><span class="n">4200</span><span class="nm">Discounts &amp; Promotions (contra)</span></div>
-                    <div class="coa-line"><span class="n">4300</span><span class="nm">Returns &amp; Refunds (contra)</span></div>
+                <div class="stmt-subtotal">Net Ordinary Income</div>
+                <div class="stmt-block">
+                    <div class="stmt-head">Other Income &amp; Expenses</div>
+                    <p class="stmt-note">Keep non-operating items — big one-time write-offs, gains, or losses outside your core business — out of Net Ordinary Income so your operating picture stays clean.</p>
+                    <div class="acct header"><span class="num">70000</span><span class="nm">Other Income</span></div>
+                    <div class="acct header"><span class="num">80000</span><span class="nm">Other Expenses</span></div>
                 </div>
-                <div class="coa-block">
-                    <div class="coa-block-head"><h3>Cost of goods sold</h3><span>5000s</span></div>
-                    <div class="coa-line"><span class="n">5000</span><span class="nm">COGS — Product Cost</span></div>
-                    <div class="coa-line"><span class="n">5010</span><span class="nm">Inbound Freight &amp; Duties</span></div>
-                    <div class="coa-line"><span class="n">5110</span><span class="nm">Shopify Payments Fees</span></div>
-                    <div class="coa-line"><span class="n">5120</span><span class="nm">Amazon Referral &amp; Selling Fees</span></div>
-                    <div class="coa-line"><span class="n">5130</span><span class="nm">PayPal / Stripe Fees</span></div>
-                    <div class="coa-line"><span class="n">5200</span><span class="nm">FBA / Fulfillment Fees</span></div>
-                    <div class="coa-line"><span class="n">5300</span><span class="nm">Outbound Shipping</span></div>
-                    <div class="coa-line"><span class="n">5400</span><span class="nm">3PL &amp; Warehousing</span></div>
-                    <div class="coa-line"><span class="n">5500</span><span class="nm">Packaging &amp; Pick/Pack Supplies</span></div>
-                    <div class="coa-line"><span class="n">5600</span><span class="nm">Inventory Adjustments &amp; Shrinkage</span></div>
-                </div>
-                <div class="coa-block">
-                    <div class="coa-block-head"><h3>Operating expenses</h3><span>6000s</span></div>
-                    <div class="coa-line"><span class="n">6010</span><span class="nm">Advertising — Meta Ads</span></div>
-                    <div class="coa-line"><span class="n">6020</span><span class="nm">Advertising — Google Ads</span></div>
-                    <div class="coa-line"><span class="n">6030</span><span class="nm">Advertising — TikTok &amp; Other Paid</span></div>
-                    <div class="coa-line"><span class="n">6040</span><span class="nm">Advertising — Influencer &amp; Affiliate</span></div>
-                    <div class="coa-line"><span class="n">6050</span><span class="nm">Advertising — Email &amp; SMS</span></div>
-                    <div class="coa-line"><span class="n">6100</span><span class="nm">Software &amp; Apps</span></div>
-                    <div class="coa-line"><span class="n">6200</span><span class="nm">Wages &amp; Salaries</span></div>
-                    <div class="coa-line"><span class="n">6210</span><span class="nm">Contractors &amp; Freelancers</span></div>
-                    <div class="coa-line"><span class="n">6300</span><span class="nm">Professional Fees</span></div>
-                    <div class="coa-line"><span class="n">6400</span><span class="nm">Rent &amp; Utilities</span></div>
-                    <div class="coa-line"><span class="n">6700</span><span class="nm">Insurance</span></div>
-                    <div class="coa-line"><span class="n">6900</span><span class="nm">Other Operating Expense</span></div>
-                </div>
-                <div class="coa-block coa-span-2">
-                    <div class="coa-block-head"><h3>Other income &amp; expense</h3><span>7000s / 8000s</span></div>
-                    <div class="coa-line"><span class="n">7000</span><span class="nm">Interest Income</span></div>
-                    <div class="coa-line"><span class="n">8000</span><span class="nm">Interest Expense</span></div>
-                    <div class="coa-line"><span class="n">8100</span><span class="nm">Loan &amp; Financing Fees</span></div>
-                    <div class="coa-line"><span class="n">8200</span><span class="nm">Depreciation Expense</span></div>
-                    <div class="coa-line"><span class="n">8900</span><span class="nm">Income Tax Expense</span></div>
-                </div>
+                <div class="stmt-subtotal">Net Other Income</div>
             </div>
         </div>
     </section>
 
-    <section style="padding-top:0;">
+    <section class="band-soft">
+        <div class="wrap">
+            <div class="section-header">
+                <span class="eyebrow" style="display:inline-flex">Keep it clean</span>
+                <h2>Four rules that keep a chart of accounts useful.</h2>
+                <p>A structure is only as good as the discipline behind it. These habits keep your reports readable a year from now.</p>
+            </div>
+            <div class="problem-grid">
+                <div class="problem-card"><h3>Every account earns its place</h3><p>No "miscellaneous," "other," or "ask accountant." If you can't say in a sentence what belongs there, it shouldn't exist.</p></div>
+                <div class="problem-card"><h3>Post to subaccounts, not headers</h3><p>Headers like 65000 Finance Expenses are for totals. Book the transaction to a subaccount — 65010 Bank Charges — so reports stay tidy.</p></div>
+                <div class="problem-card"><h3>Simplicity vs. insight</h3><p>Merge accounts with the same purpose; split the big, decision-driving ones. Use Classes to slice by channel instead of duplicating accounts.</p></div>
+                <div class="problem-card"><h3>Retire dead accounts</h3><p>Deactivate anything you no longer use so nothing posts there by accident and reports don't fill with empty lines.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section>
         <div class="wrap">
             <div class="download-band">
                 <h2>Take the template. Keep the headache.</h2>
@@ -315,5 +336,23 @@
             <p class="footer-copy">&copy; 2026 Zero2One</p>
         </div>
     </footer>
+    <script>
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenuBtn.classList.toggle('active');
+                mobileMenu.classList.toggle('active');
+                document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+            });
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenuBtn.classList.remove('active');
+                    mobileMenu.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            });
+        }
+    </script>
 </body>
 </html>
