@@ -49,7 +49,6 @@
         .cal-section { padding: 2rem 6% 6rem; background: #ffffff; }
         .cal-container { max-width: 1000px; margin: 0 auto; }
         .cal-embed { background: #ffffff; border: 1px solid rgba(26, 41, 43, 0.10); border-radius: 16px; overflow: hidden; min-height: 760px; }
-        .cal-inline { width: 100%; height: 100%; min-height: 760px; overflow: auto; }
 </style>
 </head>
 <body>
@@ -79,8 +78,8 @@
     <section class="cal-section" id="booking">
         <div class="cal-container">
             <div class="cal-embed">
-                <!-- Cal.com inline embed -->
-                <div class="cal-inline" id="book-cal-inline"></div>
+                <!-- Calendly inline embed -->
+                <div class="calendly-inline-widget" data-url="https://calendly.com/kate-zero2one/30min?hide_event_type_details=1&hide_gdpr_banner=1" style="min-width:320px;height:760px;"></div>
             </div>
         </div>
     </section>
@@ -121,35 +120,19 @@
     </script>
 
     <!-- ============================================================
-         Cal.com inline embed (official snippet).
-         Replace the calLink value below with your real Cal.com link,
-         e.g. "kate-zero2one/consultation".
+         Calendly inline embed + booking-success redirect.
+         When a visitor completes a booking, Calendly emits the
+         'calendly.event_scheduled' event; we redirect to
+         /book/confirmed so the Google Ads conversion tag there can fire.
          ============================================================ -->
+    <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
     <script type="text/javascript">
-        (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
-
-        Cal("init", { origin: "https://cal.com" });
-
-        Cal("inline", {
-            elementOrSelector: "#book-cal-inline",
-            calLink: "PASTE_YOUR_CAL_LINK_HERE",
-            layout: "month_view"
-        });
-
-        Cal("ui", {
-            hideEventTypeDetails: false,
-            layout: "month_view",
-            cssVarsPerTheme: {
-                light: { "cal-brand": "#0e8d77" }
-            }
-        });
-
-        // After a successful booking, send the visitor to the confirmation
-        // page so the Google Ads conversion tag there can fire.
-        Cal("on", {
-            action: "bookingSuccessful",
-            callback: function () {
-                window.location.href = "/book/confirmed";
+        function isCalendlyEvent(e) {
+            return e.origin === 'https://calendly.com' && e.data.event && e.data.event.indexOf('calendly.') === 0;
+        }
+        window.addEventListener('message', function (e) {
+            if (isCalendlyEvent(e) && e.data.event === 'calendly.event_scheduled') {
+                window.location.href = '/book/confirmed';
             }
         });
     </script>
