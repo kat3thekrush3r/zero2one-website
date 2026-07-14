@@ -55,7 +55,9 @@
         .check-badge svg { width: 42px; height: 42px; fill: none; stroke: #0a1413; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
         .confirm h1 { font-size: clamp(2.2rem, 5vw, 3.4rem); margin-bottom: 1.25rem; letter-spacing: -0.02em; font-weight: 700; }
         .confirm p { font-size: 1.25rem; color: rgba(26, 41, 43, 0.64); max-width: 520px; margin: 0 auto 2.5rem; }
-        .confirm-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+        .confirm-actions { display: flex; gap: 1rem; justify-content: center; align-items: center; flex-wrap: wrap; }
+        .confirm-actions .cta-button, .confirm-actions .secondary-button { display: inline-flex; align-items: center; justify-content: center; padding: 0.85rem 1.8rem; font-size: 1rem; line-height: 1; border: 1px solid transparent; }
+        .confirm-actions .secondary-button { border-color: rgba(26, 41, 43, 0.18); }
 </style>
 </head>
 <body>
