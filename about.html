@@ -66,7 +66,7 @@
         .founder-card { background: #ffffff; border: 1px solid rgba(26, 41, 43, 0.10); border-radius: 16px; padding: 3rem; transition: all 0.3s; }
         .founder-card:hover { background: #ffffff; border-color: rgba(26, 41, 43, 0.16); transform: translateY(-5px); }
         .founder-header { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2rem; }
-        .founder-avatar { width: 80px; height: 80px; border-radius: 50%; background: var(--z2o-gradient); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 2rem; color: var(--z2o-dark-charcoal); flex-shrink: 0; }
+        .founder-avatar { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(127, 255, 127, 0.3); flex-shrink: 0; }
         .founder-info h3 { font-size: 1.8rem; margin-bottom: 0.5rem; font-weight: 700; }
         .founder-info p { color: rgba(26, 41, 43, 0.6); font-size: 1rem; }
         .founder-bio { color: rgba(26, 41, 43, 0.72); line-height: 1.7; margin-bottom: 2rem; }
@@ -125,7 +125,7 @@
         <div class="section-header"><h2>Who you're working with</h2><p>Founder-led, hands-on, and qualified</p></div>
         <div class="founders-grid" style="grid-template-columns: minmax(0, 1fr); max-width: 640px;">
             <div class="founder-card reveal">
-                <div class="founder-header"><div class="founder-avatar">KM</div><div class="founder-info"><h3>Kate MacPherson</h3><p>Founder</p></div></div>
+                <div class="founder-header"><img class="founder-avatar" src="/images/kate-headshot.jpg" alt="Kate MacPherson, Founder of Zero2One" width="80" height="80" loading="lazy"><div class="founder-info"><h3>Kate MacPherson</h3><p>Founder</p></div></div>
                 <div class="founder-bio">Kate founded Zero2One after a decade running finance and operations for fast-growing companies — scaling teams, owning the numbers, and building the systems behind them. She brings that operator's perspective to ecommerce books, sets the standard the whole firm works to, and stays close to the work as it grows.</div>
                 <ul class="founder-highlights">
                     <li>Co-founded <strong>HomeRoom</strong> and scaled operations from 2 employees to 50 in 18 months</li>
