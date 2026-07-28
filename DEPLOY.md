@@ -7,7 +7,7 @@ The `/chart-of-accounts` page now has two tiers:
 - **Free PDF** — one click, no email (unchanged).
 - **QBO import CSV** (`zero2one-chart-of-accounts-qbo-import.csv`) — gated behind an email modal. On submit it emails the lead to your inbox (via Formspree), releases the CSV download, and fires a Google Ads lead event.
 
-The CSV is formatted for QuickBooks Online's native importer (**Gear → Import Data → Chart of Accounts**) with valid `Type` / `Detail Type` values, so it imports without manual account setup.
+The CSV is the full Zero2One chart of accounts (balance sheet + income statement), formatted for QuickBooks Online's native importer (**Gear → Import Data → Chart of Accounts**) with valid `Account type` / `Detail type` values and sub-account nesting, so it imports without manual account setup.
 
 **Two placeholders to fill in `chart-of-accounts.html` before this captures anything:**
 
