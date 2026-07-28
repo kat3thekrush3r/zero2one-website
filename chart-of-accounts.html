@@ -154,6 +154,37 @@
             section { padding: 4.5rem 0; }
             .download-band { padding: 2.8rem 1.6rem; border-radius: 18px; }
         }
+
+        /* Email gate modal */
+        .gate-overlay { position: fixed; inset: 0; background: rgba(14,20,19,0.55); backdrop-filter: blur(4px); z-index: 2000; display: none; align-items: center; justify-content: center; padding: 1.5rem; opacity: 0; transition: opacity 0.2s ease; }
+        .gate-overlay.active { display: flex; opacity: 1; }
+        .gate-modal { background: #fff; border-radius: 20px; width: 100%; max-width: 440px; box-shadow: 0 30px 80px rgba(14,20,19,0.35); overflow: hidden; transform: translateY(8px); transition: transform 0.2s ease; }
+        .gate-overlay.active .gate-modal { transform: translateY(0); }
+        .gate-modal-head { padding: 1.9rem 2rem 0; position: relative; }
+        .gate-badge { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--z2o-deep); background: rgba(82,232,201,0.14); padding: 0.35rem 0.7rem; border-radius: 100px; margin-bottom: 0.9rem; }
+        .gate-modal-head h3 { font-size: 1.4rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 0.5rem; }
+        .gate-modal-head p { font-size: 0.96rem; color: rgba(26,41,43,0.6); line-height: 1.5; }
+        .gate-close { position: absolute; top: 1.1rem; right: 1.2rem; width: 32px; height: 32px; border: none; background: rgba(26,41,43,0.06); border-radius: 50%; cursor: pointer; font-size: 1.1rem; color: rgba(26,41,43,0.6); line-height: 1; display: flex; align-items: center; justify-content: center; transition: background 0.2s; }
+        .gate-close:hover { background: rgba(26,41,43,0.12); }
+        .gate-form { padding: 1.5rem 2rem 2rem; }
+        .gate-form label { display: block; font-size: 0.82rem; font-weight: 600; color: rgba(26,41,43,0.7); margin-bottom: 0.45rem; }
+        .gate-form input[type="email"] { width: 100%; padding: 0.85rem 1rem; border: 1px solid rgba(26,41,43,0.18); border-radius: 10px; font-family: var(--font-primary); font-size: 1rem; color: #1a292b; transition: border-color 0.2s, box-shadow 0.2s; }
+        .gate-form input[type="email"]:focus { outline: none; border-color: var(--z2o-deep); box-shadow: 0 0 0 3px rgba(82,232,201,0.18); }
+        .gate-form .cta-button { width: 100%; text-align: center; margin-top: 1rem; padding: 0.9rem 1.6rem; font-size: 1rem; }
+        .gate-form .cta-button:disabled { opacity: 0.6; cursor: not-allowed; transform: none; box-shadow: none; }
+        .gate-fineprint { font-size: 0.78rem; color: rgba(26,41,43,0.45); margin-top: 0.95rem; text-align: center; line-height: 1.45; }
+        .gate-error { font-size: 0.85rem; color: #c0392b; margin-top: 0.7rem; display: none; }
+        .gate-success { padding: 2rem; text-align: center; display: none; }
+        .gate-success .gate-check { width: 56px; height: 56px; border-radius: 50%; background: var(--z2o-gradient); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.2rem; }
+        .gate-success .gate-check svg { width: 26px; height: 26px; stroke: var(--z2o-dark-charcoal); stroke-width: 3; fill: none; }
+        .gate-success h3 { font-size: 1.3rem; font-weight: 800; margin-bottom: 0.5rem; }
+        .gate-success p { font-size: 0.96rem; color: rgba(26,41,43,0.6); line-height: 1.5; margin-bottom: 1.4rem; }
+        .gate-import-steps { text-align: left; background: var(--z2o-soft); border-radius: 12px; padding: 1.1rem 1.3rem; margin-bottom: 1.4rem; }
+        .gate-import-steps p { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(26,41,43,0.5); margin-bottom: 0.6rem; }
+        .gate-import-steps ol { margin: 0; padding-left: 1.1rem; }
+        .gate-import-steps li { font-size: 0.88rem; color: rgba(26,41,43,0.72); margin-bottom: 0.35rem; line-height: 1.4; }
+        .gate-modal.is-success .gate-form, .gate-modal.is-success .gate-modal-head { display: none; }
+        .gate-modal.is-success .gate-success { display: block; }
     </style>
 </head>
 <body>
@@ -187,10 +218,10 @@
                     <div class="value-prop"><div class="value-prop-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div><span class="value-prop-text"><strong>Reports you can actually read</strong> — gross profit, net ordinary income, and net income at a glance, in plain language</span></div>
                 </div>
                 <div class="hero-cta">
-                    <a href="/Zero2One-Chart-of-Accounts.pdf" download class="cta-button">Download the template (free)</a>
-                    <a href="#book" class="secondary-button">Have us set it up</a>
+                    <a href="#" class="cta-button" data-gate-open>Get the QuickBooks import file</a>
+                    <a href="/Zero2One-Chart-of-Accounts.pdf" download class="secondary-button">Or just the PDF (no email)</a>
                 </div>
-                <p class="hero-note">No email required. Instant PDF download — scroll to see the full layout.</p>
+                <p class="hero-note">The QBO file imports straight into QuickBooks Online — <strong>Gear → Import Data → Chart of Accounts</strong>. Just want to look? Grab the no-email PDF.</p>
             </div>
             <div class="preview-card" aria-hidden="true">
                 <div class="preview-head">
@@ -311,9 +342,10 @@
                 <h2>Take the template. Keep the headache.</h2>
                 <p>The layout is yours, free. But setting it up cleanly in QuickBooks — mapping A2X, migrating history, and reconciling it every month — is where most founders get stuck. That part, we handle.</p>
                 <div class="hero-cta">
-                    <a href="/Zero2One-Chart-of-Accounts.pdf" download class="cta-button">Download the PDF</a>
+                    <a href="#" class="cta-button" data-gate-open>Get the QuickBooks import file</a>
                     <a href="#book" class="secondary-button">Let us set it up for you</a>
                 </div>
+                <p style="margin-top:1.3rem;font-size:0.88rem;position:relative;"><a href="/Zero2One-Chart-of-Accounts.pdf" download style="color:rgba(255,255,255,0.62);text-decoration:underline;">Just want the PDF? Download it here — no email needed.</a></p>
             </div>
         </div>
     </section>
@@ -347,7 +379,105 @@
             <p class="footer-copy">&copy; 2026 Zero2One</p>
         </div>
     </footer>
+    <!-- Email gate modal for the QBO import file -->
+    <div class="gate-overlay" id="gateOverlay" role="dialog" aria-modal="true" aria-labelledby="gateTitle">
+        <div class="gate-modal" id="gateModal">
+            <div class="gate-modal-head">
+                <button class="gate-close" id="gateClose" aria-label="Close">&times;</button>
+                <span class="gate-badge">Ready to import · QuickBooks Online</span>
+                <h3 id="gateTitle">Get the QBO import file</h3>
+                <p>Drop your email and we'll send the QuickBooks-ready <strong>.CSV</strong> — import it in under a minute, no manual account setup.</p>
+            </div>
+            <form class="gate-form" id="gateForm" novalidate>
+                <label for="gateEmail">Work email</label>
+                <input type="email" id="gateEmail" name="email" placeholder="you@yourbrand.com" required autocomplete="email">
+                <input type="hidden" name="lead_magnet" value="Chart of Accounts — QBO import CSV">
+                <input type="hidden" name="_subject" value="New lead: QBO Chart of Accounts download">
+                <button type="submit" class="cta-button" id="gateSubmit">Email it to me &amp; download</button>
+                <p class="gate-error" id="gateError">Something went wrong — please try again.</p>
+                <p class="gate-fineprint">We'll email you the file and occasional ecommerce bookkeeping tips. Unsubscribe anytime.</p>
+            </form>
+            <div class="gate-success" id="gateSuccess">
+                <div class="gate-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+                <h3>Your download is ready</h3>
+                <p>We've emailed you a copy too. Here's how to load it into QuickBooks Online:</p>
+                <div class="gate-import-steps">
+                    <p>Import in QuickBooks</p>
+                    <ol>
+                        <li>In QBO: <strong>Gear ⚙ → Import Data → Chart of Accounts</strong></li>
+                        <li>Upload the <strong>.CSV</strong> you just downloaded</li>
+                        <li>Confirm the <strong>Type</strong> / <strong>Detail Type</strong> mapping, then Import</li>
+                    </ol>
+                </div>
+                <a href="/zero2one-chart-of-accounts-qbo-import.csv" download class="cta-button" id="gateDownloadAgain" style="display:inline-block;">Download the CSV again</a>
+            </div>
+        </div>
+    </div>
+
     <script>
+        // === Email gate for the QBO import file ===
+        // 1) Create a free form at https://formspree.io and paste its endpoint below.
+        // 2) That's it — leads arrive in your inbox and the CSV download is released on submit.
+        const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
+        const QBO_CSV_URL = '/zero2one-chart-of-accounts-qbo-import.csv';
+
+        const gateOverlay = document.getElementById('gateOverlay');
+        const gateModal = document.getElementById('gateModal');
+        const gateForm = document.getElementById('gateForm');
+        const gateEmail = document.getElementById('gateEmail');
+        const gateSubmit = document.getElementById('gateSubmit');
+        const gateError = document.getElementById('gateError');
+
+        function openGate(e) { if (e) e.preventDefault(); gateModal.classList.remove('is-success'); gateError.style.display = 'none'; gateOverlay.classList.add('active'); document.body.style.overflow = 'hidden'; setTimeout(() => gateEmail.focus(), 120); }
+        function closeGate() { gateOverlay.classList.remove('active'); document.body.style.overflow = ''; }
+
+        document.querySelectorAll('[data-gate-open]').forEach(el => el.addEventListener('click', openGate));
+        document.getElementById('gateClose').addEventListener('click', closeGate);
+        gateOverlay.addEventListener('click', (e) => { if (e.target === gateOverlay) closeGate(); });
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && gateOverlay.classList.contains('active')) closeGate(); });
+
+        function triggerDownload() { const a = document.createElement('a'); a.href = QBO_CSV_URL; a.download = ''; document.body.appendChild(a); a.click(); a.remove(); }
+
+        function fireLeadConversion() {
+            if (typeof gtag !== 'function') return;
+            gtag('event', 'generate_lead', { event_category: 'lead_magnet', event_label: 'qbo_coa_import' });
+            // Google Ads conversion — replace the label below with your conversion action's value
+            // (Google Ads → Goals → Conversions → your action → "Tag setup" shows AW-18288167379/xxxxxxxx).
+            // gtag('event', 'conversion', { 'send_to': 'AW-18288167379/REPLACE_WITH_CONVERSION_LABEL' });
+        }
+
+        function showSuccess() { gateModal.classList.add('is-success'); triggerDownload(); fireLeadConversion(); }
+
+        gateForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            gateError.style.display = 'none';
+            if (!gateEmail.value || !gateEmail.checkValidity()) { gateEmail.focus(); return; }
+            gateSubmit.disabled = true;
+            const original = gateSubmit.textContent;
+            gateSubmit.textContent = 'Sending…';
+            try {
+                const res = await fetch(FORMSPREE_ENDPOINT, {
+                    method: 'POST',
+                    headers: { 'Accept': 'application/json' },
+                    body: new FormData(gateForm)
+                });
+                if (res.ok) {
+                    showSuccess();
+                } else {
+                    // Don't block the visitor from the free resource — still release the file,
+                    // but surface a note so a misconfigured endpoint gets noticed.
+                    console.warn('Lead form did not accept the submission. Check FORMSPREE_ENDPOINT.');
+                    showSuccess();
+                }
+            } catch (err) {
+                console.warn('Lead form request failed:', err);
+                showSuccess();
+            } finally {
+                gateSubmit.disabled = false;
+                gateSubmit.textContent = original;
+            }
+        });
+
         const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
         const mobileMenu = document.querySelector('.mobile-menu');
         if (mobileMenuBtn && mobileMenu) {

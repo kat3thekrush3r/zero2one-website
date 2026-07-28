@@ -1,0 +1,25 @@
+Account Number,Account Name,Type,Detail Type
+40000,Revenue,Income,Sales of Product Income
+40100,Sales,Income,Sales of Product Income
+40200,Sales Returns,Income,Discounts/Refunds Given
+40300,Discounts,Income,Discounts/Refunds Given
+50000,Cost of Goods Sold,Cost of Goods Sold,Supplies & Materials - COGS
+50010,Cost of Goods Sold - Product,Cost of Goods Sold,Supplies & Materials - COGS
+50020,Shrinkage,Cost of Goods Sold,Supplies & Materials - COGS
+50100,Landed Costs,Cost of Goods Sold,"Shipping, Freight & Delivery - COGS"
+50110,3PL Storage Fees,Cost of Goods Sold,Other Costs of Services - COGS
+50120,FBA Storage Fees,Cost of Goods Sold,Other Costs of Services - COGS
+50140,3PL Labor Charges,Cost of Goods Sold,Cost of labor - COGS
+51000,Fulfillment Costs,Cost of Goods Sold,"Shipping, Freight & Delivery - COGS"
+51010,Amazon FBA Fees,Cost of Goods Sold,Other Costs of Services - COGS
+51020,Outbound Freight,Cost of Goods Sold,"Shipping, Freight & Delivery - COGS"
+51030,Shipping & Delivery,Cost of Goods Sold,"Shipping, Freight & Delivery - COGS"
+52000,Marketplace Fees,Cost of Goods Sold,Other Costs of Services - COGS
+61000,Marketing & Advertising,Expenses,Advertising/Promotional
+62000,Payroll,Expenses,Payroll Expenses
+63000,Administrative Expenses,Expenses,Office/General Administrative Expenses
+64000,Professional Services,Expenses,Legal & Professional Fees
+65000,Finance Expenses,Expenses,Bank Charges
+65010,Bank Charges,Expenses,Bank Charges
+70000,Other Income,Other Income,Other Miscellaneous Income
+80000,Other Expenses,Other Expense,Other Miscellaneous Expense
