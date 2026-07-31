@@ -1,0 +1,76 @@
+Account number,Account name,Account type,Detail type,Lock
+10010,(Input Bank 1 name),Bank,Checking,No
+10020,(Input Bank 2 name),Bank,Checking,No
+10030,(Input Bank 3 name),Bank,Checking,No
+10040,(Input Bank 4 name),Bank,Checking,No
+10050,(Input Bank 5 name),Bank,Checking,No
+12000,Accounts Receivable,Accounts receivable (A/R),Accounts Receivable (A/R),No
+13000,Inventory On Hand,Other Current Assets,Inventory,No
+14000,Merchant Accounts,Other Current Assets,Other Current Assets,No
+14010,Merchant Accounts: - (Input Merchant Account 1),Other Current Assets,Other Current Assets,No
+14020,Merchant Accounts: - (Input Merchant Account 2),Other Current Assets,Other Current Assets,No
+14030,Merchant Accounts: - (Input Merchant Account 3),Other Current Assets,Other Current Assets,No
+14040,Merchant Accounts: - (Input Merchant Account 4),Other Current Assets,Other Current Assets,No
+15100,Prepaid Expenses,Other Current Assets,Prepaid Expenses,No
+15200,Accrued Expenses,Other Current Assets,Other Current Assets,No
+16100,Buildings,Fixed Assets,Buildings,No
+16150,Accumulated Depreciation: Buildings,Fixed Assets,Accumulated Depreciation,No
+16200,Computers,Fixed Assets,Fixed Asset Computers,No
+16250,Accumulated Depreciation: Computers,Fixed Assets,Accumulated Amortization,No
+16300,Furniture and Fixtures,Fixed Assets,Furniture & Fixtures,No
+16350,Accumulated Depreciation: Furniture and Fixtures,Fixed Assets,Accumulated Depreciation,No
+16400,Machinery and Equipment,Fixed Assets,Machinery & Equipment,No
+16450,Accumulated Depreciation: Machinery and Equipment,Fixed Assets,Accumulated Depreciation,No
+16500,Vehicles,Fixed Assets,Vehicles,No
+16550,Accumulated Depreciation: Vehicles,Fixed Assets,Accumulated Depreciation,No
+20000,Accounts Payable (A/P),Accounts payable (A/P),Accounts Payable (A/P),No
+21010,(Input Credit card 1 name),Credit Card,Credit Card,No
+21020,(Input Credit card 2 name),Credit Card,Credit Card,No
+21030,(Input Credit card 3 name),Credit Card,Credit Card,No
+21040,(Input Credit card 4 name),Credit Card,Credit Card,No
+21050,(Input Credit card 5 name),Credit Card,Credit Card,No
+22100,Payroll Liabilities,Other Current Liabilities,Payroll Clearing,No
+22200,Payroll Taxes Payable,Other Current Liabilities,Payroll Tax Payable,No
+22300,Corporate Income Taxes Payable,Other Current Liabilities,Federal Income Tax Payable,No
+22400,Sales Taxes Payable,Other Current Liabilities,Other Current Liabilities,No
+23100,Shareholder Loan,Long Term Liabilities,Shareholder Notes Payable,No
+24100,(Input Bank loan 1 name),Long Term Liabilities,Other Long Term Liabilities,No
+24200,(Input Bank loan 2 name),Long Term Liabilities,Other Long Term Liabilities,No
+24300,(Input Bank loan 3 name),Long Term Liabilities,Other Long Term Liabilities,No
+31000,Distributions,Equity,Owner's Equity,No
+32000,Retained Earnings,Equity,Retained Earnings,No
+40000,Revenue,Income,Sales of Product Income,Yes
+40100,Revenue:- Sales,Income,Sales of Product Income,No
+40200,Revenue:- Sales Returns,Income,Discounts/Refunds Given,No
+40300,Revenue:- Discount,Income,Discounts/Refunds Given,No
+50000,Cost of Goods Sold,Cost of Goods Sold,Supplies & Materials - COGS,Yes
+50010,Cost of Goods Sold:- Cost of Goods Sold,Cost of Goods Sold,Supplies & Materials - COGS,No
+50020,Cost of Goods Sold:- Shrinkage,Cost of Goods Sold,Supplies & Materials - COGS,No
+50100,Landed Costs,Cost of Goods Sold,Other Costs of Services - COS,Yes
+50110,Landed Costs:- 3PL Storage Fees,Cost of Goods Sold,Other Costs of Services - COS,No
+50120,Landed Costs:- FBA Storage Fees,Cost of Goods Sold,Other Costs of Services - COS,No
+50140,Landed Costs:- 3PL Labor Charges,Cost of Goods Sold,Other Costs of Services - COS,No
+51000,Fulfillment Costs,Cost of Goods Sold,"Shipping, Freight & Delivery - COS",Yes
+51010,Fulfillment Costs:- Amazon FBA Fees,Cost of Goods Sold,"Shipping, Freight & Delivery - COS",No
+51020,Fulfillment Costs:- Outbound Freight,Cost of Goods Sold,"Shipping, Freight & Delivery - COS",No
+51040,Fulfillment Costs:- Shipping & Delivery,Cost of Goods Sold,"Shipping, Freight & Delivery - COS",No
+52000,Marketplace fees,Cost of Goods Sold,Other Costs of Services - COS,No
+61000,Marketing and Advertising,Expenses,Advertising/Promotional,Yes
+61100,Marketing and Advertising:- (Input Breakdown 1),Expenses,Advertising/Promotional,No
+61200,Marketing and Advertising:- (Input Breakdown 2),Expenses,Advertising/Promotional,No
+61300,Marketing and Advertising:- (Input Breakdown 3),Expenses,Advertising/Promotional,No
+61400,Marketing and Advertising:- (Input Breakdown 4),Expenses,Advertising/Promotional,No
+62000,Payroll,Expenses,Payroll Expenses,Yes
+62100,Payroll:- (Input Breakdown 1),Expenses,Payroll Expenses,No
+62200,Payroll:- (Input Breakdown 2),Expenses,Payroll Expenses,No
+63000,Administrative Expense,Expenses,Office/General Administrative Expenses,Yes
+63100,Administrative Expense:- (Input Breakdown 1),Expenses,Office/General Administrative Expenses,No
+63200,Administrative Expense:- (Input Breakdown 2),Expenses,Office/General Administrative Expenses,No
+63300,Administrative Expense:- (Input Breakdown 3),Expenses,Office/General Administrative Expenses,No
+64000,Professional Services,Expenses,Legal & Professional Fees,Yes
+64100,Professional Services:- (Input Breakdown 1),Expenses,Legal & Professional Fees,No
+64200,Professional Services:- (Input Breakdown 2),Expenses,Legal & Professional Fees,No
+64300,Professional Services:- (Input Breakdown 3),Expenses,Legal & Professional Fees,No
+65000,Finance Expenses,Expenses,Other Business Expenses,Yes
+65100,Finance Expenses: Bank charges,Expenses,Bank Charges,No
+65200,Finance Expenses: Insurance,Expenses,Insurance,No

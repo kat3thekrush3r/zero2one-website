@@ -1,5 +1,26 @@
 # Zero2One site — clean version
 
+## Chart of Accounts: email gate + QBO import file
+
+The `/chart-of-accounts` page now has two tiers:
+
+- **Free PDF** — one click, no email (unchanged).
+- **QBO import CSV** (`zero2one-chart-of-accounts-qbo-import.csv`) — gated behind an email modal. On submit it emails the lead to your inbox (via Formspree), releases the CSV download, and fires a Google Ads lead event.
+
+The CSV is the full Zero2One chart of accounts (balance sheet + income statement), formatted for QuickBooks Online's native importer (**Gear → Import Data → Chart of Accounts**) with valid `Account type` / `Detail type` values and sub-account nesting, so it imports without manual account setup.
+
+**Setup status:**
+
+1. **Formspree endpoint** — ✅ wired to `https://formspree.io/f/mbdnwbzv`. Leads arrive in the
+   inbox tied to that Formspree form. Note: the *first* submission to a new Formspree form triggers a
+   one-time confirmation email — click it once to activate the form, then submissions flow normally.
+2. **Google Ads conversion label** — ✅ wired. The "COA Download" (Submit lead form) conversion action
+   `AW-18288167379/mQvXCKjt5dkcENOTvZBE` fires on a successful email-gate submit. Note: Google can take a
+   few hours to show the action as "active" and start recording conversions — that's expected.
+
+---
+
+
 ## What changed
 
 - Nav now shows: **About · Free Consultation · Client Portal** on every page (consistent).
