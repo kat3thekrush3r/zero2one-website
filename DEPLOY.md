@@ -14,9 +14,9 @@ The CSV is the full Zero2One chart of accounts (balance sheet + income statement
 1. **Formspree endpoint** — ✅ wired to `https://formspree.io/f/mbdnwbzv`. Leads arrive in the
    inbox tied to that Formspree form. Note: the *first* submission to a new Formspree form triggers a
    one-time confirmation email — click it once to activate the form, then submissions flow normally.
-2. **Google Ads conversion label** (optional, still to do) — uncomment the `gtag('event','conversion', …)`
-   line in `chart-of-accounts.html` and paste your conversion action's `AW-18288167379/xxxxxxxx` label
-   so form submits count as a conversion.
+2. **Google Ads conversion label** — ✅ wired. The "COA Download" (Submit lead form) conversion action
+   `AW-18288167379/mQvXCKjt5dkcENOTvZBE` fires on a successful email-gate submit. Note: Google can take a
+   few hours to show the action as "active" and start recording conversions — that's expected.
 
 ---
 

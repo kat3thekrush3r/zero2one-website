@@ -441,9 +441,8 @@
         function fireLeadConversion() {
             if (typeof gtag !== 'function') return;
             gtag('event', 'generate_lead', { event_category: 'lead_magnet', event_label: 'qbo_coa_import' });
-            // Google Ads conversion — replace the label below with your conversion action's value
-            // (Google Ads → Goals → Conversions → your action → "Tag setup" shows AW-18288167379/xxxxxxxx).
-            // gtag('event', 'conversion', { 'send_to': 'AW-18288167379/REPLACE_WITH_CONVERSION_LABEL' });
+            // Google Ads conversion — "COA Download" (Submit lead form) conversion action
+            gtag('event', 'conversion', { 'send_to': 'AW-18288167379/mQvXCKjt5dkcENOTvZBE' });
         }
 
         function showSuccess() { gateModal.classList.add('is-success'); triggerDownload(); fireLeadConversion(); }
