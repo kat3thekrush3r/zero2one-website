@@ -112,7 +112,16 @@
             background: radial-gradient(circle, rgba(176,255,99,0.12), transparent 70%);
             filter: blur(30px); z-index: 0; pointer-events: none;
         }
-        .hero .wrap { position: relative; z-index: 1; }
+        .hero .wrap { position: relative; z-index: 1; display: grid; grid-template-columns: 1.05fr 0.92fr; gap: 3.2rem; align-items: center; }
+        .hero-copy { min-width: 0; }
+        .hero-figure {
+            position: relative; justify-self: center;
+            width: 100%; max-width: 420px;
+            padding: 7px; border-radius: 24px;
+            background: var(--accent-grad);
+            box-shadow: 0 22px 55px rgba(26,41,43,0.18);
+        }
+        .hero-figure img { display: block; width: 100%; height: auto; border-radius: 18px; }
         .eyebrow {
             display: inline-flex; align-items: center; gap: 0.5rem;
             font-size: 0.82rem; letter-spacing: 0.16em; text-transform: uppercase;
@@ -196,6 +205,9 @@
         @media (max-width: 860px) {
             .cards { grid-template-columns: 1fr; }
             .two-col { grid-template-columns: 1fr; gap: 2.4rem; }
+            .hero { min-height: 0; }
+            .hero .wrap { grid-template-columns: 1fr; gap: 2.6rem; }
+            .hero-figure { max-width: 320px; }
             .nav-links { display: none; }
             .nav-toggle { display: block; }
             .nav-links.open {
@@ -234,18 +246,23 @@
     <!-- ============ HERO ============ -->
     <header class="hero">
         <div class="wrap">
-            <span class="eyebrow">Ecommerce bookkeeping</span>
-            <h1>Less time in the books. <span class="grad">More on the brand</span>.</h1>
-            <p class="lede">
-                Zero2One is a small, founder-led accounting firm for ecommerce brands on Shopify and Amazon.
-                We keep your books reconciled every month and explain them in plain language —
-                no jargon, no surprises at month-end.
-            </p>
-            <div class="hero-cta">
-                <a href="/book" class="btn">Book a call</a>
-                <a href="#services" class="btn btn-ghost">See what we do</a>
+            <div class="hero-copy">
+                <span class="eyebrow">Ecommerce bookkeeping</span>
+                <h1>Less time in the books. <span class="grad">More on the brand</span>.</h1>
+                <p class="lede">
+                    Zero2One is a small, founder-led accounting firm for ecommerce brands on Shopify and Amazon.
+                    We keep your books reconciled every month and explain them in plain language —
+                    no jargon, no surprises at month-end.
+                </p>
+                <div class="hero-cta">
+                    <a href="/book" class="btn">Book a call</a>
+                    <a href="#services" class="btn btn-ghost">See what we do</a>
+                </div>
+                <p class="hero-note">For growing Shopify and Amazon brands — whether you're doing $20k a month or a few million a year.</p>
             </div>
-            <p class="hero-note">For growing Shopify and Amazon brands — whether you're doing $20k a month or a few million a year.</p>
+            <div class="hero-figure">
+                <img src="/images/kate-desk.jpg" alt="Kate MacPherson, founder of Zero2One, at her desk" width="1100" height="1651">
+            </div>
         </div>
     </header>
 
