@@ -9,13 +9,14 @@ The `/chart-of-accounts` page now has two tiers:
 
 The CSV is the full Zero2One chart of accounts (balance sheet + income statement), formatted for QuickBooks Online's native importer (**Gear → Import Data → Chart of Accounts**) with valid `Account type` / `Detail type` values and sub-account nesting, so it imports without manual account setup.
 
-**Two placeholders to fill in `chart-of-accounts.html` before this captures anything:**
+**Setup status:**
 
-1. **Formspree endpoint** — create a free form at https://formspree.io, then replace
-   `const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';` with your real endpoint.
-   (Until you do, the download still works so ad visitors aren't blocked, but leads won't be recorded.)
-2. **Google Ads conversion label** (optional) — uncomment the `gtag('event','conversion', …)`
-   line and paste your conversion action's `AW-18288167379/xxxxxxxx` label so form submits count as a conversion.
+1. **Formspree endpoint** — ✅ wired to `https://formspree.io/f/mbdnwbzv`. Leads arrive in the
+   inbox tied to that Formspree form. Note: the *first* submission to a new Formspree form triggers a
+   one-time confirmation email — click it once to activate the form, then submissions flow normally.
+2. **Google Ads conversion label** (optional, still to do) — uncomment the `gtag('event','conversion', …)`
+   line in `chart-of-accounts.html` and paste your conversion action's `AW-18288167379/xxxxxxxx` label
+   so form submits count as a conversion.
 
 ---
 
