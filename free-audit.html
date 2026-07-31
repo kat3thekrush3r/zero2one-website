@@ -71,6 +71,11 @@
         .calendly-header h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.25rem; }
         .calendly-header p { font-size: 0.9rem; color: rgba(26, 41, 43, 0.46); }
         .calendly-embed-container { min-height: 680px; }
+        .booking-panel { width: 100%; max-width: 500px; display: flex; flex-direction: column; gap: 1.75rem; }
+        .booking-intro { display: flex; align-items: center; gap: 1.25rem; }
+        .booking-photo { width: 84px; height: 84px; border-radius: 50%; object-fit: cover; object-position: 50% 20%; flex-shrink: 0; border: 2px solid rgba(127, 255, 127, 0.6); box-shadow: 0 6px 20px rgba(26, 41, 43, 0.15); }
+        .booking-intro-text { color: rgba(26, 41, 43, 0.72); font-size: 0.98rem; line-height: 1.55; }
+        .booking-intro-text strong { color: #1a292b; font-weight: 700; }
         .process { padding: 8rem 6%; background: #ffffff; }
         .process-container { max-width: 900px; margin: 0 auto; }
         .process-steps { display: flex; flex-direction: column; gap: 0; position: relative; }
@@ -119,11 +124,17 @@
             </div>
         </div>
         <div class="hero-calendly">
-            <div class="calendly-wrapper">
-                <div class="calendly-header"><h3>Schedule your free audit</h3><p>Pick a time that works for you</p></div>
-                <div class="calendly-embed-container">
-                    <div class="calendly-inline-widget" data-url="https://calendly.com/kate-zero2one/30min?hide_event_type_details=1&hide_gdpr_banner=1&background_color=ffffff&text_color=1a292b&primary_color=52e8c9" style="min-width:280px;height:680px;"></div>
-                    <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+            <div class="booking-panel">
+                <div class="booking-intro">
+                    <img class="booking-photo" src="/images/kate-typing.jpg" alt="Kate MacPherson, founder of Zero2One" width="84" height="84">
+                    <p class="booking-intro-text">You'll be meeting with <strong>Kate</strong>, Zero2One's founder — I review every audit personally, so you're talking to the person who'll actually do the work, not a sales team.</p>
+                </div>
+                <div class="calendly-wrapper">
+                    <div class="calendly-header"><h3>Schedule your free audit</h3><p>Pick a time that works for you</p></div>
+                    <div class="calendly-embed-container">
+                        <div class="calendly-inline-widget" data-url="https://calendly.com/kate-zero2one/30min?hide_event_type_details=1&hide_gdpr_banner=1&background_color=ffffff&text_color=1a292b&primary_color=52e8c9" style="min-width:280px;height:680px;"></div>
+                        <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+                    </div>
                 </div>
             </div>
         </div>
