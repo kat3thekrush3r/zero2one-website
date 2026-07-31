@@ -156,7 +156,7 @@
         }
 
         /* Email gate modal */
-        .gate-overlay { position: fixed; inset: 0; background: rgba(14,20,19,0.55); backdrop-filter: blur(4px); z-index: 2000; display: none; align-items: center; justify-content: center; padding: 1.5rem; opacity: 0; transition: opacity 0.2s ease; }
+        .gate-overlay { position: fixed; inset: 0; background: rgba(14,20,19,0.55); backdrop-filter: blur(4px); z-index: 2000; display: none; align-items: center; justify-content: center; padding: 1.5rem; opacity: 0; transition: opacity 0.2s ease; overflow-y: auto; }
         .gate-overlay.active { display: flex; opacity: 1; }
         .gate-modal { background: #fff; border-radius: 20px; width: 100%; max-width: 440px; box-shadow: 0 30px 80px rgba(14,20,19,0.35); overflow: hidden; transform: translateY(8px); transition: transform 0.2s ease; }
         .gate-overlay.active .gate-modal { transform: translateY(0); }
@@ -183,6 +183,8 @@
         .gate-import-steps p { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(26,41,43,0.5); margin-bottom: 0.6rem; }
         .gate-import-steps ol { margin: 0; padding-left: 1.1rem; }
         .gate-import-steps li { font-size: 0.88rem; color: rgba(26,41,43,0.72); margin-bottom: 0.35rem; line-height: 1.4; }
+        .gate-rename-note { font-size: 0.82rem; color: rgba(26,41,43,0.66); background: rgba(176,255,99,0.14); border-radius: 10px; padding: 0.75rem 0.95rem; margin-bottom: 1.3rem; text-align: left; line-height: 1.45; }
+        .gate-rename-note strong { color: #1a292b; }
         .gate-modal.is-success .gate-form, .gate-modal.is-success .gate-modal-head { display: none; }
         .gate-modal.is-success .gate-success { display: block; }
     </style>
@@ -400,7 +402,7 @@
             <div class="gate-success" id="gateSuccess">
                 <div class="gate-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
                 <h3>Your download is ready</h3>
-                <p>We've emailed you a copy too. Here's how to load it into QuickBooks Online:</p>
+                <p id="gateSuccessMsg">Check your inbox — we've sent you a copy. Here's how to load it into QuickBooks Online:</p>
                 <div class="gate-import-steps">
                     <p>Import in QuickBooks</p>
                     <ol>
@@ -409,6 +411,7 @@
                         <li>Confirm the <strong>Type</strong> / <strong>Detail Type</strong> mapping, then Import</li>
                     </ol>
                 </div>
+                <p class="gate-rename-note">💡 <strong>Before you import:</strong> rename the <strong>(Input …)</strong> placeholder rows — bank names, credit cards, and expense breakdowns — to match your business.</p>
                 <a href="/zero2one-chart-of-accounts-qbo-import.csv" download class="cta-button" id="gateDownloadAgain" style="display:inline-block;">Download the CSV again</a>
             </div>
         </div>
@@ -445,7 +448,17 @@
             gtag('event', 'conversion', { 'send_to': 'AW-18288167379/mQvXCKjt5dkcENOTvZBE' });
         }
 
-        function showSuccess() { gateModal.classList.add('is-success'); triggerDownload(); fireLeadConversion(); }
+        const gateSuccessMsg = document.getElementById('gateSuccessMsg');
+        const MSG_EMAILED = "Check your inbox — we've sent you a copy. Here's how to load it into QuickBooks Online:";
+        const MSG_NO_EMAIL = "Here's how to load it into QuickBooks Online:";
+
+        // emailed = did the lead form actually accept the submission (so a copy was sent)?
+        function showSuccess(emailed) {
+            if (gateSuccessMsg) gateSuccessMsg.textContent = emailed ? MSG_EMAILED : MSG_NO_EMAIL;
+            gateModal.classList.add('is-success');
+            triggerDownload();
+            fireLeadConversion();
+        }
 
         gateForm.addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -461,16 +474,16 @@
                     body: new FormData(gateForm)
                 });
                 if (res.ok) {
-                    showSuccess();
+                    showSuccess(true);
                 } else {
                     // Don't block the visitor from the free resource — still release the file,
-                    // but surface a note so a misconfigured endpoint gets noticed.
+                    // but don't claim we emailed them, and log so a bad endpoint gets noticed.
                     console.warn('Lead form did not accept the submission. Check FORMSPREE_ENDPOINT.');
-                    showSuccess();
+                    showSuccess(false);
                 }
             } catch (err) {
                 console.warn('Lead form request failed:', err);
-                showSuccess();
+                showSuccess(false);
             } finally {
                 gateSubmit.disabled = false;
                 gateSubmit.textContent = original;
