@@ -7,10 +7,10 @@
     { "source": "/free-audit", "destination": "/free-audit.html" },
     { "source": "/chart-of-accounts", "destination": "/chart-of-accounts.html" },
     { "source": "/cash-forecast", "destination": "/cash-forecast.html" },
-    { "source": "/book", "destination": "/book.html" },
     { "source": "/book/confirmed", "destination": "/book-confirmed.html" }
   ],
   "redirects": [
+    { "source": "/book", "destination": "/free-consultation", "permanent": false },
     { "source": "/financial-scorecard", "destination": "/free-consultation", "permanent": true },
     { "source": "/onboarding", "destination": "/free-consultation", "permanent": false },
     { "source": "/pricing-tiers", "destination": "/pricing", "permanent": true },

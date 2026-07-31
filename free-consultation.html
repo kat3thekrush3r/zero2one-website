@@ -58,6 +58,15 @@
         .hero { padding: 10rem 6% 4rem; text-align: center; }
         .hero h1 { font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 1.5rem; letter-spacing: -0.02em; font-weight: 700; }
         .hero p { font-size: 1.3rem; color: rgba(26, 41, 43, 0.64); max-width: 700px; margin: 0 auto; }
+        .hero-inner { max-width: 1080px; margin: 0 auto; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 3.5rem; align-items: center; text-align: left; }
+        .hero-inner p { margin: 0; }
+        .hero-figure { position: relative; justify-self: center; width: 100%; max-width: 370px; padding: 7px; border-radius: 24px; background: var(--z2o-gradient); box-shadow: 0 22px 55px rgba(26, 41, 43, 0.18); }
+        .hero-figure img { display: block; width: 100%; height: auto; border-radius: 18px; }
+        @media (max-width: 860px) {
+            .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; text-align: center; }
+            .hero-inner p { margin: 0 auto; }
+            .hero-figure { max-width: 300px; order: 2; }
+        }
         .calendly-section { padding: 4rem 6% 6rem; background: #ffffff; }
         .calendly-container { max-width: 1000px; margin: 0 auto; }
         .calendly-embed { background: #ffffff; border: 1px solid rgba(26, 41, 43, 0.10); border-radius: 16px; min-height: 760px; }
@@ -87,8 +96,7 @@
         <div class="nav-links">
             <a href="/pricing">Pricing</a>
             <a href="/about">About</a>
-            <a href="/free-consultation">Free Consultation</a>
-            <a href="/book" class="cta-button" style="color:#1a292b;">Book a call</a>
+            <a href="/free-consultation" class="cta-button" style="color:#1a292b;">Book a call</a>
         </div>
         <button class="mobile-menu-btn" aria-label="Toggle menu"><span></span><span></span><span></span></button>
     </nav>
@@ -96,12 +104,18 @@
         <a href="/">Home</a>
         <a href="/pricing">Pricing</a>
         <a href="/about">About</a>
-        <a href="/free-consultation">Free Consultation</a>
-        <a href="/book" class="cta-button">Book a call</a>
+        <a href="/free-consultation" class="cta-button">Book a call</a>
     </div>
     <section class="hero">
-        <h1>Let's <span class="highlight">Talk</span></h1>
-        <p>A no-commitment conversation about your business, your books, and what's possible.</p>
+        <div class="hero-inner">
+            <div class="hero-text">
+                <h1>Let's <span class="highlight">Talk</span></h1>
+                <p>A no-commitment conversation about your business, your books, and what's possible — with Kate, the founder who'll actually be doing your books.</p>
+            </div>
+            <div class="hero-figure">
+                <img src="/images/kate-desk.jpg" alt="Kate MacPherson, founder of Zero2One, at her desk" width="1100" height="1651">
+            </div>
+        </div>
     </section>
     <section class="calendly-section" id="consultation-booking">
         <div class="calendly-container">
